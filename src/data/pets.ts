@@ -56,9 +56,9 @@ export const pets: PetListing[] = [
 		sex: "male",
 		size: "large",
 		photos: [
-			"https://images.unsplash.com/photo-1552053831-71594a27697d?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1587300003613-f7ac4e78e1f5?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?w=800&h=600&fit=crop&q=80",
+			"/images/pets/miko-1.webp",
+			"/images/pets/miko-2.webp",
+			"/images/pets/miko-3.webp",
 		],
 		temperamentTags: [
 			"Energetik",
@@ -91,9 +91,9 @@ export const pets: PetListing[] = [
 		sex: "male",
 		size: "medium",
 		photos: [
-			"https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1587300003613-f7ac4e78e1f5?w=800&h=600&fit=crop&q=80",
+			"/images/pets/brownie-1.webp",
+			"/images/pets/brownie-2.webp",
+			"/images/pets/brownie-3.webp",
 		],
 		temperamentTags: [
 			"Energetik",
@@ -123,9 +123,9 @@ export const pets: PetListing[] = [
 		sex: "female",
 		size: "small",
 		photos: [
-			"https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1583511655826-05700d52f4d9?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1518155317743-a8ff43ea6a5f?w=800&h=600&fit=crop&q=80",
+			"/images/pets/cleo-1.webp",
+			"/images/pets/cleo-2.webp",
+			"/images/pets/cleo-3.webp",
 		],
 		temperamentTags: ["Tenang", "Terlatih di rumah", "Mandiri"],
 		medicalStatus: {
@@ -151,9 +151,9 @@ export const pets: PetListing[] = [
 		sex: "male",
 		size: "medium",
 		photos: [
-			"https://images.unsplash.com/photo-1574158622682-e40e69881006?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1518288774672-b94e808873ff?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=800&h=600&fit=crop&q=80",
+			"/images/pets/kopi-1.webp",
+			"/images/pets/kopi-2.webp",
+			"/images/pets/kopi-3.webp",
 		],
 		temperamentTags: ["Tenang", "Mandiri", "Terlatih di rumah"],
 		medicalStatus: {
@@ -179,9 +179,9 @@ export const pets: PetListing[] = [
 		sex: "female",
 		size: "small",
 		photos: [
-			"https://images.unsplash.com/photo-1494256997604-768d688631fb?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1615789591457-74a63395c990?w=800&h=600&fit=crop&q=80",
+			"/images/pets/susu-1.webp",
+			"/images/pets/susu-2.webp",
+			"/images/pets/susu-3.webp",
 		],
 		temperamentTags: [
 			"Tenang",
@@ -211,9 +211,9 @@ export const pets: PetListing[] = [
 		sex: "male",
 		size: "small",
 		photos: [
-			"https://images.unsplash.com/photo-1513245543132-31f507417b26?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1574158622682-e40e69881006?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=800&h=600&fit=crop&q=80",
+			"/images/pets/oranye-1.webp",
+			"/images/pets/oranye-2.webp",
+			"/images/pets/oranye-3.webp",
 		],
 		temperamentTags: [
 			"Energetik",
@@ -246,9 +246,9 @@ export const pets: PetListing[] = [
 		sex: "female",
 		size: "medium",
 		photos: [
-			"https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1518288774672-b94e808873ff?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1494256997604-768d688631fb?w=800&h=600&fit=crop&q=80",
+			"https://cataas.com/cat?width=800&height=600&tag=cute&i=10",
+			"https://cataas.com/cat?width=800&height=600&tag=cute&i=11",
+			"https://cataas.com/cat?width=800&height=600&tag=cute&i=12",
 		],
 		temperamentTags: ["Mandiri", "Tenang", "Terlatih di rumah"],
 		medicalStatus: {
@@ -274,9 +274,9 @@ export const pets: PetListing[] = [
 		sex: "female",
 		size: "medium",
 		photos: [
-			"https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?w=800&h=600&fit=crop&q=80",
-			"https://images.unsplash.com/photo-1494256997604-768d688631fb?w=800&h=600&fit=crop&q=80",
+			"/images/pets/manis-1.webp",
+			"/images/pets/manis-2.webp",
+			"/images/pets/manis-3.webp",
 		],
 		temperamentTags: [
 			"Tenang",

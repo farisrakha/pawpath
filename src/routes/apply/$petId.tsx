@@ -690,6 +690,13 @@ function ApplyForm({ petId }: { petId: string }) {
 							src={pet.photos[0]}
 							alt={pet.name}
 							className="size-full object-cover"
+							onError={(e) => {
+								e.currentTarget.onerror = null;
+								e.currentTarget.src =
+									pet.species === "dog"
+										? "https://place.dog/800/600"
+										: "https://cataas.com/cat?width=800&height=600";
+							}}
 						/>
 					</div>
 					<div>

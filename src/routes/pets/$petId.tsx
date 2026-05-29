@@ -125,6 +125,13 @@ function PetDetailPage() {
 									animation: "pawFadeIn 0.25s ease both",
 								} as React.CSSProperties
 							}
+							onError={(e) => {
+								e.currentTarget.onerror = null;
+								e.currentTarget.src =
+									pet.species === "dog"
+										? "https://place.dog/800/600"
+										: "https://cataas.com/cat?width=800&height=600";
+							}}
 						/>
 					</div>
 
@@ -149,6 +156,13 @@ function PetDetailPage() {
 										alt=""
 										className="h-16 w-24 object-cover"
 										loading="lazy"
+										onError={(e) => {
+											e.currentTarget.onerror = null;
+											e.currentTarget.src =
+												pet.species === "dog"
+													? "https://place.dog/800/600"
+													: "https://cataas.com/cat?width=800&height=600";
+										}}
 									/>
 								</button>
 							))}

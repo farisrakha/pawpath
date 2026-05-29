@@ -334,6 +334,13 @@ function PetCard({
 					alt={pet.name}
 					className="size-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
 					loading="lazy"
+					onError={(e) => {
+						e.currentTarget.onerror = null;
+						e.currentTarget.src =
+							pet.species === "dog"
+								? "https://place.dog/800/600"
+								: "https://cataas.com/cat?width=800&height=600";
+					}}
 				/>
 				<div className="absolute inset-x-0 top-0 flex items-start justify-between p-3">
 					{pet.urgency === "urgent" ? (
