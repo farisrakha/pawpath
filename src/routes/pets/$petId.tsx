@@ -1,0 +1,423 @@
+import {
+	createFileRoute,
+	Link,
+	notFound,
+	useNavigate,
+} from "@tanstack/react-router";
+import {
+	ArrowLeft,
+	CheckCircle2,
+	Heart,
+	MapPin,
+	MessageCircle,
+	ShieldCheck,
+	XCircle,
+} from "lucide-react";
+import { useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { useApplications, useAuth } from "@/context";
+import { listers, type PetListing, pets } from "@/data";
+import { cn } from "@/lib/utils";
+
+export const Route = createFileRoute("/pets/$petId")({
+	component: PetDetailPage,
+});
+
+// ── Helpers ────────────────────────────────────────────────────────────────────
+
+function ageLabel(pet: PetListing): string {
+	const { years, months } = pet.age;
+	if (years === 0) return `${months} bulan`;
+	if (months === 0) return `${years} tahun`;
+	return `${years} tahun ${months} bulan`;
+}
+
+const STATUS_LABEL: Record<string, string> = {
+	submitted: "Terkirim",
+	under_review: "Sedang ditinjau",
+	meet_greet: "Meet & Greet",
+	approved: "Disetujui",
+	adopted: "Diadopsi",
+	rejected: "Ditolak",
+	withdrawn: "Dicabut",
+};
+
+const STATUS_COLOR: Record<string, string> = {
+	submitted: "bg-muted text-muted-foreground",
+	under_review: "bg-primary/10 text-primary",
+	meet_greet: "bg-amber-100 text-amber-800",
+	approved: "bg-green-100 text-green-800",
+	adopted: "bg-green-100 text-green-800",
+	rejected: "bg-destructive/10 text-destructive",
+	withdrawn: "bg-muted text-muted-foreground",
+};
+
+const SIZE_LABEL: Record<string, string> = {
+	small: "Kecil (<10 kg)",
+	medium: "Sedang (10–25 kg)",
+	large: "Besar (>25 kg)",
+};
+
+const MEDICAL_ITEMS: {
+	key: keyof PetListing["medicalStatus"];
+	label: string;
+}[] = [
+	{ key: "vaksinasi", label: "Vaksinasi lengkap" },
+	{ key: "sterilisasi", label: "Sterilisasi" },
+	{ key: "microchip", label: "Microchip" },
+	{ key: "obatCacing", label: "Obat cacing" },
+	{ key: "suratKesehatan", label: "Surat kesehatan" },
+];
+
+// ── Page ──────────────────────────────────────────────────────────────────────
+
+function PetDetailPage() {
+	const { petId } = Route.useParams();
+	const navigate = useNavigate();
+	const { isAuthenticated } = useAuth();
+	const { getApplicationByPet } = useApplications();
+
+	const pet = pets.find((p) => p.id === petId);
+	if (!pet) throw notFound();
+
+	const lister = listers.find((l) => l.id === pet.listerId);
+	const existingApp = getApplicationByPet(petId);
+	const [photoIdx, setPhotoIdx] = useState(0);
+
+	const isUnavailable = pet.status !== "active";
+
+	const handleApply = () => {
+		if (!isAuthenticated) {
+			navigate({ to: "/login" });
+			return;
+		}
+		navigate({ to: "/apply/$petId", params: { petId } });
+	};
+
+	return (
+		<div
+			className="py-6 md:py-10"
+			style={{ animation: "pawFadeIn 0.35s ease both" } as React.CSSProperties}
+		>
+			{/* Back link */}
+			<Link
+				to="/"
+				className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+			>
+				<ArrowLeft className="size-4" />
+				Kembali ke daftar
+			</Link>
+
+			<div className="grid gap-10 lg:grid-cols-[56fr_44fr]">
+				{/* ── Left: photos + story ── */}
+				<div className="flex flex-col gap-7">
+					{/* Main photo */}
+					<div className="overflow-hidden rounded-2xl bg-muted aspect-[4/3] ring-1 ring-border">
+						<img
+							key={photoIdx}
+							src={pet.photos[photoIdx]}
+							alt={`${pet.name} foto ${photoIdx + 1}`}
+							className="size-full object-cover"
+							style={
+								{
+									animation: "pawFadeIn 0.25s ease both",
+								} as React.CSSProperties
+							}
+						/>
+					</div>
+
+					{/* Thumbnails */}
+					{pet.photos.length > 1 ? (
+						<div className="flex gap-2.5 overflow-x-auto pb-1">
+							{pet.photos.map((src, idx) => (
+								<button
+									key={src}
+									type="button"
+									onClick={() => setPhotoIdx(idx)}
+									className={cn(
+										"shrink-0 overflow-hidden rounded-xl border-2 transition-all duration-150",
+										photoIdx === idx
+											? "border-primary shadow-sm"
+											: "border-transparent opacity-70 hover:opacity-100 hover:border-border",
+									)}
+									aria-label={`Foto ${idx + 1}`}
+								>
+									<img
+										src={src}
+										alt=""
+										className="h-16 w-24 object-cover"
+										loading="lazy"
+									/>
+								</button>
+							))}
+						</div>
+					) : null}
+
+					{/* Story */}
+					<section>
+						<h2 className="font-display mb-3 text-xl font-bold text-foreground">
+							Tentang {pet.name}
+						</h2>
+						<p className="text-[0.92rem] leading-relaxed text-muted-foreground">
+							{pet.story}
+						</p>
+					</section>
+
+					{/* Known requirements */}
+					{pet.knownRequirements ? (
+						<div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+							<p className="text-sm font-semibold text-amber-900">
+								Persyaratan khusus
+							</p>
+							<p className="mt-1 text-sm leading-relaxed text-amber-800">
+								{pet.knownRequirements}
+							</p>
+						</div>
+					) : null}
+
+					{/* Medical status */}
+					<section>
+						<h2 className="font-display mb-4 text-xl font-bold text-foreground">
+							Status kesehatan
+						</h2>
+						<div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+							{MEDICAL_ITEMS.map(({ key, label }) => {
+								const ok = pet.medicalStatus[key];
+								return (
+									<div
+										key={key}
+										className={cn(
+											"flex items-center gap-2 rounded-xl border px-3 py-2.5 text-sm",
+											ok
+												? "border-green-200 bg-green-50 text-green-800"
+												: "border-border bg-muted/40 text-muted-foreground",
+										)}
+									>
+										{ok ? (
+											<CheckCircle2 className="size-4 shrink-0 text-green-600" />
+										) : (
+											<XCircle className="size-4 shrink-0 text-muted-foreground/50" />
+										)}
+										{label}
+									</div>
+								);
+							})}
+						</div>
+					</section>
+				</div>
+
+				{/* ── Right: info + CTA ── */}
+				<div className="flex flex-col gap-5">
+					{/* Pet info card */}
+					<div className="rounded-2xl border border-border bg-card p-5 md:p-6">
+						{/* Status badges */}
+						<div className="mb-3 flex flex-wrap items-center gap-2">
+							{pet.urgency === "urgent" ? (
+								<span className="rounded-full bg-destructive px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-white">
+									Mendesak
+								</span>
+							) : null}
+							{isUnavailable ? (
+								<span className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-semibold text-muted-foreground">
+									Sudah diadopsi
+								</span>
+							) : null}
+						</div>
+
+						<h1 className="font-display text-3xl font-bold tracking-tight text-foreground">
+							{pet.name}
+						</h1>
+						<p className="mt-1 text-muted-foreground">
+							{pet.breed} · {pet.species === "cat" ? "Kucing" : "Anjing"}
+						</p>
+
+						<Separator className="my-4" />
+
+						{/* Vitals grid */}
+						<dl className="grid grid-cols-2 gap-x-4 gap-y-4 text-sm">
+							<div>
+								<dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+									Umur
+								</dt>
+								<dd className="mt-1 font-medium text-foreground">
+									{ageLabel(pet)}
+								</dd>
+							</div>
+							<div>
+								<dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+									Jenis kelamin
+								</dt>
+								<dd className="mt-1 font-medium text-foreground">
+									{pet.sex === "male" ? "Jantan" : "Betina"}
+								</dd>
+							</div>
+							<div>
+								<dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+									Ukuran
+								</dt>
+								<dd className="mt-1 font-medium text-foreground">
+									{SIZE_LABEL[pet.size]}
+								</dd>
+							</div>
+							<div>
+								<dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+									Lokasi
+								</dt>
+								<dd className="mt-1 flex items-center gap-1 font-medium text-foreground">
+									<MapPin className="size-3.5 text-muted-foreground" />
+									{pet.locationDistrict}
+								</dd>
+							</div>
+						</dl>
+
+						{/* Temperament tags */}
+						{pet.temperamentTags.length > 0 ? (
+							<>
+								<Separator className="my-4" />
+								<div>
+									<p className="mb-2.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+										Karakter
+									</p>
+									<div className="flex flex-wrap gap-1.5">
+										{pet.temperamentTags.map((tag) => (
+											<span
+												key={tag}
+												className="rounded-full border border-border bg-muted/60 px-3 py-1 text-xs text-muted-foreground"
+											>
+												{tag}
+											</span>
+										))}
+									</div>
+								</div>
+							</>
+						) : null}
+
+						<Separator className="my-4" />
+
+						{/* CTA */}
+						{existingApp ? (
+							<div className="rounded-xl bg-muted/60 p-4">
+								<p className="text-sm font-semibold text-foreground">
+									Status lamaranmu
+								</p>
+								<span
+									className={cn(
+										"mt-1.5 inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold",
+										STATUS_COLOR[existingApp.status] ??
+											"bg-muted text-muted-foreground",
+									)}
+								>
+									{STATUS_LABEL[existingApp.status] ?? existingApp.status}
+								</span>
+								<Button
+									variant="outline"
+									size="lg"
+									className="mt-3 w-full"
+									render={<Link to="/my-applications" />}
+								>
+									Lihat lamaran
+								</Button>
+							</div>
+						) : isUnavailable ? (
+							<p className="text-center text-sm text-muted-foreground">
+								Hewan ini sudah tidak tersedia untuk adopsi.
+							</p>
+						) : (
+							<div className="flex flex-col gap-2">
+								<Button size="lg" className="w-full" onClick={handleApply}>
+									<Heart className="size-4" />
+									Ajukan lamaran adopsi
+								</Button>
+								{!isAuthenticated ? (
+									<p className="text-center text-xs text-muted-foreground">
+										Kamu perlu masuk terlebih dahulu.
+									</p>
+								) : null}
+							</div>
+						)}
+					</div>
+
+					{/* Lister card */}
+					{lister ? (
+						<div className="overflow-hidden rounded-2xl border border-border bg-card">
+							{/* Verified top bar */}
+							{lister.verificationStatus === "verified" ? (
+								<div
+									className={cn(
+										"flex items-center gap-2 px-5 py-3 text-xs font-semibold",
+										lister.type === "shelter"
+											? "border-b border-border bg-blue-50 text-blue-800"
+											: "border-b border-border bg-amber-50 text-amber-800",
+									)}
+								>
+									<ShieldCheck className="size-4" />
+									{lister.type === "shelter"
+										? "Organisasi Terverifikasi"
+										: "Individu Terverifikasi"}
+								</div>
+							) : null}
+
+							<div className="p-5">
+								<p className="mb-3 text-[0.68rem] font-semibold uppercase tracking-wide text-muted-foreground">
+									Dititipkan oleh
+								</p>
+
+								<p className="font-semibold text-foreground">
+									{lister.displayName}
+								</p>
+								<p className="mt-0.5 text-xs text-muted-foreground">
+									{lister.type === "shelter" ? "Shelter" : "Penitip mandiri"}
+									{lister.type === "shelter" && lister.adoptionCount > 0
+										? ` · ${lister.adoptionCount} adopsi berhasil`
+										: null}
+								</p>
+
+								<p className="mt-3 line-clamp-4 text-[0.85rem] leading-relaxed text-muted-foreground">
+									{lister.type === "private" && lister.rehomingStory
+										? lister.rehomingStory
+										: lister.bio}
+								</p>
+
+								{lister.type === "shelter" ? (
+									<a
+										href={`https://wa.me/${lister.waNumber}`}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+									>
+										<MessageCircle className="size-4" />
+										Hubungi shelter via WhatsApp
+									</a>
+								) : null}
+
+								{/* Private: WA hidden message */}
+								{lister.type === "private" && !existingApp ? (
+									<p className="mt-4 rounded-lg bg-muted/60 px-3 py-2.5 text-xs text-muted-foreground">
+										Kontak penitip akan diberikan setelah lamaran mencapai tahap
+										Meet &amp; Greet.
+									</p>
+								) : null}
+
+								{/* Private: WA revealed at meet_greet */}
+								{lister.type === "private" &&
+								existingApp?.status === "meet_greet" ? (
+									<a
+										href={`https://wa.me/${lister.waNumber}`}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+									>
+										<MessageCircle className="size-4" />
+										Hubungi penitip via WhatsApp
+									</a>
+								) : null}
+							</div>
+						</div>
+					) : null}
+				</div>
+			</div>
+		</div>
+	);
+}
