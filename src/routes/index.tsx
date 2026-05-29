@@ -116,7 +116,7 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 
 	return (
 		<div className="flex flex-col gap-5">
-			<div className="flex items-center justify-between">
+			<div className="flex flex-col gap-1">
 				<p className="flex items-center gap-1.5 font-display text-sm font-bold text-foreground">
 					<PawPrint className="h-4 w-4 text-primary" />
 					{t("browse.matchProfile")}
@@ -125,7 +125,7 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 					<button
 						type="button"
 						onClick={resetFilters}
-						className="flex min-h-11 items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
+						className="flex w-fit min-h-11 items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
 					>
 						<RotateCcw className="size-3" />
 						{t("browse.filterReset")}
