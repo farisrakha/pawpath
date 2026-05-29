@@ -91,11 +91,13 @@ function AccountInner() {
 
 function AccountPage() {
 	return (
-		<AuthGate
-			title="Masuk untuk melihat akunmu"
-			description="Kelola profil dan pantau lamaran adopsimu setelah masuk."
-		>
-			<AccountInner />
-		</AuthGate>
+		<div className="mx-auto max-w-4xl px-4">
+			<AuthGate
+				title="Masuk untuk melihat akunmu"
+				description="Kelola profil dan pantau lamaran adopsimu setelah masuk."
+			>
+				<AccountInner />
+			</AuthGate>
+		</div>
 	);
 }

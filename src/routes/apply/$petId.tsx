@@ -758,11 +758,13 @@ function ApplyForm({ petId }: { petId: string }) {
 function ApplyPageWrapper() {
 	const { petId } = Route.useParams();
 	return (
-		<AuthGate
-			title="Masuk untuk mengajukan lamaran"
-			description="Kamu perlu masuk terlebih dahulu sebelum mengajukan lamaran adopsi."
-		>
-			<ApplyForm petId={petId} />
-		</AuthGate>
+		<div className="mx-auto max-w-2xl px-4">
+			<AuthGate
+				title="Masuk untuk mengajukan lamaran"
+				description="Kamu perlu masuk terlebih dahulu sebelum mengajukan lamaran adopsi."
+			>
+				<ApplyForm petId={petId} />
+			</AuthGate>
+		</div>
 	);
 }

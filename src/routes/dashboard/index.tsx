@@ -289,7 +289,7 @@ function DashboardInner() {
 
 	return (
 		<div
-			className="py-8"
+			className="mx-auto max-w-6xl px-4 py-8"
 			style={{ animation: "pawFadeIn 0.3s ease both" } as React.CSSProperties}
 		>
 			{/* Header */}

@@ -32,7 +32,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { LanguageToggle } from "./LanguageToggle";
 
 const NAV_LINK_DEFS = [
-	{ to: "/", tKey: "nav.browse", exact: true },
+	{ to: "/jelajahi", tKey: "nav.browse" },
 	{ to: "/my-applications", tKey: "nav.myApplications" },
 ] as const;
 

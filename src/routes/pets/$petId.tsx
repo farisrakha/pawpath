@@ -98,7 +98,7 @@ function PetDetailPage() {
 
 	return (
 		<div
-			className="py-6 md:py-10"
+			className="mx-auto max-w-4xl px-4 py-6 md:py-10"
 			style={{ animation: "pawFadeIn 0.35s ease both" } as React.CSSProperties}
 		>
 			{/* Back link */}

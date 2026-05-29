@@ -308,11 +308,13 @@ function MyApplicationsInner() {
 
 function MyApplicationsPage() {
 	return (
-		<AuthGate
-			title="Masuk untuk melihat lamaranmu"
-			description="Lamaran adopsimu tersimpan di akun ini. Masuk untuk memantaunya."
-		>
-			<MyApplicationsInner />
-		</AuthGate>
+		<div className="mx-auto max-w-4xl px-4">
+			<AuthGate
+				title="Masuk untuk melihat lamaranmu"
+				description="Lamaran adopsimu tersimpan di akun ini. Masuk untuk memantaunya."
+			>
+				<MyApplicationsInner />
+			</AuthGate>
+		</div>
 	);
 }

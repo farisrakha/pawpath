@@ -149,7 +149,10 @@ export const translations: Record<string, Record<Lang, string>> = {
 		id: "adopsi berhasil",
 		en: "successful adoptions",
 	},
-	"pet.listerCard.rehomingStory": { id: "Alasan rehoming", en: "Rehoming reason" },
+	"pet.listerCard.rehomingStory": {
+		id: "Alasan rehoming",
+		en: "Rehoming reason",
+	},
 	"pet.listerCard.contactShelter": {
 		id: "Hubungi Shelter",
 		en: "Contact Shelter",
@@ -424,7 +427,10 @@ export const translations: Record<string, Record<Lang, string>> = {
 	"apply.otherPets.none": { id: "Tidak ada", en: "None" },
 	"apply.otherPets.dog": { id: "Ada anjing", en: "Have a dog" },
 	"apply.otherPets.cat": { id: "Ada kucing", en: "Have a cat" },
-	"apply.otherPets.both": { id: "Ada anjing dan kucing", en: "Have dogs and cats" },
+	"apply.otherPets.both": {
+		id: "Ada anjing dan kucing",
+		en: "Have dogs and cats",
+	},
 	"apply.activity.low": { id: "Rendah", en: "Low" },
 	"apply.activity.moderate": { id: "Sedang", en: "Moderate" },
 	"apply.activity.high": { id: "Tinggi", en: "High" },
@@ -748,6 +754,113 @@ export const translations: Record<string, Record<Lang, string>> = {
 		id: "Prototipe untuk tujuan peragaan. Layanan mencakup Jabodetabek.",
 		en: "Prototype for demonstration purposes. Service covers Jabodetabek.",
 	},
+
+	// ── landing page ───────────────────────────────────────────────────────────
+	"landing.hero.eyebrow": {
+		id: "Temukan sahabat yang menunggu",
+		en: "Find a companion waiting for you",
+	},
+	"landing.hero.line1": {
+		id: "Ada yang sedang menunggu",
+		en: "Someone is waiting",
+	},
+	"landing.hero.line2": {
+		id: "seseorang seperti kamu.",
+		en: "for someone like you.",
+	},
+	"landing.hero.sub": {
+		id: "Anjing dan kucing dari shelter terverifikasi di Jabodetabek. Isi profil kecocokan dan kami carikan yang paling pas.",
+		en: "Dogs and cats from verified shelters in Jabodetabek. Fill your match profile and we'll find the best fit.",
+	},
+	"landing.hero.cta": { id: "Temukan hewanmu", en: "Find your companion" },
+	"landing.hero.ctaSecondary": {
+		id: "Atau isi profil kecocokan dulu",
+		en: "Or fill your match profile first",
+	},
+	"landing.hero.badge": { id: "hewan menunggu", en: "animals waiting" },
+	"landing.trust.stat1value": { id: "120+", en: "120+" },
+	"landing.trust.stat1label": { id: "hewan tersedia", en: "animals available" },
+	"landing.trust.stat2value": { id: "15", en: "15" },
+	"landing.trust.stat2label": {
+		id: "shelter terverifikasi",
+		en: "verified shelters",
+	},
+	"landing.trust.stat3value": { id: "80+", en: "80+" },
+	"landing.trust.stat3label": {
+		id: "adopsi berhasil",
+		en: "successful adoptions",
+	},
+	"landing.steps.label": { id: "Cara kerjanya", en: "How it works" },
+	"landing.steps.headline1": {
+		id: "Bingung harus mulai",
+		en: "Not sure where",
+	},
+	"landing.steps.headline2": { id: "dari mana?", en: "to start?" },
+	"landing.steps.body": {
+		id: "Tidak semua hewan cocok untuk semua orang. PawPath punya profil kecocokan: beberapa pertanyaan singkat tentang hunian dan gaya hidupmu.",
+		en: "Not every pet fits every person. PawPath has a match profile: a few quick questions about your home and lifestyle.",
+	},
+	"landing.steps.cta": {
+		id: "Isi profil kecocokan",
+		en: "Fill match profile",
+	},
+	"landing.steps.s1title": {
+		id: "Isi profil kecocokan",
+		en: "Fill your match profile",
+	},
+	"landing.steps.s1body": {
+		id: "Beberapa pertanyaan singkat tentang rumah dan gaya hidupmu.",
+		en: "A few quick questions about your home and lifestyle.",
+	},
+	"landing.steps.s2title": {
+		id: "Lihat hewan yang cocok",
+		en: "See matching pets",
+	},
+	"landing.steps.s2body": {
+		id: "Hasil diurutkan berdasarkan kecocokan dengan profilmu.",
+		en: "Results sorted by match with your profile.",
+	},
+	"landing.steps.s3title": {
+		id: "Hubungi shelter",
+		en: "Contact the shelter",
+	},
+	"landing.steps.s3body": {
+		id: "Ajukan lamaran dan jadwalkan pertemuan langsung.",
+		en: "Apply and schedule a meet and greet directly.",
+	},
+	"landing.featured.label": { id: "Sedang menunggu", en: "Currently waiting" },
+	"landing.featured.headline1": { id: "Hewan yang", en: "Pets that are" },
+	"landing.featured.headline2": {
+		id: "sedang menunggu",
+		en: "waiting for you",
+	},
+	"landing.featured.viewAll": {
+		id: "Lihat semua hewan",
+		en: "View all pets",
+	},
+	"landing.shelter.label": { id: "Janji kami", en: "Our promise" },
+	"landing.shelter.headline1": { id: "Diadopsi dari", en: "Adopted from" },
+	"landing.shelter.headline2": {
+		id: "shelter terpercaya",
+		en: "trusted shelters",
+	},
+	"landing.shelter.body": {
+		id: "Setiap hewan yang terdaftar berasal dari shelter atau penitip yang sudah kami verifikasi langsung.",
+		en: "Every listed animal comes from a shelter or rehomer we have verified directly.",
+	},
+	"landing.cta.headline1": {
+		id: "Siapa tahu, hewanmu",
+		en: "Your companion",
+	},
+	"landing.cta.headline2": {
+		id: "sudah menunggu di sana.",
+		en: "might already be waiting.",
+	},
+	"landing.cta.sub": {
+		id: "Tidak perlu daftar untuk mulai melihat. Jelajahi langsung, gratis.",
+		en: "No sign-up needed to start browsing. Explore now, free.",
+	},
+	"landing.cta.button": { id: "Mulai jelajahi", en: "Start browsing" },
 
 	// ── common ─────────────────────────────────────────────────────────────────
 	"common.loading": { id: "Memuat...", en: "Loading..." },

@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { PawPrint } from "lucide-react";
 
 const ADOPT_LINKS = [
-	{ to: "/", label: "Jelajahi hewan" },
+	{ to: "/jelajahi", label: "Jelajahi hewan" },
 	{ to: "/my-applications", label: "Lamaranku" },
 	{ to: "/dashboard", label: "Dashboard shelter" },
 ] as const;

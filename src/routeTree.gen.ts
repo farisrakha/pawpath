@@ -14,6 +14,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MyApplicationsIndexRouteImport } from './routes/my-applications/index'
+import { Route as JelajahiIndexRouteImport } from './routes/jelajahi/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as AccountIndexRouteImport } from './routes/account/index'
 import { Route as PetsPetIdRouteImport } from './routes/pets/$petId'
@@ -42,6 +43,11 @@ const IndexRoute = IndexRouteImport.update({
 const MyApplicationsIndexRoute = MyApplicationsIndexRouteImport.update({
   id: '/my-applications/',
   path: '/my-applications/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JelajahiIndexRoute = JelajahiIndexRouteImport.update({
+  id: '/jelajahi/',
+  path: '/jelajahi/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/pets/$petId': typeof PetsPetIdRoute
   '/account/': typeof AccountIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/jelajahi/': typeof JelajahiIndexRoute
   '/my-applications/': typeof MyApplicationsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/pets/$petId': typeof PetsPetIdRoute
   '/account': typeof AccountIndexRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/jelajahi': typeof JelajahiIndexRoute
   '/my-applications': typeof MyApplicationsIndexRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/pets/$petId': typeof PetsPetIdRoute
   '/account/': typeof AccountIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/jelajahi/': typeof JelajahiIndexRoute
   '/my-applications/': typeof MyApplicationsIndexRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/pets/$petId'
     | '/account/'
     | '/dashboard/'
+    | '/jelajahi/'
     | '/my-applications/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/pets/$petId'
     | '/account'
     | '/dashboard'
+    | '/jelajahi'
     | '/my-applications'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/pets/$petId'
     | '/account/'
     | '/dashboard/'
+    | '/jelajahi/'
     | '/my-applications/'
   fileRoutesById: FileRoutesById
 }
@@ -144,6 +156,7 @@ export interface RootRouteChildren {
   PetsPetIdRoute: typeof PetsPetIdRoute
   AccountIndexRoute: typeof AccountIndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
+  JelajahiIndexRoute: typeof JelajahiIndexRoute
   MyApplicationsIndexRoute: typeof MyApplicationsIndexRoute
 }
 
@@ -182,6 +195,13 @@ declare module '@tanstack/react-router' {
       path: '/my-applications'
       fullPath: '/my-applications/'
       preLoaderRoute: typeof MyApplicationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jelajahi/': {
+      id: '/jelajahi/'
+      path: '/jelajahi'
+      fullPath: '/jelajahi/'
+      preLoaderRoute: typeof JelajahiIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/': {
@@ -224,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   PetsPetIdRoute: PetsPetIdRoute,
   AccountIndexRoute: AccountIndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
+  JelajahiIndexRoute: JelajahiIndexRoute,
   MyApplicationsIndexRoute: MyApplicationsIndexRoute,
 }
 export const routeTree = rootRouteImport

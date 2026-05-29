@@ -14,7 +14,7 @@ interface NavItem {
 }
 
 const ITEMS: NavItem[] = [
-	{ to: "/", label: "Jelajahi", icon: Home, exact: true },
+	{ to: "/jelajahi", label: "Jelajahi", icon: Home, exact: true },
 	{ to: "/my-applications", label: "Lamaranku", icon: ClipboardList },
 	{ to: "/account", label: "Akun", icon: UserIcon },
 ];

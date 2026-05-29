@@ -8,29 +8,14 @@ import { cn } from "@/lib/utils";
 
 interface AppShellProps {
 	children: ReactNode;
-	/** Constrain main content to the standard 1280px container. Set false for full-bleed pages. */
-	contained?: boolean;
 	className?: string;
 }
 
-export function AppShell({
-	children,
-	contained = true,
-	className,
-}: AppShellProps) {
+export function AppShell({ children, className }: AppShellProps) {
 	return (
 		<div className="flex min-h-screen flex-col bg-background">
 			<SiteHeader />
-			<main
-				className={cn(
-					// Bottom padding leaves room for the mobile tab bar.
-					"flex-1 pb-20 md:pb-0",
-					contained && "mx-auto w-full max-w-7xl px-4",
-					className,
-				)}
-			>
-				{children}
-			</main>
+			<main className={cn("flex-1 pb-20 md:pb-0", className)}>{children}</main>
 			<SiteFooter />
 			<MobileNav />
 			<Toaster position="top-center" richColors />
