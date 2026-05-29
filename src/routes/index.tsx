@@ -1,9 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
+	GraduationCap,
+	Home,
 	MapPin,
+	PawPrint,
 	RotateCcw,
 	ShieldCheck,
 	SlidersHorizontal,
+	Users,
+	Weight,
+	Zap,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -36,10 +42,7 @@ export const Route = createFileRoute("/")({ component: BrowsePage });
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
-function ageLabel(
-	pet: PetListing,
-	t: (key: string) => string,
-): string {
+function ageLabel(pet: PetListing, t: (key: string) => string): string {
 	const { years, months } = pet.age;
 	if (years === 0) return `${months} ${t("pet.age.months")}`;
 	if (months === 0) return `${years} ${t("pet.age.years")}`;
@@ -86,14 +89,17 @@ const EXPERIENCE_OPTIONS: ExperienceFilter[] = [
 
 function FilterSection({
 	title,
+	icon,
 	children,
 }: {
 	title: string;
+	icon?: React.ReactNode;
 	children: React.ReactNode;
 }) {
 	return (
 		<div>
-			<p className="mb-2.5 text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
+			<p className="mb-2.5 flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
+				{icon}
 				{title}
 			</p>
 			{children}
@@ -111,7 +117,8 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 	return (
 		<div className="flex flex-col gap-5">
 			<div className="flex items-center justify-between">
-				<p className="font-display text-sm font-bold text-foreground">
+				<p className="flex items-center gap-1.5 font-display text-sm font-bold text-foreground">
+					<PawPrint className="h-4 w-4 text-primary" />
 					{t("browse.matchProfile")}
 				</p>
 				{hasActiveFilters() ? (
@@ -129,7 +136,10 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 			<Separator />
 
 			{/* Size */}
-			<FilterSection title={t("browse.filterSection.size")}>
+			<FilterSection
+				title={t("browse.filterSection.size")}
+				icon={<Weight className="h-3.5 w-3.5" />}
+			>
 				<div className="flex gap-1.5">
 					{SIZE_OPTIONS.map((opt) => {
 						const active = matchProfile.sizePreference === opt.value;
@@ -158,7 +168,10 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 			</FilterSection>
 
 			{/* Housing */}
-			<FilterSection title={t("browse.filterSection.housing")}>
+			<FilterSection
+				title={t("browse.filterSection.housing")}
+				icon={<Home className="h-3.5 w-3.5" />}
+			>
 				<RadioGroup
 					value={matchProfile.housingType ?? ""}
 					onValueChange={(v) =>
@@ -180,7 +193,10 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 			</FilterSection>
 
 			{/* Household */}
-			<FilterSection title={t("browse.filterSection.household")}>
+			<FilterSection
+				title={t("browse.filterSection.household")}
+				icon={<Users className="h-3.5 w-3.5" />}
+			>
 				<RadioGroup
 					value={matchProfile.householdType ?? ""}
 					onValueChange={(v) =>
@@ -202,7 +218,10 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 			</FilterSection>
 
 			{/* Other pets */}
-			<FilterSection title={t("browse.filterSection.otherPets")}>
+			<FilterSection
+				title={t("browse.filterSection.otherPets")}
+				icon={<PawPrint className="h-3.5 w-3.5" />}
+			>
 				<RadioGroup
 					value={matchProfile.otherPets ?? ""}
 					onValueChange={(v) =>
@@ -224,7 +243,10 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 			</FilterSection>
 
 			{/* Activity */}
-			<FilterSection title={t("browse.filterSection.activity")}>
+			<FilterSection
+				title={t("browse.filterSection.activity")}
+				icon={<Zap className="h-3.5 w-3.5" />}
+			>
 				<div className="flex gap-1.5">
 					{ACTIVITY_OPTIONS.map((opt) => {
 						const active = matchProfile.activityLevel === opt;
@@ -250,7 +272,10 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 			</FilterSection>
 
 			{/* Experience */}
-			<FilterSection title={t("browse.filterSection.experience")}>
+			<FilterSection
+				title={t("browse.filterSection.experience")}
+				icon={<GraduationCap className="h-3.5 w-3.5" />}
+			>
 				<div className="flex flex-col gap-1.5">
 					{EXPERIENCE_OPTIONS.map((opt) => {
 						const active = matchProfile.experience === opt;
@@ -439,7 +464,8 @@ function BrowsePage() {
 					{t("browse.header.title").replace(
 						t("browse.header.accentPhrase"),
 						"",
-					) || t("browse.header.title").split(t("browse.header.accentPhrase"))[0]}
+					) ||
+						t("browse.header.title").split(t("browse.header.accentPhrase"))[0]}
 					<span className="italic text-primary">
 						{t("browse.header.accentPhrase")}
 					</span>
