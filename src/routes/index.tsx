@@ -98,7 +98,7 @@ function FilterSection({
 }) {
 	return (
 		<div>
-			<p className="mb-2.5 flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
+			<p className="mb-2.5 flex items-center gap-1.5 label-eyebrow text-muted-foreground">
 				{icon}
 				{title}
 			</p>
@@ -151,7 +151,7 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 									updateFilter("sizePreference", active ? null : opt.value)
 								}
 								className={cn(
-									"flex-1 rounded-xl border px-2 py-2.5 text-center transition-colors",
+									"flex-1 rounded-xl border px-2 py-2.5 text-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 									active
 										? "border-primary bg-primary/5 text-primary"
 										: "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground",
@@ -183,7 +183,7 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 						<Label
 							key={opt}
 							htmlFor={`ht-${opt}`}
-							className="flex cursor-pointer items-center gap-2.5 rounded-lg border border-border px-3 py-2.5 text-[0.82rem] font-normal transition-colors hover:border-primary/40 has-[[data-state=checked]]:border-primary has-[[data-state=checked]]:bg-primary/5"
+							className="flex min-h-11 cursor-pointer items-center gap-2.5 rounded-lg border border-border px-3 py-2.5 text-[0.82rem] font-normal transition-colors hover:border-primary/40 has-[[data-state=checked]]:border-primary has-[[data-state=checked]]:bg-primary/5"
 						>
 							<RadioGroupItem id={`ht-${opt}`} value={opt} />
 							{t(`filter.${opt}`)}
@@ -208,7 +208,7 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 						<Label
 							key={opt}
 							htmlFor={`hh-${opt}`}
-							className="flex cursor-pointer items-center gap-2.5 rounded-lg border border-border px-3 py-2.5 text-[0.82rem] font-normal transition-colors hover:border-primary/40 has-[[data-state=checked]]:border-primary has-[[data-state=checked]]:bg-primary/5"
+							className="flex min-h-11 cursor-pointer items-center gap-2.5 rounded-lg border border-border px-3 py-2.5 text-[0.82rem] font-normal transition-colors hover:border-primary/40 has-[[data-state=checked]]:border-primary has-[[data-state=checked]]:bg-primary/5"
 						>
 							<RadioGroupItem id={`hh-${opt}`} value={opt} />
 							{t(`filter.${opt}`)}
@@ -233,7 +233,7 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 						<Label
 							key={opt}
 							htmlFor={`op-${opt}`}
-							className="flex cursor-pointer items-center gap-2.5 rounded-lg border border-border px-3 py-2.5 text-[0.82rem] font-normal transition-colors hover:border-primary/40 has-[[data-state=checked]]:border-primary has-[[data-state=checked]]:bg-primary/5"
+							className="flex min-h-11 cursor-pointer items-center gap-2.5 rounded-lg border border-border px-3 py-2.5 text-[0.82rem] font-normal transition-colors hover:border-primary/40 has-[[data-state=checked]]:border-primary has-[[data-state=checked]]:bg-primary/5"
 						>
 							<RadioGroupItem id={`op-${opt}`} value={opt} />
 							{t(`filter.${opt}`)}
@@ -258,7 +258,7 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 									updateFilter("activityLevel", active ? null : opt)
 								}
 								className={cn(
-									"flex-1 rounded-xl border py-2.5 text-center text-[0.82rem] transition-colors",
+									"flex flex-1 min-h-11 items-center justify-center rounded-xl border py-2 text-center text-[0.82rem] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 									active
 										? "border-primary bg-primary/5 font-semibold text-primary"
 										: "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground",
@@ -285,7 +285,7 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 								type="button"
 								onClick={() => updateFilter("experience", active ? null : opt)}
 								className={cn(
-									"rounded-lg border px-3 py-2.5 text-left text-[0.82rem] transition-colors",
+									"flex min-h-11 items-center rounded-lg border px-3 py-2 text-left text-[0.82rem] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 									active
 										? "border-primary bg-primary/5 font-medium text-primary"
 										: "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground",
@@ -314,9 +314,9 @@ function MatchBadge({ level, label }: { level: MatchLevel; label: string }) {
 	return (
 		<span
 			className={cn(
-				"shrink-0 rounded-full px-2 py-0.5 text-[0.62rem] font-semibold",
-				level === "high" && "bg-green-100 text-green-800",
-				level === "medium" && "bg-amber-100 text-amber-800",
+				"shrink-0 rounded-full px-2 py-0.5 text-[0.68rem] font-semibold",
+				level === "high" && "bg-status-success-bg text-status-success-fg",
+				level === "medium" && "bg-status-warning-bg text-status-warning-fg",
 			)}
 		>
 			{label}
@@ -361,15 +361,12 @@ function PetCard({
 					loading="lazy"
 					onError={(e) => {
 						e.currentTarget.onerror = null;
-						e.currentTarget.src =
-							pet.species === "dog"
-								? "https://place.dog/800/600"
-								: "https://cataas.com/cat?width=800&height=600";
+						e.currentTarget.src = "/images/placeholder.svg";
 					}}
 				/>
 				<div className="absolute inset-x-0 top-0 flex items-start justify-between p-3">
 					{pet.urgency === "urgent" ? (
-						<span className="rounded-full bg-destructive px-2.5 py-1 text-[0.62rem] font-bold uppercase tracking-wide text-white shadow-sm">
+						<span className="rounded-full bg-destructive px-2.5 py-1 text-[0.68rem] font-bold uppercase tracking-wide text-white shadow-sm">
 							{t("browse.urgentBadge")}
 						</span>
 					) : (
@@ -409,7 +406,7 @@ function PetCard({
 						{pet.temperamentTags.slice(0, 2).map((tag) => (
 							<span
 								key={tag}
-								className="rounded-full border border-border bg-muted/60 px-2 py-0.5 text-[0.62rem] text-muted-foreground"
+								className="rounded-full border border-border bg-muted/60 px-2 py-0.5 text-[0.68rem] text-muted-foreground"
 							>
 								{tag}
 							</span>
@@ -494,7 +491,7 @@ function BrowsePage() {
 									type="button"
 									onClick={() => setSpecies(opt.value)}
 									className={cn(
-										"rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
+										"inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 										species === opt.value
 											? "bg-primary text-primary-foreground"
 											: "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground",

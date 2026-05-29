@@ -51,6 +51,20 @@
 	--sidebar-accent-foreground: oklch(0.205 0.008 57);
 	--sidebar-border: oklch(0.922 0.006 57);
 	--sidebar-ring: oklch(0.598 0.155 28.8);
+
+	/* WhatsApp brand green */
+	--wa-green: oklch(0.72 0.19 155);
+
+	/* Semantic status palette */
+	--status-success-bg: oklch(0.955 0.052 148);
+	--status-success-fg: oklch(0.37 0.098 148);
+	--status-success-border: oklch(0.895 0.082 148);
+	--status-warning-bg: oklch(0.96 0.065 90);
+	--status-warning-fg: oklch(0.40 0.12 65);
+	--status-warning-border: oklch(0.91 0.10 90);
+	--status-info-bg: oklch(0.97 0.014 238);
+	--status-info-fg: oklch(0.39 0.13 248);
+	--status-info-border: oklch(0.92 0.04 238);
 }
 
 .dark {
@@ -80,6 +94,17 @@
 	--sidebar-accent-foreground: oklch(0.985 0 0);
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.65 0.155 28.8);
+
+	/* Semantic status palette — dark */
+	--status-success-bg: oklch(0.22 0.042 148);
+	--status-success-fg: oklch(0.77 0.11 148);
+	--status-success-border: oklch(0.32 0.065 148);
+	--status-warning-bg: oklch(0.24 0.046 88);
+	--status-warning-fg: oklch(0.85 0.10 85);
+	--status-warning-border: oklch(0.34 0.07 88);
+	--status-info-bg: oklch(0.22 0.028 245);
+	--status-info-fg: oklch(0.77 0.10 248);
+	--status-info-border: oklch(0.32 0.05 245);
 }
 
 @theme inline {
@@ -115,6 +140,20 @@
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-ring: var(--sidebar-ring);
 
+	/* WhatsApp token surfaced to Tailwind */
+	--color-wa-green: var(--wa-green);
+
+	/* Semantic status tokens surfaced to Tailwind */
+	--color-status-success-bg: var(--status-success-bg);
+	--color-status-success-fg: var(--status-success-fg);
+	--color-status-success-border: var(--status-success-border);
+	--color-status-warning-bg: var(--status-warning-bg);
+	--color-status-warning-fg: var(--status-warning-fg);
+	--color-status-warning-border: var(--status-warning-border);
+	--color-status-info-bg: var(--status-info-bg);
+	--color-status-info-fg: var(--status-info-fg);
+	--color-status-info-border: var(--status-info-border);
+
 	--font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
 	--font-display: "Fraunces Variable", ui-serif, Georgia, serif;
 
@@ -122,6 +161,14 @@
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
+}
+
+@utility label-eyebrow {
+	font-size: 0.75rem;
+	line-height: 1rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
 }
 
 @keyframes pawFadeUp {
@@ -141,6 +188,17 @@
 	}
 	to {
 		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
 	}
 }
 

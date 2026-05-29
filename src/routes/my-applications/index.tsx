@@ -4,12 +4,12 @@ import {
 	CheckCircle2,
 	ChevronDown,
 	Circle,
-	MessageCircle,
 	XCircle,
 } from "lucide-react";
 import { useState } from "react";
 
 import { AuthGate } from "@/components/account/auth-gate";
+import { WhatsAppCta } from "@/components/common/whatsapp-cta";
 import { Button } from "@/components/ui/button";
 import { useApplications } from "@/context";
 import { type Application, listers, pets } from "@/data";
@@ -40,17 +40,17 @@ const STATUS_CONFIG: Record<string, StatusConfig> = {
 	},
 	meet_greet: {
 		label: "Meet & Greet",
-		badge: "bg-amber-100 text-amber-800",
+		badge: "bg-status-warning-bg text-status-warning-fg",
 		icon: "check",
 	},
 	approved: {
 		label: "Disetujui",
-		badge: "bg-green-100 text-green-800",
+		badge: "bg-status-success-bg text-status-success-fg",
 		icon: "check",
 	},
 	adopted: {
 		label: "Diadopsi",
-		badge: "bg-green-100 text-green-800",
+		badge: "bg-status-success-bg text-status-success-fg",
 		icon: "check",
 	},
 	rejected: {
@@ -103,10 +103,7 @@ function ApplicationCard({ app }: { app: Application }) {
 							loading="lazy"
 							onError={(e) => {
 								e.currentTarget.onerror = null;
-								e.currentTarget.src =
-									pet.species === "dog"
-										? "https://place.dog/800/600"
-										: "https://cataas.com/cat?width=800&height=600";
+								e.currentTarget.src = "/images/placeholder.svg";
 							}}
 						/>
 					</div>
@@ -174,15 +171,7 @@ function ApplicationCard({ app }: { app: Application }) {
 					) : null}
 
 					{showWa ? (
-						<a
-							href={`https://wa.me/${lister.waNumber}`}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="flex items-center gap-1.5 rounded-lg bg-[#25D366] px-3 py-1.5 text-xs font-semibold text-white transition-opacity hover:opacity-90"
-						>
-							<MessageCircle className="size-3.5" />
-							WhatsApp
-						</a>
+						<WhatsAppCta phone={lister.waNumber} label="WhatsApp" size="sm" />
 					) : null}
 
 					{canWithdraw ? (
@@ -201,9 +190,7 @@ function ApplicationCard({ app }: { app: Application }) {
 			{/* Status timeline */}
 			{expanded ? (
 				<div className="border-t border-border bg-muted/30 px-4 py-4 md:px-5">
-					<p className="mb-3 text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
-						Riwayat
-					</p>
+					<p className="mb-3 label-eyebrow text-muted-foreground">Riwayat</p>
 					<ol className="flex flex-col gap-3.5">
 						{[...app.statusLog].reverse().map((entry, idx) => {
 							const cfg = STATUS_CONFIG[entry.status];
@@ -295,7 +282,7 @@ function MyApplicationsInner() {
 
 			{active.length > 0 ? (
 				<section className="mb-10">
-					<h2 className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+					<h2 className="mb-4 label-eyebrow text-muted-foreground">
 						Aktif ({active.length})
 					</h2>
 					<div className="flex flex-col gap-4">
@@ -308,7 +295,7 @@ function MyApplicationsInner() {
 
 			{closed.length > 0 ? (
 				<section>
-					<h2 className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+					<h2 className="mb-4 label-eyebrow text-muted-foreground">
 						Selesai ({closed.length})
 					</h2>
 					<div className="flex flex-col gap-4 opacity-70">

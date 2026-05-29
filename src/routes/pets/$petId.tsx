@@ -9,12 +9,12 @@ import {
 	CheckCircle2,
 	Heart,
 	MapPin,
-	MessageCircle,
 	ShieldCheck,
 	XCircle,
 } from "lucide-react";
 import { useState } from "react";
 
+import { WhatsAppCta } from "@/components/common/whatsapp-cta";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useApplications, useAuth } from "@/context";
@@ -47,9 +47,9 @@ const STATUS_LABEL: Record<string, string> = {
 const STATUS_COLOR: Record<string, string> = {
 	submitted: "bg-muted text-muted-foreground",
 	under_review: "bg-primary/10 text-primary",
-	meet_greet: "bg-amber-100 text-amber-800",
-	approved: "bg-green-100 text-green-800",
-	adopted: "bg-green-100 text-green-800",
+	meet_greet: "bg-status-warning-bg text-status-warning-fg",
+	approved: "bg-status-success-bg text-status-success-fg",
+	adopted: "bg-status-success-bg text-status-success-fg",
 	rejected: "bg-destructive/10 text-destructive",
 	withdrawn: "bg-muted text-muted-foreground",
 };
@@ -127,10 +127,7 @@ function PetDetailPage() {
 							}
 							onError={(e) => {
 								e.currentTarget.onerror = null;
-								e.currentTarget.src =
-									pet.species === "dog"
-										? "https://place.dog/800/600"
-										: "https://cataas.com/cat?width=800&height=600";
+								e.currentTarget.src = "/images/placeholder.svg";
 							}}
 						/>
 					</div>
@@ -144,12 +141,13 @@ function PetDetailPage() {
 									type="button"
 									onClick={() => setPhotoIdx(idx)}
 									className={cn(
-										"shrink-0 overflow-hidden rounded-xl border-2 transition-all duration-150",
+										"shrink-0 overflow-hidden rounded-xl border-2 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
 										photoIdx === idx
 											? "border-primary shadow-sm"
 											: "border-transparent opacity-70 hover:opacity-100 hover:border-border",
 									)}
 									aria-label={`Foto ${idx + 1}`}
+									aria-pressed={photoIdx === idx}
 								>
 									<img
 										src={src}
@@ -158,10 +156,7 @@ function PetDetailPage() {
 										loading="lazy"
 										onError={(e) => {
 											e.currentTarget.onerror = null;
-											e.currentTarget.src =
-												pet.species === "dog"
-													? "https://place.dog/800/600"
-													: "https://cataas.com/cat?width=800&height=600";
+											e.currentTarget.src = "/images/placeholder.svg";
 										}}
 									/>
 								</button>
@@ -181,11 +176,11 @@ function PetDetailPage() {
 
 					{/* Known requirements */}
 					{pet.knownRequirements ? (
-						<div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
-							<p className="text-sm font-semibold text-amber-900">
+						<div className="rounded-xl border border-status-warning-border bg-status-warning-bg/60 p-4">
+							<p className="text-sm font-semibold text-status-warning-fg">
 								Persyaratan khusus
 							</p>
-							<p className="mt-1 text-sm leading-relaxed text-amber-800">
+							<p className="mt-1 text-sm leading-relaxed text-status-warning-fg">
 								{pet.knownRequirements}
 							</p>
 						</div>
@@ -252,15 +247,13 @@ function PetDetailPage() {
 						{/* Vitals grid */}
 						<dl className="grid grid-cols-2 gap-x-4 gap-y-4 text-sm">
 							<div>
-								<dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-									Umur
-								</dt>
+								<dt className="label-eyebrow text-muted-foreground">Umur</dt>
 								<dd className="mt-1 font-medium text-foreground">
 									{ageLabel(pet)}
 								</dd>
 							</div>
 							<div>
-								<dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+								<dt className="label-eyebrow text-muted-foreground">
 									Jenis kelamin
 								</dt>
 								<dd className="mt-1 font-medium text-foreground">
@@ -268,17 +261,13 @@ function PetDetailPage() {
 								</dd>
 							</div>
 							<div>
-								<dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-									Ukuran
-								</dt>
+								<dt className="label-eyebrow text-muted-foreground">Ukuran</dt>
 								<dd className="mt-1 font-medium text-foreground">
 									{SIZE_LABEL[pet.size]}
 								</dd>
 							</div>
 							<div>
-								<dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-									Lokasi
-								</dt>
+								<dt className="label-eyebrow text-muted-foreground">Lokasi</dt>
 								<dd className="mt-1 flex items-center gap-1 font-medium text-foreground">
 									<MapPin className="size-3.5 text-muted-foreground" />
 									{pet.locationDistrict}
@@ -291,7 +280,7 @@ function PetDetailPage() {
 							<>
 								<Separator className="my-4" />
 								<div>
-									<p className="mb-2.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+									<p className="mb-2.5 label-eyebrow text-muted-foreground">
 										Karakter
 									</p>
 									<div className="flex flex-wrap gap-1.5">
@@ -362,8 +351,8 @@ function PetDetailPage() {
 									className={cn(
 										"flex items-center gap-2 px-5 py-3 text-xs font-semibold",
 										lister.type === "shelter"
-											? "border-b border-border bg-blue-50 text-blue-800"
-											: "border-b border-border bg-amber-50 text-amber-800",
+											? "border-b border-border bg-status-info-bg text-status-info-fg"
+											: "border-b border-border bg-status-warning-bg/60 text-status-warning-fg",
 									)}
 								>
 									<ShieldCheck className="size-4" />
@@ -374,7 +363,7 @@ function PetDetailPage() {
 							) : null}
 
 							<div className="p-5">
-								<p className="mb-3 text-[0.68rem] font-semibold uppercase tracking-wide text-muted-foreground">
+								<p className="mb-3 label-eyebrow text-muted-foreground">
 									Dititipkan oleh
 								</p>
 
@@ -395,15 +384,11 @@ function PetDetailPage() {
 								</p>
 
 								{lister.type === "shelter" ? (
-									<a
-										href={`https://wa.me/${lister.waNumber}`}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-									>
-										<MessageCircle className="size-4" />
-										Hubungi shelter via WhatsApp
-									</a>
+									<WhatsAppCta
+										phone={lister.waNumber}
+										label="Hubungi shelter via WhatsApp"
+										className="mt-4"
+									/>
 								) : null}
 
 								{/* Private: WA hidden message */}
@@ -417,15 +402,11 @@ function PetDetailPage() {
 								{/* Private: WA revealed at meet_greet */}
 								{lister.type === "private" &&
 								existingApp?.status === "meet_greet" ? (
-									<a
-										href={`https://wa.me/${lister.waNumber}`}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-									>
-										<MessageCircle className="size-4" />
-										Hubungi penitip via WhatsApp
-									</a>
+									<WhatsAppCta
+										phone={lister.waNumber}
+										label="Hubungi penitip via WhatsApp"
+										className="mt-4"
+									/>
 								) : null}
 							</div>
 						</div>

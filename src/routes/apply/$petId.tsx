@@ -91,51 +91,57 @@ const STEP_LABELS = ["Hunian", "Gaya hidup", "Pernyataan", "Konfirmasi"];
 
 function StepIndicator({ current }: { current: number }) {
 	return (
-		<div className="mb-10 flex items-center">
-			{STEP_LABELS.map((label, idx) => {
-				const step = idx + 1;
-				const done = step < current;
-				const active = step === current;
-				return (
-					<div key={label} className="flex flex-1 items-center">
-						<div className="flex flex-col items-center gap-1.5">
-							<span
-								className={cn(
-									"flex size-9 items-center justify-center rounded-full text-xs font-bold transition-all duration-200",
-									done
-										? "bg-primary text-primary-foreground shadow-sm"
-										: active
-											? "bg-primary/10 text-primary ring-2 ring-primary ring-offset-2"
-											: "bg-muted text-muted-foreground",
-								)}
-							>
-								{done ? <Check className="size-4" /> : step}
-							</span>
-							<span
-								className={cn(
-									"text-[0.62rem] font-semibold",
-									active
-										? "text-primary"
-										: done
-											? "text-foreground"
-											: "text-muted-foreground",
-								)}
-							>
-								{label}
-							</span>
-						</div>
-						{idx < STEP_LABELS.length - 1 ? (
-							<div
-								className={cn(
-									"mx-2 mb-5 h-px flex-1 transition-colors duration-300",
-									done ? "bg-primary" : "bg-border",
-								)}
-							/>
-						) : null}
-					</div>
-				);
-			})}
-		</div>
+		<nav aria-label="Langkah formulir">
+			<ol className="mb-10 flex items-center">
+				{STEP_LABELS.map((label, idx) => {
+					const step = idx + 1;
+					const done = step < current;
+					const active = step === current;
+					return (
+						<li
+							key={label}
+							className="flex flex-1 items-center"
+							aria-current={active ? "step" : undefined}
+						>
+							<div className="flex flex-col items-center gap-1.5">
+								<span
+									className={cn(
+										"flex size-9 items-center justify-center rounded-full text-xs font-bold transition-all duration-200",
+										done
+											? "bg-primary text-primary-foreground shadow-sm"
+											: active
+												? "bg-primary/10 text-primary ring-2 ring-primary ring-offset-2"
+												: "bg-muted text-muted-foreground",
+									)}
+								>
+									{done ? <Check className="size-4" /> : step}
+								</span>
+								<span
+									className={cn(
+										"text-[0.68rem] font-semibold",
+										active
+											? "text-primary"
+											: done
+												? "text-foreground"
+												: "text-muted-foreground",
+									)}
+								>
+									{label}
+								</span>
+							</div>
+							{idx < STEP_LABELS.length - 1 ? (
+								<div
+									className={cn(
+										"mx-2 mb-5 h-px flex-1 transition-colors duration-300",
+										done ? "bg-primary" : "bg-border",
+									)}
+								/>
+							) : null}
+						</li>
+					);
+				})}
+			</ol>
+		</nav>
 	);
 }
 
@@ -296,11 +302,14 @@ function Step2Form({
 					placeholder="Contoh: 6"
 					className="h-11 max-w-xs"
 					aria-invalid={!!errors.hoursAlone}
+					aria-describedby="hours-alone-hint"
 				/>
 				{errors.hoursAlone ? (
-					<p className="text-xs text-destructive">{errors.hoursAlone}</p>
+					<p id="hours-alone-hint" className="text-xs text-destructive">
+						{errors.hoursAlone}
+					</p>
 				) : (
-					<p className="text-xs text-muted-foreground">
+					<p id="hours-alone-hint" className="text-xs text-muted-foreground">
 						Rata-rata pada hari kerja.
 					</p>
 				)}
@@ -405,11 +414,14 @@ function Step3Form({
 					onChange={(e) => onChange({ ...data, whyAdopt: e.target.value })}
 					placeholder="Ceritakan alasanmu dan apa yang membuatmu tertarik dengan hewan ini..."
 					aria-invalid={!!errors.whyAdopt}
+					aria-describedby="why-adopt-hint"
 				/>
 				{errors.whyAdopt ? (
-					<p className="text-xs text-destructive">{errors.whyAdopt}</p>
+					<p id="why-adopt-hint" className="text-xs text-destructive">
+						{errors.whyAdopt}
+					</p>
 				) : (
-					<p className="text-xs text-muted-foreground">
+					<p id="why-adopt-hint" className="text-xs text-muted-foreground">
 						{data.whyAdopt.length} karakter
 					</p>
 				)}
@@ -426,11 +438,14 @@ function Step3Form({
 					onChange={(e) => onChange({ ...data, dailyRoutine: e.target.value })}
 					placeholder="Ceritakan jadwal harianmu dan bagaimana hewan akan masuk ke dalam rutinitas itu..."
 					aria-invalid={!!errors.dailyRoutine}
+					aria-describedby="daily-routine-hint"
 				/>
 				{errors.dailyRoutine ? (
-					<p className="text-xs text-destructive">{errors.dailyRoutine}</p>
+					<p id="daily-routine-hint" className="text-xs text-destructive">
+						{errors.dailyRoutine}
+					</p>
 				) : (
-					<p className="text-xs text-muted-foreground">
+					<p id="daily-routine-hint" className="text-xs text-muted-foreground">
 						{data.dailyRoutine.length} karakter
 					</p>
 				)}
@@ -530,7 +545,7 @@ function Step4Form({
 								type="button"
 								onClick={() => setSelectedAmount(active ? null : amount)}
 								className={cn(
-									"rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+									"rounded-full border px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 									active
 										? "border-primary bg-primary text-primary-foreground"
 										: "border-border hover:border-primary/40",
@@ -692,10 +707,7 @@ function ApplyForm({ petId }: { petId: string }) {
 							className="size-full object-cover"
 							onError={(e) => {
 								e.currentTarget.onerror = null;
-								e.currentTarget.src =
-									pet.species === "dog"
-										? "https://place.dog/800/600"
-										: "https://cataas.com/cat?width=800&height=600";
+								e.currentTarget.src = "/images/placeholder.svg";
 							}}
 						/>
 					</div>

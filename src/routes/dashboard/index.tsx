@@ -38,9 +38,9 @@ const STATUS_LABEL: Record<ApplicationStatus, string> = {
 const STATUS_COLOR: Record<ApplicationStatus, string> = {
 	submitted: "bg-muted text-muted-foreground",
 	under_review: "bg-primary/10 text-primary",
-	meet_greet: "bg-amber-100 text-amber-800",
-	approved: "bg-green-100 text-green-800",
-	adopted: "bg-green-100 text-green-800",
+	meet_greet: "bg-status-warning-bg text-status-warning-fg",
+	approved: "bg-status-success-bg text-status-success-fg",
+	adopted: "bg-status-success-bg text-status-success-fg",
 	rejected: "bg-destructive/10 text-destructive",
 	withdrawn: "bg-muted text-muted-foreground",
 };
@@ -325,14 +325,14 @@ function DashboardInner() {
 					icon={Handshake}
 					label="Meet & Greet"
 					value={meetGreetCount}
-					accent="bg-amber-100 text-amber-700"
+					accent="bg-status-warning-bg text-status-warning-fg"
 					index={2}
 				/>
 				<StatCard
 					icon={CheckCircle2}
 					label="Berhasil diadopsi"
 					value={adoptedCount}
-					accent="bg-green-100 text-green-700"
+					accent="bg-status-success-bg text-status-success-fg"
 					index={3}
 				/>
 			</div>
