@@ -11,7 +11,7 @@ import {
 	Weight,
 	Zap,
 } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -125,7 +125,7 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 					<button
 						type="button"
 						onClick={resetFilters}
-						className="flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
+						className="flex min-h-11 items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
 					>
 						<RotateCcw className="size-3" />
 						{t("browse.filterReset")}
@@ -147,6 +147,7 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 							<button
 								key={opt.value}
 								type="button"
+								aria-pressed={active}
 								onClick={() =>
 									updateFilter("sizePreference", active ? null : opt.value)
 								}
@@ -160,7 +161,7 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 								<p className="text-xs font-semibold">
 									{t(`browse.size.${opt.value}`)}
 								</p>
-								<p className="mt-0.5 text-[0.6rem] opacity-70">{opt.descKey}</p>
+								<p className="mt-0.5 text-xs opacity-70">{opt.descKey}</p>
 							</button>
 						);
 					})}
@@ -254,6 +255,7 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 							<button
 								key={opt}
 								type="button"
+								aria-pressed={active}
 								onClick={() =>
 									updateFilter("activityLevel", active ? null : opt)
 								}
@@ -283,6 +285,7 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 							<button
 								key={opt}
 								type="button"
+								aria-pressed={active}
 								onClick={() => updateFilter("experience", active ? null : opt)}
 								className={cn(
 									"flex min-h-11 items-center rounded-lg border px-3 py-2 text-left text-[0.82rem] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
@@ -314,7 +317,7 @@ function MatchBadge({ level, label }: { level: MatchLevel; label: string }) {
 	return (
 		<span
 			className={cn(
-				"shrink-0 rounded-full px-2 py-0.5 text-[0.68rem] font-semibold",
+				"shrink-0 rounded-full px-2 py-0.5 text-xs font-semibold",
 				level === "high" && "bg-status-success-bg text-status-success-fg",
 				level === "medium" && "bg-status-warning-bg text-status-warning-fg",
 			)}
@@ -366,13 +369,13 @@ function PetCard({
 				/>
 				<div className="absolute inset-x-0 top-0 flex items-start justify-between p-3">
 					{pet.urgency === "urgent" ? (
-						<span className="rounded-full bg-destructive px-2.5 py-1 text-[0.68rem] font-bold uppercase tracking-wide text-white shadow-sm">
+						<span className="rounded-full bg-destructive px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-primary-foreground shadow-sm">
 							{t("browse.urgentBadge")}
 						</span>
 					) : (
 						<span />
 					)}
-					<span className="rounded-full bg-black/40 px-2.5 py-1 text-[0.65rem] font-medium text-white backdrop-blur-sm">
+					<span className="rounded-full bg-background/85 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-sm">
 						{pet.species === "cat"
 							? t("browse.species.catCard")
 							: t("browse.species.dogCard")}
@@ -406,7 +409,7 @@ function PetCard({
 						{pet.temperamentTags.slice(0, 2).map((tag) => (
 							<span
 								key={tag}
-								className="rounded-full border border-border bg-muted/60 px-2 py-0.5 text-[0.68rem] text-muted-foreground"
+								className="rounded-full border border-secondary bg-secondary/80 px-3 py-1 text-xs font-medium text-secondary-foreground"
 							>
 								{tag}
 							</span>
@@ -440,18 +443,25 @@ function BrowsePage() {
 		{ value: "cat", label: t("browse.species.cat") },
 	];
 
-	const visible = pets
-		.filter(
-			(p) =>
-				p.status === "active" && (species === "all" || p.species === species),
-		)
-		.map((p) => ({ pet: p, match: computeMatch(p, matchProfile) }))
-		.sort((a, b) => {
-			if (a.pet.urgency === "urgent" && b.pet.urgency !== "urgent") return -1;
-			if (b.pet.urgency === "urgent" && a.pet.urgency !== "urgent") return 1;
-			if (filtersActive) return b.match.score - a.match.score;
-			return 0;
-		});
+	const visible = useMemo(
+		() =>
+			pets
+				.filter(
+					(p) =>
+						p.status === "active" &&
+						(species === "all" || p.species === species),
+				)
+				.map((p) => ({ pet: p, match: computeMatch(p, matchProfile) }))
+				.sort((a, b) => {
+					if (a.pet.urgency === "urgent" && b.pet.urgency !== "urgent")
+						return -1;
+					if (b.pet.urgency === "urgent" && a.pet.urgency !== "urgent")
+						return 1;
+					if (filtersActive) return b.match.score - a.match.score;
+					return 0;
+				}),
+		[species, matchProfile, filtersActive],
+	);
 
 	return (
 		<div className="py-8 md:py-12">
@@ -489,6 +499,7 @@ function BrowsePage() {
 								<button
 									key={opt.value}
 									type="button"
+									aria-pressed={species === opt.value}
 									onClick={() => setSpecies(opt.value)}
 									className={cn(
 										"inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
@@ -514,7 +525,7 @@ function BrowsePage() {
 										<SlidersHorizontal className="size-3.5" />
 										{t("browse.filterButton")}
 										{filtersActive ? (
-											<span className="rounded-full bg-white/20 px-1.5 text-xs font-bold">
+											<span className="rounded-full bg-primary-foreground/20 px-1.5 text-xs font-bold">
 												{t("browse.filterActive")}
 											</span>
 										) : null}

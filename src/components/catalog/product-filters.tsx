@@ -163,7 +163,7 @@ export function ProductFilters({
 								}
 								aria-pressed={active}
 								className={cn(
-									"inline-flex min-h-9 items-center gap-1 rounded-full border px-3 py-1 text-xs font-medium transition-colors",
+									"inline-flex min-h-11 items-center gap-1 rounded-full border px-3 py-1 text-xs font-medium transition-colors",
 									active
 										? "border-primary bg-primary/10 text-primary"
 										: "border-border text-foreground hover:bg-muted",

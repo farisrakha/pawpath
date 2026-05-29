@@ -25,8 +25,12 @@ export function ArticleCard({ article }: { article: Article }) {
 					alt={article.title}
 					loading="lazy"
 					className="size-full object-cover transition-transform duration-300 group-hover/article:scale-105"
+					onError={(e) => {
+						e.currentTarget.onerror = null;
+						e.currentTarget.src = "/images/placeholder.svg";
+					}}
 				/>
-				<span className="absolute left-3 top-3 rounded-full bg-background/90 px-2.5 py-0.5 text-[0.7rem] font-semibold text-primary">
+				<span className="absolute left-3 top-3 rounded-full bg-background/90 px-2.5 py-0.5 text-xs font-semibold text-primary">
 					{TOPIC_LABEL[article.topic]}
 				</span>
 			</div>

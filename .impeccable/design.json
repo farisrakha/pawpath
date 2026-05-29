@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-29T00:00:00.000Z",
+  "title": "Design System: PawPath",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Terracotta Warmth",
+        "canonical": "oklch(0.598 0.155 28.8)",
+        "tonalRamp": [
+          "oklch(0.15 0.05 28.8)",
+          "oklch(0.25 0.08 28.8)",
+          "oklch(0.35 0.11 28.8)",
+          "oklch(0.45 0.13 28.8)",
+          "oklch(0.55 0.15 28.8)",
+          "oklch(0.65 0.14 28.8)",
+          "oklch(0.75 0.10 28.8)",
+          "oklch(0.90 0.05 28.8)"
+        ]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Honey Yellow",
+        "canonical": "oklch(0.961 0.065 88)",
+        "tonalRamp": [
+          "oklch(0.20 0.08 88)",
+          "oklch(0.35 0.10 88)",
+          "oklch(0.50 0.12 88)",
+          "oklch(0.65 0.12 88)",
+          "oklch(0.78 0.12 88)",
+          "oklch(0.855 0.12 88)",
+          "oklch(0.92 0.08 88)",
+          "oklch(0.961 0.065 88)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Husked Linen",
+        "canonical": "oklch(0.968 0.008 57)",
+        "tonalRamp": [
+          "oklch(0.15 0.008 57)",
+          "oklch(0.27 0.008 57)",
+          "oklch(0.40 0.009 57)",
+          "oklch(0.55 0.010 57)",
+          "oklch(0.70 0.009 57)",
+          "oklch(0.82 0.008 57)",
+          "oklch(0.92 0.007 57)",
+          "oklch(0.968 0.008 57)"
+        ]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Warm Ink",
+        "canonical": "oklch(0.145 0.008 57)",
+        "tonalRamp": [
+          "oklch(0.145 0.008 57)",
+          "oklch(0.25 0.009 57)",
+          "oklch(0.38 0.009 57)",
+          "oklch(0.50 0.010 57)",
+          "oklch(0.60 0.010 57)",
+          "oklch(0.70 0.009 57)",
+          "oklch(0.84 0.008 57)",
+          "oklch(0.95 0.006 57)"
+        ]
+      },
+      "muted-foreground": {
+        "role": "neutral",
+        "displayName": "Faded Slate",
+        "canonical": "oklch(0.556 0.012 57)",
+        "tonalRamp": [
+          "oklch(0.20 0.012 57)",
+          "oklch(0.30 0.012 57)",
+          "oklch(0.40 0.012 57)",
+          "oklch(0.50 0.012 57)",
+          "oklch(0.60 0.012 57)",
+          "oklch(0.70 0.011 57)",
+          "oklch(0.82 0.009 57)",
+          "oklch(0.93 0.007 57)"
+        ]
+      },
+      "destructive": {
+        "role": "semantic",
+        "displayName": "Destructive Coral",
+        "canonical": "oklch(0.577 0.245 27.325)",
+        "tonalRamp": [
+          "oklch(0.18 0.09 27)",
+          "oklch(0.28 0.14 27)",
+          "oklch(0.38 0.18 27)",
+          "oklch(0.48 0.22 27)",
+          "oklch(0.577 0.245 27.325)",
+          "oklch(0.68 0.18 27)",
+          "oklch(0.80 0.10 27)",
+          "oklch(0.93 0.05 27)"
+        ]
+      },
+      "wa-green": {
+        "role": "semantic",
+        "displayName": "WhatsApp Leaf",
+        "canonical": "oklch(0.72 0.19 155)",
+        "tonalRamp": [
+          "oklch(0.18 0.08 155)",
+          "oklch(0.28 0.11 155)",
+          "oklch(0.38 0.14 155)",
+          "oklch(0.50 0.17 155)",
+          "oklch(0.62 0.19 155)",
+          "oklch(0.72 0.19 155)",
+          "oklch(0.84 0.13 155)",
+          "oklch(0.94 0.06 155)"
+        ]
+      },
+      "status-success-fg": {
+        "role": "semantic",
+        "displayName": "Adoption Green",
+        "canonical": "oklch(0.37 0.098 148)",
+        "tonalRamp": [
+          "oklch(0.15 0.04 148)",
+          "oklch(0.22 0.06 148)",
+          "oklch(0.30 0.08 148)",
+          "oklch(0.37 0.098 148)",
+          "oklch(0.50 0.09 148)",
+          "oklch(0.65 0.08 148)",
+          "oklch(0.82 0.06 148)",
+          "oklch(0.955 0.052 148)"
+        ]
+      },
+      "status-warning-fg": {
+        "role": "semantic",
+        "displayName": "Caution Amber",
+        "canonical": "oklch(0.40 0.12 65)",
+        "tonalRamp": [
+          "oklch(0.15 0.05 65)",
+          "oklch(0.25 0.08 65)",
+          "oklch(0.33 0.10 65)",
+          "oklch(0.40 0.12 65)",
+          "oklch(0.55 0.11 65)",
+          "oklch(0.70 0.10 65)",
+          "oklch(0.84 0.08 65)",
+          "oklch(0.96 0.065 90)"
+        ]
+      },
+      "status-info-fg": {
+        "role": "semantic",
+        "displayName": "Trust Blue",
+        "canonical": "oklch(0.39 0.13 248)",
+        "tonalRamp": [
+          "oklch(0.15 0.05 248)",
+          "oklch(0.24 0.08 248)",
+          "oklch(0.32 0.11 248)",
+          "oklch(0.39 0.13 248)",
+          "oklch(0.52 0.12 248)",
+          "oklch(0.65 0.10 248)",
+          "oklch(0.82 0.06 248)",
+          "oklch(0.97 0.014 238)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Page-level hero headings only. Browse page title, pet name on detail view. One per viewport. Fraunces Variable at maximum expressiveness."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles inside cards and panels. May appear several times per screen. Still Fraunces, but at a supporting scale."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Story text, descriptions, form labels, all UI copy. Line length capped at 65ch on prose. Geist Variable — the conversational voice."
+      },
+      "label": {
+        "displayName": "Label Eyebrow",
+        "purpose": "Section dividers, filter section titles, metadata prefixes. Applied via the label-eyebrow utility. Always uppercase with 0.05em tracking."
+      }
+    },
+    "shadows": [
+      {
+        "name": "hover-lift",
+        "value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+        "purpose": "Pet listing cards only — appears on hover, never at rest."
+      },
+      {
+        "name": "selected-micro",
+        "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        "purpose": "Active gallery thumbnail. Confirms the selected photo."
+      },
+      {
+        "name": "tonal-ring",
+        "value": "0 0 0 1px oklch(0.922 0.006 57)",
+        "purpose": "Alternative to borders on card and photo containers. Tonal, not structural."
+      }
+    ],
+    "motion": [
+      {
+        "name": "paw-fade-up",
+        "value": "pawFadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both",
+        "purpose": "Pet listing card entrance. Staggered by 55ms per card. Disabled by prefers-reduced-motion."
+      },
+      {
+        "name": "paw-fade-in",
+        "value": "pawFadeIn 0.35s ease both",
+        "purpose": "Page-level fade on route transition. Also used for gallery photo swap (0.25s). Disabled by prefers-reduced-motion."
+      },
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default easing for entrance animations. Exponential ease-out — snappy start, graceful settle."
+      }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The default CTA. Terracotta fill, near-white text. Apply and submit actions.",
+      "html": "<button class=\"ds-btn-primary\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z\"/></svg>Ajukan lamaran adopsi</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 2.25rem; padding: 0 10px; background: oklch(0.598 0.155 28.8); color: oklch(0.985 0 0); font-size: 0.875rem; font-weight: 500; font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif; border-radius: 0.625rem; border: 1px solid transparent; transition: opacity 0.15s ease; cursor: pointer; white-space: nowrap; user-select: none; } .ds-btn-primary:hover { opacity: 0.8; } .ds-btn-primary:focus-visible { outline: none; border-color: oklch(0.598 0.155 28.8); box-shadow: 0 0 0 3px oklch(0.598 0.155 28.8 / 50%); } .ds-btn-primary:active { transform: translateY(1px); } .ds-btn-primary:disabled { opacity: 0.5; pointer-events: none; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action. Warm border, fills muted on hover. Adjacent to primary when two actions coexist.",
+      "html": "<button class=\"ds-btn-outline\">Kembali</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 2.25rem; padding: 0 10px; background: transparent; color: oklch(0.145 0.008 57); font-size: 0.875rem; font-weight: 500; font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif; border-radius: 0.625rem; border: 1px solid oklch(0.922 0.006 57); transition: background 0.15s ease, color 0.15s ease; cursor: pointer; white-space: nowrap; } .ds-btn-outline:hover { background: oklch(0.968 0.008 57); color: oklch(0.145 0.008 57); } .ds-btn-outline:focus-visible { outline: none; border-color: oklch(0.598 0.155 28.8); box-shadow: 0 0 0 3px oklch(0.598 0.155 28.8 / 50%); }"
+    },
+    {
+      "name": "Filter Species Pill",
+      "kind": "chip",
+      "refersTo": "filter-pill-active",
+      "description": "Species and filter toggle pills. 44px touch target, rounded-full, active = coral fill.",
+      "html": "<div style=\"display:flex;gap:6px\"><button class=\"ds-filter-pill active\">Semua</button><button class=\"ds-filter-pill\">Anjing</button><button class=\"ds-filter-pill\">Kucing</button></div>",
+      "css": ".ds-filter-pill { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; padding: 0 1rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 500; font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif; background: oklch(0.968 0.008 57); color: oklch(0.556 0.012 57); border: none; cursor: pointer; transition: background 0.15s ease, color 0.15s ease; } .ds-filter-pill.active { background: oklch(0.598 0.155 28.8); color: oklch(0.985 0 0); } .ds-filter-pill:hover:not(.active) { background: oklch(0.94 0.008 57); color: oklch(0.145 0.008 57); } .ds-filter-pill:focus-visible { outline: none; box-shadow: 0 0 0 2px oklch(0.985 0 0), 0 0 0 4px oklch(0.598 0.155 28.8); }"
+    },
+    {
+      "name": "Status Badge",
+      "kind": "chip",
+      "refersTo": "button-primary",
+      "description": "Application and adoption status pill. Semantic color pairs only — never brand primary.",
+      "html": "<div style=\"display:flex;gap:8px;flex-wrap:wrap\"><span class=\"ds-badge ds-badge--success\">Disetujui</span><span class=\"ds-badge ds-badge--warning\">Meet &amp; Greet</span><span class=\"ds-badge ds-badge--muted\">Terkirim</span><span class=\"ds-badge ds-badge--destructive\">Ditolak</span></div>",
+      "css": ".ds-badge { display: inline-block; padding: 0.125rem 0.625rem; border-radius: 9999px; font-size: 0.68rem; font-weight: 600; font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif; white-space: nowrap; } .ds-badge--success { background: oklch(0.955 0.052 148); color: oklch(0.37 0.098 148); } .ds-badge--warning { background: oklch(0.96 0.065 90); color: oklch(0.40 0.12 65); } .ds-badge--info { background: oklch(0.97 0.014 238); color: oklch(0.39 0.13 248); } .ds-badge--muted { background: oklch(0.968 0.008 57); color: oklch(0.556 0.012 57); } .ds-badge--destructive { background: oklch(0.577 0.245 27.325 / 10%); color: oklch(0.577 0.245 27.325); }"
+    },
+    {
+      "name": "WhatsApp CTA (Default)",
+      "kind": "custom",
+      "refersTo": "button-primary",
+      "description": "Full-width WhatsApp contact button. Brand-locked wa-green only. Used in pet detail lister card.",
+      "html": "<a href=\"#\" class=\"ds-wa-cta\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7.9 20A9 9 0 1 0 4 16.1L2 22Z\"/></svg>Hubungi shelter via WhatsApp</a>",
+      "css": ".ds-wa-cta { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 2.75rem; width: 100%; padding: 10px 16px; background: oklch(0.72 0.19 155); color: #ffffff; font-size: 0.875rem; font-weight: 600; font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif; border-radius: 0.75rem; text-decoration: none; transition: opacity 0.15s ease; } .ds-wa-cta:hover { opacity: 0.9; } .ds-wa-cta:focus-visible { outline: none; box-shadow: 0 0 0 3px oklch(0.72 0.19 155 / 50%); }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "button-outline",
+      "description": "Standard form input. Stroke-only, warm border, three-layer focus ring.",
+      "html": "<div style=\"display:flex;flex-direction:column;gap:6px;max-width:320px\"><label class=\"ds-input-label\" for=\"ds-input-ex\">Berapa jam hewan akan sendirian per hari?</label><input class=\"ds-input\" id=\"ds-input-ex\" type=\"number\" placeholder=\"Contoh: 6\" /><p class=\"ds-input-hint\">Rata-rata pada hari kerja.</p></div>",
+      "css": ".ds-input { height: 2.75rem; width: 100%; padding: 0 10px; background: transparent; border: 1px solid oklch(0.922 0.006 57); border-radius: 0.625rem; font-size: 0.875rem; font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif; color: oklch(0.145 0.008 57); outline: none; transition: border-color 0.15s ease; } .ds-input::placeholder { color: oklch(0.556 0.012 57); } .ds-input:focus-visible { border-color: oklch(0.598 0.155 28.8); box-shadow: 0 0 0 3px oklch(0.598 0.155 28.8 / 50%); } .ds-input[aria-invalid='true'] { border-color: oklch(0.577 0.245 27.325); box-shadow: 0 0 0 3px oklch(0.577 0.245 27.325 / 20%); } .ds-input-label { font-size: 0.875rem; font-weight: 600; font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif; color: oklch(0.145 0.008 57); } .ds-input-hint { font-size: 0.75rem; color: oklch(0.556 0.012 57); font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif; margin: 0; }"
+    },
+    {
+      "name": "Pet Listing Card",
+      "kind": "card",
+      "refersTo": "button-outline",
+      "description": "The primary browse surface. Photo-led, 4:3 aspect, hover lifts with shadow. The entire card is an anchor.",
+      "html": "<a class=\"ds-pet-card\" href=\"#\"><div class=\"ds-pet-card__photo\"><img src=\"https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=300&fit=crop\" alt=\"Miko foto 1\" /><span class=\"ds-pet-card__badge ds-pet-card__badge--urgent\">Mendesak</span></div><div class=\"ds-pet-card__body\"><h3 class=\"ds-pet-card__name\">Miko</h3><p class=\"ds-pet-card__breed\">Golden Retriever</p><p class=\"ds-pet-card__meta\">3 tahun · Jantan · Besar</p></div></a>",
+      "css": ".ds-pet-card { display: flex; flex-direction: column; overflow: hidden; border-radius: 1rem; border: 1px solid oklch(0.922 0.006 57); background: oklch(1 0 0); text-decoration: none; color: inherit; transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; } .ds-pet-card:hover { transform: translateY(-2px); border-color: oklch(0.598 0.155 28.8 / 30%); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); } .ds-pet-card__photo { position: relative; aspect-ratio: 4/3; overflow: hidden; background: oklch(0.968 0.008 57); } .ds-pet-card__photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; } .ds-pet-card:hover .ds-pet-card__photo img { transform: scale(1.04); } .ds-pet-card__badge { position: absolute; top: 12px; left: 12px; padding: 4px 10px; border-radius: 9999px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; } .ds-pet-card__badge--urgent { background: oklch(0.577 0.245 27.325); color: oklch(0.985 0 0); } .ds-pet-card__body { padding: 1rem; display: flex; flex-direction: column; gap: 0.25rem; } .ds-pet-card__name { font-family: 'Fraunces Variable', Georgia, serif; font-size: 1.25rem; font-weight: 700; color: oklch(0.145 0.008 57); line-height: 1.2; margin: 0; } .ds-pet-card__breed { font-size: 0.875rem; color: oklch(0.556 0.012 57); margin: 0; } .ds-pet-card__meta { font-size: 0.75rem; color: oklch(0.556 0.012 57); margin: 0; }"
+    },
+    {
+      "name": "Site Header",
+      "kind": "nav",
+      "refersTo": "button-outline",
+      "description": "Sticky translucent header with wordmark, nav links, and account affordance.",
+      "html": "<header class=\"ds-header\"><div class=\"ds-header__inner\"><a class=\"ds-wordmark\" href=\"#\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"color:oklch(0.598 0.155 28.8)\"><path d=\"M11 20a1 1 0 1 0 2 0v-5.5a1 1 0 0 0-1-1h-.5\"/><path d=\"M9 9c0 1.1.4 2 1 2.7V15h4v-3.3c.6-.7 1-1.6 1-2.7a4 4 0 1 0-6 0\"/></svg><span>PawPath</span></a><nav class=\"ds-nav\"><a class=\"ds-nav__link ds-nav__link--active\" href=\"#\">Jelajahi</a><a class=\"ds-nav__link\" href=\"#\">Lamaranku</a></nav><button class=\"ds-btn-outline\" style=\"height:2.5rem;margin-left:auto\">Masuk</button></div></header>",
+      "css": ".ds-header { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid oklch(0.922 0.006 57); background: oklch(1 0 0 / 95%); backdrop-filter: blur(12px); } .ds-header__inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; height: 4rem; gap: 12px; padding: 0 16px; } .ds-wordmark { display: flex; align-items: center; gap: 6px; text-decoration: none; } .ds-wordmark span { font-family: 'Fraunces Variable', Georgia, serif; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.025em; color: oklch(0.598 0.155 28.8); } .ds-nav { display: flex; align-items: center; gap: 4px; margin-left: 16px; } .ds-nav__link { padding: 6px 12px; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 500; font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif; color: oklch(0.556 0.012 57); text-decoration: none; transition: background 0.15s ease, color 0.15s ease; } .ds-nav__link:hover { background: oklch(0.968 0.008 57); color: oklch(0.145 0.008 57); } .ds-nav__link--active { color: oklch(0.598 0.155 28.8); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Found Family",
+    "overview": "PawPath is a warm, purposeful adoption marketplace built for Indonesian families and animals finding each other. The design system's central conviction: adoption is mutual discovery, unhurried, trusting, and emotionally real. Every screen should feel like meeting someone who already feels like home — not browsing a catalog, not filling out a form, but recognizing something.\n\nThe palette is coral-led, not product-blue. Surfaces stay warm and unbleached. Typography mixes Fraunces Variable's inkstone weight for headlines with Geist Variable's quiet confidence for body copy. Motion is restrained: animals breathe into view on load, never performed. Interactivity acknowledges the user without demanding attention.\n\nThis system explicitly rejects: clinical white with system-blue CTAs, SaaS-cream with purple gradients, neon on dark, and anything that prioritizes tech-brand signals over emotional honesty.",
+    "keyCharacteristics": [
+      "Coral primary as the emotional center, not a decorative accent",
+      "Warm off-white (Husked Linen) surfaces that never feel sterile",
+      "Fraunces reserved for display and page titles only; Geist carries all UI",
+      "Flat-by-default elevation with shadow only in hover state",
+      "Semantic status palette kept entirely separate from brand accents",
+      "44px touch minimum enforced on all custom interactive elements"
+    ],
+    "rules": [
+      {
+        "name": "The One Anchor Rule",
+        "body": "Terracotta Warmth appears on at most one focal element per screen region. Its rarity is what makes it trustworthy. Stack two primary CTAs and both become noise.",
+        "section": "colors"
+      },
+      {
+        "name": "The Semantic Firewall Rule",
+        "body": "Status colors are never used as decorative accents, and WhatsApp Leaf is never used for non-WhatsApp elements. Crossing these lines makes the status system unreadable.",
+        "section": "colors"
+      },
+      {
+        "name": "The Fraunces Ceiling Rule",
+        "body": "Fraunces is used only for h1 and h2 page/section headings. Never in buttons, navigation, labels, body copy, or any UI text below title level. Its character depends entirely on its rarity.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-by-Default Rule",
+        "body": "No resting shadows, anywhere. Surfaces sit on the canvas. Shadow is a response to interaction (hover), confirmed selection (thumbnail), or physical fixed position (header). It is never a default styling decision.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use the label-eyebrow utility for every section divider, filter section title, and metadata prefix.",
+      "Do maintain min-h-11 (2.75rem, 44px) on every custom button not using the Button component.",
+      "Do apply focus-visible rings to all custom button elements not using the Button component.",
+      "Do use OKLCH for every new color value. Never introduce hex or HSL into the token system.",
+      "Do wire aria-describedby on form fields where inline errors or hint text exist.",
+      "Do use aria-pressed on toggle-style selection buttons and aria-current=step on wizard step indicators.",
+      "Do use Fraunces (font-display) for h1 and h2 headings only. All UI copy uses Geist."
+    ],
+    "donts": [
+      "Don't use border-left or border-right greater than 1px as a colored accent stripe. Use full borders or background tints.",
+      "Don't use background-clip: text with a gradient fill. Gradient text is prohibited.",
+      "Don't use glassmorphism outside the site header.",
+      "Don't hardcode Tailwind semantic colors (bg-green-100, bg-amber-100, bg-blue-50). Always use the token classes.",
+      "Don't render text below text-[0.68rem] (10.9px).",
+      "Don't use --wa-green for anything other than a WhatsApp CTA element.",
+      "Don't add box-shadow to resting cards. Shadow is an interaction response only.",
+      "Don't place external URLs in onError image handlers. All fallbacks must use /images/placeholder.svg.",
+      "Don't use the hero-metric template. The dashboard uses data; it does not perform it."
+    ]
+  }
+}

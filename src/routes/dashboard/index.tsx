@@ -152,6 +152,10 @@ function AppRow({ app, index }: { app: Application; index: number }) {
 							alt={pet.name}
 							className="size-full object-cover"
 							loading="lazy"
+							onError={(e) => {
+								e.currentTarget.onerror = null;
+								e.currentTarget.src = "/images/placeholder.svg";
+							}}
 						/>
 					</div>
 				) : null}
@@ -167,9 +171,7 @@ function AppRow({ app, index }: { app: Application; index: number }) {
 
 			{/* Applicant */}
 			<div className="hidden w-36 min-w-0 md:block">
-				<p className="text-[0.7rem] font-semibold uppercase tracking-wide text-muted-foreground">
-					Pelamar
-				</p>
+				<p className="label-eyebrow text-muted-foreground">Pelamar</p>
 				<p className="truncate text-sm font-medium text-foreground">
 					{app.applicantId === "user-demo" ? "Demo Adopter" : app.applicantId}
 				</p>
@@ -339,7 +341,7 @@ function DashboardInner() {
 
 			{/* Pet chips */}
 			<section className="mb-8">
-				<h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+				<h2 className="mb-3 label-eyebrow text-muted-foreground">
 					Hewanmu ({myPetIds.length})
 				</h2>
 				<div className="flex flex-wrap gap-2.5">
@@ -362,6 +364,10 @@ function DashboardInner() {
 											alt={pet.name}
 											className="size-full object-cover"
 											loading="lazy"
+											onError={(e) => {
+												e.currentTarget.onerror = null;
+												e.currentTarget.src = "/images/placeholder.svg";
+											}}
 										/>
 									</div>
 									<div>
@@ -373,7 +379,7 @@ function DashboardInner() {
 										</span>
 									</div>
 									{pet.status === "adopted" ? (
-										<PawPrint className="size-3.5 shrink-0 text-green-600" />
+										<PawPrint className="size-3.5 shrink-0 text-status-success-fg" />
 									) : null}
 								</Link>
 							);

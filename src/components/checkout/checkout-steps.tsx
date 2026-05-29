@@ -35,7 +35,7 @@ export function CheckoutSteps({ current, onJump }: CheckoutStepsProps) {
 							disabled={!reachable}
 							onClick={reachable ? () => onJump(index) : undefined}
 							className={cn(
-								"flex min-w-0 items-center gap-2 rounded-full text-left outline-none focus-visible:ring-2 focus-visible:ring-ring",
+								"flex min-h-11 min-w-0 items-center gap-2 rounded-full text-left outline-none focus-visible:ring-2 focus-visible:ring-ring",
 								reachable && "cursor-pointer",
 							)}
 							aria-current={active ? "step" : undefined}

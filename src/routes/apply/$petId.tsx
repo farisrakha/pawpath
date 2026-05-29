@@ -118,7 +118,7 @@ function StepIndicator({ current }: { current: number }) {
 								</span>
 								<span
 									className={cn(
-										"text-[0.68rem] font-semibold",
+										"text-xs font-semibold",
 										active
 											? "text-primary"
 											: done
@@ -545,7 +545,7 @@ function Step4Form({
 								type="button"
 								onClick={() => setSelectedAmount(active ? null : amount)}
 								className={cn(
-									"rounded-full border px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+									"min-h-11 rounded-full border px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 									active
 										? "border-primary bg-primary text-primary-foreground"
 										: "border-border hover:border-primary/40",
@@ -561,7 +561,7 @@ function Step4Form({
 							setSelectedAmount(selectedAmount === "custom" ? null : "custom")
 						}
 						className={cn(
-							"rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+							"min-h-11 rounded-full border px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 							selectedAmount === "custom"
 								? "border-primary bg-primary text-primary-foreground"
 								: "border-border hover:border-primary/40",

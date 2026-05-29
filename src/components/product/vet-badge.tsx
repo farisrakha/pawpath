@@ -12,7 +12,7 @@ export function VetBadge({ className, compact = false }: VetBadgeProps) {
 	return (
 		<span
 			className={cn(
-				"inline-flex items-center gap-1 rounded-full bg-secondary px-2 py-0.5 text-[0.7rem] font-semibold text-secondary-foreground ring-1 ring-accent/40",
+				"inline-flex items-center gap-1 rounded-full bg-secondary px-2 py-0.5 text-xs font-semibold text-secondary-foreground ring-1 ring-accent/40",
 				className,
 			)}
 		>

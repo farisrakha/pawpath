@@ -116,15 +116,9 @@ function PetDetailPage() {
 					{/* Main photo */}
 					<div className="overflow-hidden rounded-2xl bg-muted aspect-[4/3] ring-1 ring-border">
 						<img
-							key={photoIdx}
 							src={pet.photos[photoIdx]}
 							alt={`${pet.name} foto ${photoIdx + 1}`}
-							className="size-full object-cover"
-							style={
-								{
-									animation: "pawFadeIn 0.25s ease both",
-								} as React.CSSProperties
-							}
+							className="size-full object-cover transition-opacity duration-200"
 							onError={(e) => {
 								e.currentTarget.onerror = null;
 								e.currentTarget.src = "/images/placeholder.svg";
@@ -200,12 +194,12 @@ function PetDetailPage() {
 										className={cn(
 											"flex items-center gap-2 rounded-xl border px-3 py-2.5 text-sm",
 											ok
-												? "border-green-200 bg-green-50 text-green-800"
+												? "border-status-success-border bg-status-success-bg text-status-success-fg"
 												: "border-border bg-muted/40 text-muted-foreground",
 										)}
 									>
 										{ok ? (
-											<CheckCircle2 className="size-4 shrink-0 text-green-600" />
+											<CheckCircle2 className="size-4 shrink-0 text-status-success-fg" />
 										) : (
 											<XCircle className="size-4 shrink-0 text-muted-foreground/50" />
 										)}
@@ -224,7 +218,7 @@ function PetDetailPage() {
 						{/* Status badges */}
 						<div className="mb-3 flex flex-wrap items-center gap-2">
 							{pet.urgency === "urgent" ? (
-								<span className="rounded-full bg-destructive px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-white">
+								<span className="rounded-full bg-destructive px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-primary-foreground">
 									Mendesak
 								</span>
 							) : null}
@@ -287,7 +281,7 @@ function PetDetailPage() {
 										{pet.temperamentTags.map((tag) => (
 											<span
 												key={tag}
-												className="rounded-full border border-border bg-muted/60 px-3 py-1 text-xs text-muted-foreground"
+												className="rounded-full border border-secondary bg-secondary/80 px-3 py-1 text-xs font-medium text-secondary-foreground"
 											>
 												{tag}
 											</span>

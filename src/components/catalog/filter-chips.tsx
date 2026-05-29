@@ -92,7 +92,7 @@ export function FilterChips({
 					key={chip.key}
 					type="button"
 					onClick={chip.remove}
-					className="inline-flex min-h-8 items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground ring-1 ring-accent/40 transition-colors hover:bg-secondary/70"
+					className="inline-flex min-h-11 items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground ring-1 ring-accent/40 transition-colors hover:bg-secondary/70"
 					aria-label={`Hapus filter ${chip.label}`}
 				>
 					{chip.label}

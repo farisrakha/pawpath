@@ -111,9 +111,15 @@ function RegisterPage() {
 						placeholder="Contoh: Sari Wijaya"
 						className="h-11"
 						aria-invalid={!!errors.name}
+						aria-describedby={errors.name ? `${fieldId}-name-error` : undefined}
 					/>
 					{errors.name ? (
-						<p className="text-xs text-destructive">{errors.name}</p>
+						<p
+							id={`${fieldId}-name-error`}
+							className="text-xs text-destructive"
+						>
+							{errors.name}
+						</p>
 					) : null}
 				</div>
 
@@ -128,9 +134,17 @@ function RegisterPage() {
 						placeholder="nama@email.com"
 						className="h-11"
 						aria-invalid={!!errors.email}
+						aria-describedby={
+							errors.email ? `${fieldId}-email-error` : undefined
+						}
 					/>
 					{errors.email ? (
-						<p className="text-xs text-destructive">{errors.email}</p>
+						<p
+							id={`${fieldId}-email-error`}
+							className="text-xs text-destructive"
+						>
+							{errors.email}
+						</p>
 					) : null}
 				</div>
 
@@ -146,6 +160,7 @@ function RegisterPage() {
 							placeholder="Minimal 8 karakter"
 							className="h-11 pr-11"
 							aria-invalid={!!errors.password}
+							aria-describedby={`${fieldId}-password-hint`}
 						/>
 						<Button
 							type="button"
@@ -161,9 +176,17 @@ function RegisterPage() {
 						</Button>
 					</div>
 					{errors.password ? (
-						<p className="text-xs text-destructive">{errors.password}</p>
+						<p
+							id={`${fieldId}-password-hint`}
+							className="text-xs text-destructive"
+						>
+							{errors.password}
+						</p>
 					) : (
-						<p className="text-xs text-muted-foreground">
+						<p
+							id={`${fieldId}-password-hint`}
+							className="text-xs text-muted-foreground"
+						>
 							Gunakan minimal 8 karakter dengan kombinasi huruf dan angka.
 						</p>
 					)}

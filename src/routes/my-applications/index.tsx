@@ -13,6 +13,7 @@ import { WhatsAppCta } from "@/components/common/whatsapp-cta";
 import { Button } from "@/components/ui/button";
 import { useApplications } from "@/context";
 import { type Application, listers, pets } from "@/data";
+import { formatDateID } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/my-applications/")({
@@ -64,14 +65,6 @@ const STATUS_CONFIG: Record<string, StatusConfig> = {
 		icon: "x",
 	},
 };
-
-function formatDate(iso: string): string {
-	return new Intl.DateTimeFormat("id-ID", {
-		day: "numeric",
-		month: "long",
-		year: "numeric",
-	}).format(new Date(iso));
-}
 
 // ── Application card ──────────────────────────────────────────────────────────
 
@@ -131,7 +124,7 @@ function ApplicationCard({ app }: { app: Application }) {
 					</div>
 
 					<p className="mt-2 text-xs text-muted-foreground">
-						Dikirim {formatDate(app.createdAt)}
+						Dikirim {formatDateID(app.createdAt)}
 					</p>
 
 					{/* Latest note */}
@@ -147,8 +140,10 @@ function ApplicationCard({ app }: { app: Application }) {
 			<div className="flex flex-wrap items-center gap-2 border-t border-border px-4 py-3">
 				<button
 					type="button"
+					aria-expanded={expanded}
+					aria-controls={`status-history-${app.id}`}
 					onClick={() => setExpanded((v) => !v)}
-					className="flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
+					className="flex min-h-11 items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
 				>
 					<ChevronDown
 						className={cn(
@@ -188,47 +183,49 @@ function ApplicationCard({ app }: { app: Application }) {
 			</div>
 
 			{/* Status timeline */}
-			{expanded ? (
-				<div className="border-t border-border bg-muted/30 px-4 py-4 md:px-5">
-					<p className="mb-3 label-eyebrow text-muted-foreground">Riwayat</p>
-					<ol className="flex flex-col gap-3.5">
-						{[...app.statusLog].reverse().map((entry, idx) => {
-							const cfg = STATUS_CONFIG[entry.status];
-							const isLatest = idx === 0;
-							return (
-								<li
-									key={`${entry.status}-${entry.timestamp}`}
-									className="flex gap-3"
-								>
-									<span className="mt-0.5 shrink-0">
-										{entry.status === "rejected" ||
-										entry.status === "withdrawn" ? (
-											<XCircle className="size-4 text-destructive" />
-										) : isLatest ? (
-											<CheckCircle2 className="size-4 text-primary" />
-										) : (
-											<Circle className="size-4 text-muted-foreground/40" />
-										)}
-									</span>
-									<div className="min-w-0">
-										<p className="text-sm font-medium text-foreground">
-											{cfg?.label ?? entry.status}
+			<div
+				id={`status-history-${app.id}`}
+				hidden={!expanded}
+				className="border-t border-border bg-muted/30 px-4 py-4 md:px-5"
+			>
+				<p className="mb-3 label-eyebrow text-muted-foreground">Riwayat</p>
+				<ol className="flex flex-col gap-3.5">
+					{[...app.statusLog].reverse().map((entry, idx) => {
+						const cfg = STATUS_CONFIG[entry.status];
+						const isLatest = idx === 0;
+						return (
+							<li
+								key={`${entry.status}-${entry.timestamp}`}
+								className="flex gap-3"
+							>
+								<span className="mt-0.5 shrink-0">
+									{entry.status === "rejected" ||
+									entry.status === "withdrawn" ? (
+										<XCircle className="size-4 text-destructive" />
+									) : isLatest ? (
+										<CheckCircle2 className="size-4 text-primary" />
+									) : (
+										<Circle className="size-4 text-muted-foreground/40" />
+									)}
+								</span>
+								<div className="min-w-0">
+									<p className="text-sm font-medium text-foreground">
+										{cfg?.label ?? entry.status}
+									</p>
+									<p className="text-xs text-muted-foreground">
+										{formatDateID(entry.timestamp)}
+									</p>
+									{entry.note ? (
+										<p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+											{entry.note}
 										</p>
-										<p className="text-xs text-muted-foreground">
-											{formatDate(entry.timestamp)}
-										</p>
-										{entry.note ? (
-											<p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-												{entry.note}
-											</p>
-										) : null}
-									</div>
-								</li>
-							);
-						})}
-					</ol>
-				</div>
-			) : null}
+									) : null}
+								</div>
+							</li>
+						);
+					})}
+				</ol>
+			</div>
 		</article>
 	);
 }

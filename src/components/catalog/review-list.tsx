@@ -125,7 +125,7 @@ function FilterPill({
 			onClick={onClick}
 			aria-pressed={active}
 			className={cn(
-				"min-h-8 rounded-full border px-3 py-1 text-xs font-medium transition-colors",
+				"min-h-11 rounded-full border px-3 py-1 text-xs font-medium transition-colors",
 				active
 					? "border-primary bg-primary/10 text-primary"
 					: "border-border text-foreground hover:bg-muted",

@@ -149,7 +149,7 @@ export function CatalogBrowser({
 										<SlidersHorizontal className="size-4" />
 										Filter
 										{activeCount > 0 ? (
-											<span className="ml-0.5 flex min-w-5 items-center justify-center rounded-full bg-primary px-1 text-[0.65rem] font-bold text-primary-foreground">
+											<span className="ml-0.5 flex min-w-5 items-center justify-center rounded-full bg-primary px-1 text-xs font-bold text-primary-foreground">
 												{activeCount}
 											</span>
 										) : null}

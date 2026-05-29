@@ -43,6 +43,10 @@ export function ProductCard({ product, className }: ProductCardProps) {
 						alt={product.name}
 						loading="lazy"
 						className="size-full object-cover transition-transform duration-300 group-hover/card:scale-105"
+						onError={(e) => {
+							e.currentTarget.onerror = null;
+							e.currentTarget.src = "/images/placeholder.svg";
+						}}
 					/>
 					{product.vetRecommended ? (
 						<div className="absolute left-2 top-2">
@@ -50,14 +54,14 @@ export function ProductCard({ product, className }: ProductCardProps) {
 						</div>
 					) : null}
 					{product.stockStatus === "low_stock" ? (
-						<span className="absolute right-2 top-2 rounded-full bg-background/90 px-2 py-0.5 text-[0.65rem] font-medium text-destructive">
+						<span className="absolute right-2 top-2 rounded-full bg-background/90 px-2 py-0.5 text-xs font-medium text-destructive">
 							Stok terbatas
 						</span>
 					) : null}
 				</div>
 
 				<div className="flex flex-1 flex-col gap-1.5 p-3">
-					<p className="text-[0.7rem] font-medium uppercase tracking-wide text-muted-foreground">
+					<p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
 						{product.brand}
 					</p>
 					<h3 className="line-clamp-2 text-sm font-medium leading-snug text-foreground">

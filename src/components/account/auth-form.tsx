@@ -2,10 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { PawPrint } from "lucide-react";
 import type { ReactNode } from "react";
 
-/**
- * Shared chrome for the auth pages (login, register, forgot password). Centers a
- * branded card on a warm surface so the three flows feel like one family.
- */
 export function AuthShell({
 	title,
 	subtitle,

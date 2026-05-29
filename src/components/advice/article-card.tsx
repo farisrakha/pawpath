@@ -45,6 +45,10 @@ export function ArticleCard({
 					alt={`Ilustrasi artikel ${article.title}`}
 					loading="lazy"
 					className="size-full object-cover transition-transform duration-300 group-hover/article:scale-105"
+					onError={(e) => {
+						e.currentTarget.onerror = null;
+						e.currentTarget.src = "/images/placeholder.svg";
+					}}
 				/>
 				<span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-background/90 px-2.5 py-1 text-xs font-semibold text-primary backdrop-blur">
 					<TopicIcon className="size-3.5" aria-hidden="true" />
@@ -60,7 +64,7 @@ export function ArticleCard({
 			>
 				<div className="flex flex-wrap gap-1.5">
 					{article.petTypes.map((pet) => (
-						<Badge key={pet} variant="secondary" className="text-[0.7rem]">
+						<Badge key={pet} variant="secondary" className="text-xs">
 							{petLabel(pet)}
 						</Badge>
 					))}

@@ -84,7 +84,7 @@ function LoginPage() {
 							to="/forgot-password"
 							className="text-xs font-medium text-primary hover:underline"
 						>
-							Lupa Password?
+							Lupa kata sandi?
 						</Link>
 					</div>
 					<div className="relative">

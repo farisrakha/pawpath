@@ -41,7 +41,7 @@ export function Price({
 					<span className="text-xs text-muted-foreground line-through">
 						{formatIDR(compareAt)}
 					</span>
-					<span className="rounded-md bg-primary/10 px-1.5 py-0.5 text-[0.7rem] font-semibold text-primary">
+					<span className="rounded-md bg-primary/10 px-1.5 py-0.5 text-xs font-semibold text-primary">
 						Hemat {pct}%
 					</span>
 				</>

@@ -33,7 +33,7 @@ export function MobileNav() {
 							<Link
 								to={item.to}
 								activeOptions={{ exact: item.exact }}
-								className="flex min-h-14 flex-col items-center justify-center gap-0.5 py-1.5 text-[0.65rem] font-medium text-muted-foreground transition-colors [&.active]:text-primary"
+								className="flex min-h-14 flex-col items-center justify-center gap-0.5 py-1.5 text-xs font-medium text-muted-foreground transition-colors [&.active]:text-primary"
 								aria-label={item.label}
 							>
 								<Icon className="size-5" />

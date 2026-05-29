@@ -18,9 +18,9 @@ export function LanguageToggle() {
 					onClick={() => setLang(value)}
 					aria-pressed={lang === value}
 					className={[
-						"rounded-md px-2.5 py-1 text-xs font-semibold tracking-wider transition-all duration-150",
+						"min-h-11 rounded-md px-2.5 py-1 text-xs font-semibold tracking-wider transition-all duration-150",
 						lang === value
-							? "bg-primary text-white shadow-sm"
+							? "bg-primary text-primary-foreground shadow-sm"
 							: "text-muted-foreground hover:text-foreground active:scale-95",
 					].join(" ")}
 				>
