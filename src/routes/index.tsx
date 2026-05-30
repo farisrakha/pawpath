@@ -521,10 +521,10 @@ function FinalCTASection() {
 
 	return (
 		<section className="w-full overflow-hidden bg-primary">
-			<div className="grid grid-cols-1 lg:grid-cols-[1fr_420px]">
+			<div className="grid min-h-[360px] grid-cols-[3fr_2fr]">
 				{/* Left: text — padding aligns with max-w-6xl mx-auto px-6 */}
 				<div
-					className="flex flex-col justify-center gap-4 py-10 pr-6 lg:py-16 lg:pr-12"
+					className="flex flex-col justify-center gap-6 py-16 pr-12"
 					style={{
 						paddingLeft: "max(1.5rem, calc((100vw - 72rem) / 2 + 1.5rem))",
 					}}
@@ -548,13 +548,13 @@ function FinalCTASection() {
 					</div>
 				</div>
 
-				{/* Right: photo bleeds to right edge, full section height */}
-				<div className="relative hidden min-h-[400px] lg:block">
+				{/* Right: photo fills full column height */}
+				<div className="relative">
 					<img
 						src="/images/pets/miko-1.webp"
 						alt=""
 						aria-hidden="true"
-						className="absolute inset-0 h-full w-full object-cover object-top"
+						className="absolute inset-0 h-full w-full object-cover object-center"
 						loading="lazy"
 						onError={(e) => {
 							e.currentTarget.onerror = null;
