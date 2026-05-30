@@ -70,6 +70,7 @@ const STATUS_CONFIG: Record<string, StatusConfig> = {
 
 function ApplicationCard({ app }: { app: Application }) {
 	const [expanded, setExpanded] = useState(false);
+	const [confirmWithdraw, setConfirmWithdraw] = useState(false);
 	const { withdrawApplication } = useApplications();
 
 	const pet = pets.find((p) => p.id === app.petId);
@@ -170,14 +171,37 @@ function ApplicationCard({ app }: { app: Application }) {
 					) : null}
 
 					{canWithdraw ? (
-						<Button
-							variant="ghost"
-							size="sm"
-							className="text-destructive hover:bg-destructive/5 hover:text-destructive"
-							onClick={() => withdrawApplication(app.id)}
-						>
-							Cabut lamaran
-						</Button>
+						confirmWithdraw ? (
+							<div className="flex items-center gap-1.5">
+								<span className="text-xs text-muted-foreground">
+									Yakin cabut?
+								</span>
+								<Button
+									variant="ghost"
+									size="sm"
+									className="text-destructive hover:bg-destructive/5 hover:text-destructive"
+									onClick={() => withdrawApplication(app.id)}
+								>
+									Ya, cabut
+								</Button>
+								<Button
+									variant="ghost"
+									size="sm"
+									onClick={() => setConfirmWithdraw(false)}
+								>
+									Batal
+								</Button>
+							</div>
+						) : (
+							<Button
+								variant="ghost"
+								size="sm"
+								className="text-destructive hover:bg-destructive/5 hover:text-destructive"
+								onClick={() => setConfirmWithdraw(true)}
+							>
+								Cabut lamaran
+							</Button>
+						)
 					) : null}
 				</div>
 			</div>

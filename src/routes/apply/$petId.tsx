@@ -507,8 +507,12 @@ function Step4Form({
 
 	const resolvedAmount = (): number | null => {
 		if (selectedAmount === null || selectedAmount === 0) return null;
-		if (selectedAmount === "custom")
-			return customDonation ? Number(customDonation) : null;
+		if (selectedAmount === "custom") {
+			const parsed = Number(customDonation);
+			return customDonation && !Number.isNaN(parsed) && parsed > 0
+				? parsed
+				: null;
+		}
 		return selectedAmount;
 	};
 

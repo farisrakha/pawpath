@@ -13,7 +13,7 @@ interface AppShellProps {
 
 export function AppShell({ children, className }: AppShellProps) {
 	return (
-		<div className="flex min-h-screen flex-col bg-background">
+		<div className="flex min-h-[100dvh] flex-col bg-background">
 			<SiteHeader />
 			<main className={cn("flex-1 pb-20 md:pb-0", className)}>{children}</main>
 			<SiteFooter />

@@ -386,7 +386,7 @@ function PetCard({
 			{/* Content */}
 			<div className="flex flex-1 flex-col gap-2 p-4">
 				<div className="flex items-start justify-between gap-2">
-					<h3 className="font-display text-xl font-bold leading-tight text-foreground">
+					<h3 className="line-clamp-2 font-display text-xl font-bold leading-tight text-foreground">
 						{pet.name}
 					</h3>
 					{pet.medicalStatus.vaksinasi ? (
@@ -397,7 +397,7 @@ function PetCard({
 					) : null}
 				</div>
 
-				<p className="text-sm text-muted-foreground">{pet.breed}</p>
+				<p className="truncate text-sm text-muted-foreground">{pet.breed}</p>
 				<p className="text-xs text-muted-foreground">
 					{ageLabel(pet, t)} ·{" "}
 					{pet.sex === "male" ? t("browse.sex.male") : t("browse.sex.female")} ·{" "}
@@ -468,14 +468,17 @@ function BrowsePage() {
 			{/* Page header */}
 			<header className="mb-10">
 				<h1 className="font-display text-4xl font-bold leading-tight tracking-tight text-foreground md:text-[2.8rem]">
-					{t("browse.header.title").replace(
-						t("browse.header.accentPhrase"),
-						"",
-					) ||
-						t("browse.header.title").split(t("browse.header.accentPhrase"))[0]}
-					<span className="italic text-primary">
-						{t("browse.header.accentPhrase")}
-					</span>
+					{(() => {
+						const accent = t("browse.header.accentPhrase");
+						const [before, after = ""] = t("browse.header.title").split(accent);
+						return (
+							<>
+								{before}
+								<span className="italic text-primary">{accent}</span>
+								{after}
+							</>
+						);
+					})()}
 				</h1>
 				<p className="mt-3 max-w-lg text-base leading-relaxed text-muted-foreground">
 					{t("browse.header.subtitle")}
@@ -548,8 +551,7 @@ function BrowsePage() {
 						</Sheet>
 
 						<span className="ml-auto text-sm text-muted-foreground">
-							{visible.length}{" "}
-							{t("browse.species.all") === "All" ? "animals" : "hewan"}
+							{visible.length} {t("browse.countUnit")}
 						</span>
 					</div>
 

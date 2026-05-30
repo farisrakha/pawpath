@@ -60,6 +60,10 @@ function HeroSection() {
 						alt="Anjing tersedia untuk adopsi"
 						className="h-full w-full object-cover object-top"
 						loading="eager"
+						onError={(e) => {
+							e.currentTarget.onerror = null;
+							e.currentTarget.src = "/images/placeholder.svg";
+						}}
 					/>
 				</div>
 
@@ -104,7 +108,7 @@ function HeroSection() {
 								}
 								className="text-sm text-primary transition-colors hover:text-primary/80"
 							>
-								{t("landing.hero.ctaSecondary")} →
+								{t("landing.hero.ctaSecondary")}
 							</Link>
 						</div>
 
@@ -139,6 +143,10 @@ function HeroSection() {
 							alt="Anjing tersedia untuk adopsi"
 							className="h-[480px] w-full rounded-3xl object-cover object-top"
 							loading="eager"
+							onError={(e) => {
+								e.currentTarget.onerror = null;
+								e.currentTarget.src = "/images/placeholder.svg";
+							}}
 						/>
 
 						{/* Honey accent square — peeks behind floating photo */}
@@ -151,6 +159,10 @@ function HeroSection() {
 								alt="Kucing tersedia untuk adopsi"
 								className="h-full w-full object-cover object-top"
 								loading="eager"
+								onError={(e) => {
+									e.currentTarget.onerror = null;
+									e.currentTarget.src = "/images/placeholder.svg";
+								}}
 							/>
 						</div>
 					</div>
@@ -191,7 +203,7 @@ function TrustBar() {
 						{stats.map(({ icon: Icon, value, label }) => (
 							<div
 								key={label}
-								className="flex flex-1 flex-col items-center gap-1 px-8"
+								className="flex flex-1 flex-col items-center gap-1 px-4 md:px-8"
 							>
 								<Icon className="h-5 w-5 text-primary/60" />
 								<p className="font-display text-3xl font-bold text-primary">
@@ -363,10 +375,12 @@ function FeaturedCard({
 				</div>
 			</div>
 			<div className="mt-3 px-0.5">
-				<p className="font-semibold leading-tight text-foreground">
+				<p className="truncate font-semibold leading-tight text-foreground">
 					{pet.name}
 				</p>
-				<p className="mt-0.5 text-sm text-muted-foreground">{pet.breed}</p>
+				<p className="mt-0.5 truncate text-sm text-muted-foreground">
+					{pet.breed}
+				</p>
 			</div>
 		</Link>
 	);
@@ -441,6 +455,10 @@ function ShelterPromiseSection() {
 								alt="Hewan di shelter"
 								className="absolute inset-0 h-full w-full object-cover"
 								loading="lazy"
+								onError={(e) => {
+									e.currentTarget.onerror = null;
+									e.currentTarget.src = "/images/placeholder.svg";
+								}}
 							/>
 						</div>
 						<div className="relative overflow-hidden rounded-2xl">
@@ -449,6 +467,10 @@ function ShelterPromiseSection() {
 								alt="Hewan menunggu adopsi"
 								className="absolute inset-0 h-full w-full object-cover"
 								loading="lazy"
+								onError={(e) => {
+									e.currentTarget.onerror = null;
+									e.currentTarget.src = "/images/placeholder.svg";
+								}}
 							/>
 						</div>
 						<div className="relative overflow-hidden rounded-2xl">
@@ -457,6 +479,10 @@ function ShelterPromiseSection() {
 								alt="Kucing di shelter"
 								className="absolute inset-0 h-full w-full object-cover"
 								loading="lazy"
+								onError={(e) => {
+									e.currentTarget.onerror = null;
+									e.currentTarget.src = "/images/placeholder.svg";
+								}}
 							/>
 						</div>
 					</div>
@@ -550,6 +576,10 @@ function FinalCTASection() {
 						aria-hidden="true"
 						className="absolute inset-0 h-full w-full object-cover object-top"
 						loading="lazy"
+						onError={(e) => {
+							e.currentTarget.onerror = null;
+							e.currentTarget.src = "/images/placeholder.svg";
+						}}
 					/>
 				</div>
 			</div>

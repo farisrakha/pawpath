@@ -64,6 +64,7 @@ export const translations: Record<string, Record<Lang, string>> = {
 		id: "Pengalamanmu",
 		en: "Your experience",
 	},
+	"browse.countUnit": { id: "hewan", en: "animals" },
 	"browse.noResults.title": {
 		id: "Tidak ada hewan yang tersedia",
 		en: "No animals available",
