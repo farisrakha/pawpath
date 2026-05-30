@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PawPath — Landing Page PRD</title>
+  <style>
+    :root {
+      --coral: #e05a3a;
+      --coral-light: #fdf1ee;
+      --coral-mid: #f5c5b8;
+      --honey: #f0b429;
+      --honey-light: #fef9ec;
+      --green: #2e7d32;
+      --green-light: #e8f5e9;
+      --ink: #1a1a1a;
+      --ink-soft: #4a4a4a;
+      --muted: #888;
+      --border: #e5e5e5;
+      --surface: #fafaf8;
+      --white: #fff;
+      --radius: 10px;
+      --font: 'Georgia', serif;
+      --mono: 'Menlo', 'Monaco', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── Layout ── */
+    .page-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 32px 120px;
+    }
+
+    /* ── Doc header ── */
+    .doc-header {
+      border-bottom: 3px solid var(--coral);
+      padding-bottom: 28px;
+      margin-bottom: 48px;
+    }
+    .doc-header .label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 10px;
+    }
+    .doc-header h1 {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    .doc-header h1 em {
+      color: var(--coral);
+      font-style: normal;
+    }
+    .doc-meta {
+      display: flex;
+      gap: 28px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .doc-meta span {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .doc-meta span strong {
+      color: var(--ink-soft);
+    }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 56px;
+    }
+    .section-title {
+      font-size: 11px;
+      font-family: var(--mono);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--coral-mid);
+    }
+    h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+    h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    p {
+      color: var(--ink-soft);
+      margin-bottom: 14px;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Decision pills ── */
+    .decisions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 13px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-family: var(--mono);
+    }
+    .pill.coral { background: var(--coral-light); color: var(--coral); border: 1px solid var(--coral-mid); }
+    .pill.honey { background: var(--honey-light); color: #9a6700; border: 1px solid #f0d080; }
+    .pill.green { background: var(--green-light); color: var(--green); border: 1px solid #a5d6a7; }
+    .pill.gray  { background: #f4f4f4; color: #666; border: 1px solid #ddd; }
+
+    /* ── Two-col grid ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* ── Callout ── */
+    .callout {
+      padding: 18px 22px;
+      border-radius: var(--radius);
+      margin: 20px 0;
+    }
+    .callout.coral { background: var(--coral-light); border-left: 4px solid var(--coral); }
+    .callout.honey { background: var(--honey-light); border-left: 4px solid var(--honey); }
+    .callout.green { background: var(--green-light); border-left: 4px solid #4caf50; }
+    .callout p { margin-bottom: 0; font-size: 14px; }
+    .callout strong { color: var(--ink); }
+
+    /* ── Page section specs ── */
+    .spec-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+    .spec-block-header {
+      background: var(--ink);
+      color: var(--white);
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .spec-block-header .name {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .02em;
+    }
+    .spec-block-header .tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      background: rgba(255,255,255,.15);
+      padding: 3px 9px;
+      border-radius: 12px;
+    }
+    .spec-block-body {
+      padding: 22px;
+    }
+    .spec-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 12px 20px;
+      margin-bottom: 14px;
+      font-size: 14px;
+    }
+    .spec-row:last-child { margin-bottom: 0; }
+    .spec-row .key {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding-top: 2px;
+    }
+    .spec-row .val { color: var(--ink-soft); }
+    .spec-row .val strong { color: var(--ink); }
+
+    /* ── Copy examples ── */
+    .copy-example {
+      background: #f7f5f0;
+      border: 1px dashed #d0ccc0;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 12px 0;
+      font-size: 15px;
+      color: var(--ink);
+      font-style: italic;
+    }
+    .copy-example small {
+      display: block;
+      font-style: normal;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    /* ── Table ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-top: 16px;
+    }
+    th {
+      text-align: left;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+      padding: 8px 14px;
+      border-bottom: 2px solid var(--border);
+    }
+    td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-soft);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    td strong { color: var(--ink); }
+
+    /* ── Wireframe sketch ── */
+    .wireframe {
+      background: #f0ede8;
+      border: 2px dashed #c8c0b4;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 16px 0;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: #7a7068;
+      white-space: pre;
+      line-height: 1.5;
+      overflow-x: auto;
+    }
+
+    /* ── Status badge ── */
+    .status {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .status.draft    { background: #fff3cd; color: #856404; }
+    .status.scope-in { background: var(--green-light); color: var(--green); }
+    .status.scope-out{ background: #f4f4f4; color: #888; }
+
+    /* ── List ── */
+    ul.clean { list-style: none; padding: 0; }
+    ul.clean li {
+      padding: 6px 0 6px 20px;
+      position: relative;
+      font-size: 14px;
+      color: var(--ink-soft);
+      border-bottom: 1px solid #f0f0f0;
+    }
+    ul.clean li:last-child { border-bottom: none; }
+    ul.clean li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--coral);
+    }
+
+    /* ── Metric cards ── */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+    @media (max-width: 600px) { .metric-grid { grid-template-columns: 1fr; } }
+    .metric-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+    .metric-card .label {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .metric-card .value {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--coral);
+    }
+    .metric-card .desc {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── Divider ── */
+    hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- Doc header -->
+  <div class="doc-header">
+    <div class="label">Product Requirements Document</div>
+    <h1>PawPath <em>Landing Page</em></h1>
+    <div class="doc-meta">
+      <span><strong>Status</strong> &nbsp;Draft v1</span>
+      <span><strong>Date</strong> &nbsp;May 2026</span>
+      <span><strong>Author</strong> &nbsp;Faris Rakha</span>
+      <span><strong>Scope</strong> &nbsp;Route: / (root)</span>
+    </div>
+  </div>
+
+
+  <!-- 1. Context -->
+  <div class="section">
+    <div class="section-title">01 — Context</div>
+    <h2>Why this page exists</h2>
+    <p>Right now PawPath has no dedicated landing page. The root route drops visitors straight into the browse catalog. That works for users who already know what PawPath is — but it gives newcomers no reason to trust the platform, no orientation, and no emotional hook before asking them to scroll through animals.</p>
+    <p>The landing page is the first thing a person sees when they arrive from Instagram, TikTok, or a Google search. It needs to answer one question in under five seconds: <em>"Is this worth my attention?"</em> — and then move them into the catalog as fast as possible.</p>
+
+    <div class="callout coral">
+      <p><strong>Key constraint:</strong> The page must not slow down the path to browsing. No quiz walls, no forced sign-up, no multi-step onboarding. The job of the landing page is to earn enough trust that clicking "Jelajahi" feels obvious.</p>
+    </div>
+  </div>
+
+
+  <!-- 2. Decisions captured -->
+  <div class="section">
+    <div class="section-title">02 — Decisions Captured</div>
+    <h2>What we agreed on</h2>
+    <p>These choices shape every section below. Change one and the whole page architecture shifts.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Decision</th>
+          <th>Implication</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Traffic source</strong></td>
+          <td>Instagram / TikTok + Google search</td>
+          <td>Two different mental states on arrival. Social = emotionally warm, already likes animals. Search = intent-driven, comparing options. Hero must satisfy both.</td>
+        </tr>
+        <tr>
+          <td><strong>Primary CTA</strong></td>
+          <td>Browse pets immediately</td>
+          <td>No quiz wall before the catalog. The match profile is a feature, not a gate. Every CTA on this page goes to <code>/jelajahi</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Audience scope</strong></td>
+          <td>Adopters only (shelters = separate page later)</td>
+          <td>100% of copy speaks to the person who wants a pet. No "Are you a shelter?" split in the nav.</td>
+        </tr>
+        <tr>
+          <td><strong>Main objection</strong></td>
+          <td>"Which pet suits me?"</td>
+          <td>The Profil Kecocokan feature is the answer. It must appear as a <em>solution</em>, not a filter UI. Frame it as "we figure that out for you."</td>
+        </tr>
+        <tr>
+          <td><strong>Emotional tone</strong></td>
+          <td>Warm & story-driven</td>
+          <td>Lead with a real animal's story or a human moment. Not generic "adopt don't shop" mission copy. Specific beats general.</td>
+        </tr>
+        <tr>
+          <td><strong>Process detail</strong></td>
+          <td>Out of scope for this page</td>
+          <td>No step-by-step adoption funnel section. Trust is built through animal cards and verified shelter badges, not a process diagram.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- 3. User journeys -->
+  <div class="section">
+    <div class="section-title">03 — User Entry Journeys</div>
+    <h2>Who lands here and why</h2>
+    <p>The landing page must serve two distinct entry states. Both share the same destination (the catalog), but they arrive with different questions in their heads.</p>
+
+    <div class="two-col">
+      <div class="spec-block">
+        <div class="spec-block-header">
+          <span class="name">Social visitor</span>
+          <span class="tag">Instagram / TikTok</span>
+        </div>
+        <div class="spec-block-body">
+          <div class="spec-row">
+            <span class="key">Arrives from</span>
+            <span class="val">A post or reel of a cute shelter animal, bio link</span>
+          </div>
+          <div class="spec-row">
+            <span class="key">Mental state</span>
+            <span class="val">Emotionally warm. Already cares about animals. Low intent but high openness.</span>
+          </div>
+          <div class="spec-row">
+            <span class="key">First question</span>
+            <span class="val"><strong>"Oh, this is where I can actually adopt that kind of animal?"</strong></span>
+          </div>
+          <div class="spec-row">
+            <span class="key">Blocker</span>
+            <span class="val">Doesn't know if they're "ready." Will leave if the page feels clinical or complicated.</span>
+          </div>
+          <div class="spec-row">
+            <span class="key">What wins them</span>
+            <span class="val">A specific animal story, warmth, and a frictionless first step.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec-block">
+        <div class="spec-block-header">
+          <span class="name">Search visitor</span>
+          <span class="tag">Google</span>
+        </div>
+        <div class="spec-block-body">
+          <div class="spec-row">
+            <span class="key">Arrives from</span>
+            <span class="val">Query like "adopsi kucing Jakarta" or "shelter anjing Jabodetabek"</span>
+          </div>
+          <div class="spec-row">
+            <span class="key">Mental state</span>
+            <span class="val">Active intent. Already decided they want a pet. Evaluating options.</span>
+          </div>
+          <div class="spec-row">
+            <span class="key">First question</span>
+            <span class="val"><strong>"Is this platform legit, and does it have animals near me?"</strong></span>
+          </div>
+          <div class="spec-row">
+            <span class="key">Blocker</span>
+            <span class="val">Uncertainty about whether shelters are real and active. Will bounce to competitor if trust signals are missing.</span>
+          </div>
+          <div class="spec-row">
+            <span class="key">What wins them</span>
+            <span class="val">Verified shelter badges, real animals with locations, fast path to browse.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout honey">
+      <p><strong>Design principle from this:</strong> The hero section must work for both. Warm enough for the social visitor, credible enough for the search visitor. The animal photo + match feature combination achieves both — emotion from the photo, trust from the "verified" language.</p>
+    </div>
+  </div>
+
+
+  <!-- 4. Page goal -->
+  <div class="section">
+    <div class="section-title">04 — Page Goal & Success Metrics</div>
+    <h2>What success looks like</h2>
+    <p>The landing page has one primary job and two supporting jobs.</p>
+
+    <div class="callout coral">
+      <p><strong>Primary goal:</strong> Get the visitor to click into the browse catalog (<code>/jelajahi</code>) within their first session — ideally within 30 seconds of arriving.</p>
+    </div>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="label">Primary metric</div>
+        <div class="value">CTR → /jelajahi</div>
+        <div class="desc">% of landing page visitors who click any CTA that leads to the catalog. Target: >55%.</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Secondary metric</div>
+        <div class="value">Bounce rate</div>
+        <div class="desc">% who leave without any interaction. Target: under 40% for social traffic, under 30% for search.</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Tertiary metric</div>
+        <div class="value">Match profile fills</div>
+        <div class="desc">% of visitors who fill the profil kecocokan from the landing page CTA. Target: >15%.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 5. Page sections -->
+  <div class="section">
+    <div class="section-title">05 — Page Architecture</div>
+    <h2>Section-by-section spec</h2>
+    <p>The page reads as a single scroll. No tabs, no sidebar, no pagination. Six sections in this order:</p>
+
+    <div class="wireframe">┌──────────────────────────────────────────────────────────┐
+│  NAV  PawPath logo    Jelajahi  Lamaranku        [ID][EN] │
+├──────────────────────────────────────────────────────────┤
+│                                                          │
+│  [01]  HERO — MOSAIC PANEL GRID                          │
+│  ┌──────────┬──────────┬──────────┬──────────┐          │
+│  │ CORAL BG │ INK BG   │ HONEY BG │ WARM BG  │          │
+│  │          │          │          │          │          │
+│  │ Headline │ [Dog     │ [Cat     │ [Dog     │          │
+│  │ + CTA    │  face]   │  face]   │  face]   │          │
+│  │          │          │          │          │          │
+│  └──────────┴──────────┴──────────┴──────────┘          │
+│  Floating badge: [avatar stack]  120+ hewan menunggu     │
+│                                                          │
+├──────────────────────────────────────────────────────────┤
+│  [02]  TRUST BAR                                         │
+│        120+ hewan  ·  15 shelter  ·  80+ adopsi berhasil │
+├──────────────────────────────────────────────────────────┤
+│  [03]  PROFIL KECOCOKAN — 3 NUMBERED STEP CARDS          │
+│  ┌────────────┐  ┌────────────┐  ┌────────────┐         │
+│  │ 1 [salmon] │  │ 2 [mint]   │  │ 3 [honey]  │         │
+│  │ Isi profil │  │ Lihat hasil│  │ Hubungi    │         │
+│  │ [tag][tag] │  │ [tag][tag] │  │ [tag][tag] │         │
+│  └────────────┘  └────────────┘  └────────────┘         │
+├──────────────────────────────────────────────────────────┤
+│  [04]  FEATURED ANIMALS — 4-COL COLORED-BG CARD GRID     │
+│  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐            │
+│  │ CORAL  │ │ HONEY  │ │ TEAL   │ │ WARM   │            │
+│  │ [face] │ │ [face] │ │ [face] │ │ [face] │            │
+│  │ Miko   │ │ Oranye │ │ Cleo   │ │ Kopi   │            │
+│  │ cocok  │ │ cocok  │ │ cocok  │ │ cocok  │            │
+│  └────────┘ └────────┘ └────────┘ └────────┘            │
+│                   Lihat semua 120+ hewan →               │
+├──────────────────────────────────────────────────────────┤
+│  [05]  SHELTER PROMISE — PHOTO MOSAIC + STATS            │
+│  ┌──────────────────┐  ┌──────────────────────────────┐  │
+│  │ [tall photo]     │  │ HEADLINE LINE 1              │  │
+│  │                  │  │ HEADLINE LINE 2 (coral)      │  │
+│  ├────────┬─────────┤  │                              │  │
+│  │[photo] │ [photo] │  │  120+    ·    15    ·   80+  │  │
+│  └────────┴─────────┘  └──────────────────────────────┘  │
+├──────────────────────────────────────────────────────────┤
+│  [06]  FINAL CTA BANNER — FULL WIDTH CORAL BG            │
+│  ┌──────────────────────────────────────┬─────────────┐  │
+│  │  SIAPA TAHU,                         │  [animal    │  │
+│  │  HEWANMU SUDAH DI SANA.              │   cutout    │  │
+│  │  [Mulai jelajahi]                    │   photo]    │  │
+│  └──────────────────────────────────────┴─────────────┘  │
+└──────────────────────────────────────────────────────────┘</div>
+
+
+    <!-- Section 01: Hero -->
+    <div class="spec-block">
+      <div class="spec-block-header">
+        <span class="name">01 — Hero</span>
+        <span class="tag">Above fold</span>
+      </div>
+      <div class="spec-block-body">
+        <div class="spec-row">
+          <span class="key">Purpose</span>
+          <span class="val">Answer "what is this?" in under 5 seconds and earn the scroll. The emotional hook lives here.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Layout</span>
+          <span class="val"><strong>Mosaic panel grid — not a traditional split.</strong> 4 equal-width columns, each with a distinct solid-color background. Column 1 (coral bg): headline text + CTA + social proof badge. Columns 2–4: one animal photo per panel, face-cropped, photo fills the panel. The panels sit flush edge-to-edge with no gap. Full viewport height above fold on desktop. On mobile: stack to 2×2 grid, text column on top spanning full width.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Panel colors</span>
+          <span class="val">Col 1: <code>--primary</code> coral bg, white text. Col 2: near-black <code>--ink</code> bg. Col 3: <code>--accent</code> honey bg. Col 4: warm off-white. Each color block gives each animal its own visual identity. Avoid two adjacent panels with the same hue.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Photo direction</span>
+          <span class="val">Animals photographed against a neutral/colored studio backdrop (not lifestyle settings). Head and shoulders only — faces fill each panel. Three different animals, ideally two dogs and one cat or vice versa. Photos should feel like portraits, not snapshots.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Social proof badge</span>
+          <span class="val">Floating white pill, positioned at the bottom of the headline panel overlapping into the next panel. Content: small avatar stack (3 overlapping circles) + "120+ hewan menunggu". Subtle drop shadow. Reference: PUPJOY hero badge.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Headline</span>
+          <span class="val">Two-line. Display font (Fraunces). Line 1 plain, Line 2 coral italic. See copy below.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Primary CTA</span>
+          <span class="val"><strong>Coral filled button</strong> → <code>/jelajahi</code>. Label: "Temukan hewanmu". Full width on mobile.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Secondary CTA</span>
+          <span class="val">Ghost/text link below: "Atau isi profil kecocokan dulu →" — for visitors who feel the "which pet suits me?" anxiety before they browse.</span>
+        </div>
+
+        <div class="copy-example">
+          <small>Headline option A (product-forward)</small>
+          Hewan yang menunggu<br><em style="color:#e05a3a">rumah seperti milikmu.</em>
+        </div>
+        <div class="copy-example">
+          <small>Headline option B (story-forward)</small>
+          Ada yang sedang menunggu<br><em style="color:#e05a3a">seseorang seperti kamu.</em>
+        </div>
+        <div class="copy-example">
+          <small>Subheadline (same for both)</small>
+          Anjing dan kucing dari shelter terverifikasi di Jabodetabek. Isi profil kecocokan dan kami carikan yang paling pas.
+        </div>
+
+        <div class="callout honey">
+          <p><strong>Copy rule:</strong> The subheadline must mention "terverifikasi" and "Jabodetabek" — these two words answer both visitor types in one sentence. Social visitor: warmth from the rest. Search visitor: credibility from those two words.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Section 02: Trust bar -->
+    <div class="spec-block">
+      <div class="spec-block-header">
+        <span class="name">02 — Trust Bar</span>
+        <span class="tag">Quick credibility</span>
+      </div>
+      <div class="spec-block-body">
+        <div class="spec-row">
+          <span class="key">Purpose</span>
+          <span class="val">One glance of credibility. Answers "is this a real platform?" without making the visitor read anything.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Layout</span>
+          <span class="val">3 stats in a horizontal strip, separated by a subtle divider. Light background (off-white), no border.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Stats (draft numbers — update when real data exists)</span>
+          <span class="val">
+            <strong>120+ hewan tersedia</strong> saat ini<br>
+            <strong>15 shelter terverifikasi</strong> di Jabodetabek<br>
+            <strong>80+ adopsi berhasil</strong> sejak 2025
+          </span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Note</span>
+          <span class="val">These are static copy for now (mock app). Keep them conservative — readers notice if numbers feel inflated.</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Section 03: Problem → Solution -->
+    <div class="spec-block">
+      <div class="spec-block-header">
+        <span class="name">03 — Problem → Solution (Profil Kecocokan)</span>
+        <span class="tag">Core differentiator</span>
+      </div>
+      <div class="spec-block-body">
+        <div class="spec-row">
+          <span class="key">Purpose</span>
+          <span class="val">Address the #1 objection — "I don't know which pet suits me" — by showing the match profile feature as a <em>solution</em>, not a UI filter. Most visitors don't know this feature exists.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Layout</span>
+          <span class="val"><strong>3 numbered step cards in a row.</strong> Each card has a soft pastel background, a small number badge (1, 2, 3) in the top-left corner, a heading, one sentence of body copy, and 1–2 small feature pill tags at the bottom. Card 1 (salmon/light coral bg): "Isi profil kecocokan". Card 2 (mint green bg): "Lihat hewan yang cocok". Card 3 (honey bg): "Hubungi shelter". Cards have rounded corners (~16px). Equal width, no gaps between visible — use subtle shadow instead. Reference: PUPJOY "BRING HOME YOUR PERFECT COMPANION" step cards.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Section label</span>
+          <span class="val">Above the section headline: small coral dot (•) + small-caps uppercase label text "Cara kerjanya". Reference: Vetic section label system used throughout their pages.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Section headline</span>
+          <span class="val">Two-line, large, bold, uppercase. Line 1: dark ink. Line 2: coral. Example: "BINGUNG MULAI / DARI MANA?" — or softer if uppercase feels too aggressive. See copy section.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Tone</span>
+          <span class="val">Empathetic to the uncertainty. Not "here's a feature." More like "this is a common feeling, here's how we handle it."</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">CTA</span>
+          <span class="val">Outlined coral button: "Isi profil kecocokan" → scrolls to or links to <code>/jelajahi</code> with the sidebar pre-opened. (Or just <code>/jelajahi</code> if that's simpler.)</span>
+        </div>
+
+        <div class="copy-example">
+          <small>Section heading</small>
+          Bingung harus mulai dari mana?
+        </div>
+        <div class="copy-example">
+          <small>Body copy</small>
+          Tidak semua hewan cocok untuk semua orang — dan itu bukan hal yang buruk. PawPath punya profil kecocokan: beberapa pertanyaan singkat tentang hunian, keluarga, dan gaya hidup kamu. Hasilnya? Daftar hewan yang diurutkan khusus untukmu.
+        </div>
+
+        <div class="callout green">
+          <p><strong>Visual tip:</strong> Show the "Sangat cocok" badge prominently in the screenshot. That green badge is the proof — it makes the feature feel tangible rather than abstract.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Section 04: Featured animals -->
+    <div class="spec-block">
+      <div class="spec-block-header">
+        <span class="name">04 — Featured Animals</span>
+        <span class="tag">Social proof + browse hook</span>
+      </div>
+      <div class="spec-block-body">
+        <div class="spec-row">
+          <span class="key">Purpose</span>
+          <span class="val">Show real animals to create emotional investment. The visitor should feel "oh, this one is cute" before they've even clicked browse.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Layout</span>
+          <span class="val"><strong>4-column grid of square cards with solid-color photo backgrounds.</strong> Each card: square aspect ratio, animal photo fills the card with a distinct solid-color background (not a transparent or white card bg). Below the photo: animal name, breed, and "Sangat cocok" match badge. Cards have rounded corners (~12px). This is a new card variant for the landing page — the catalog card design is not used here (it's too information-dense). Think PUPJOY's "MEET YOUR NEXT COMPANION" breed cards but with PawPath content. On mobile: 2-column grid.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Section label</span>
+          <span class="val">Small coral dot (•) + small-caps label "Sedang menunggu" above the headline.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Section headline</span>
+          <span class="val">Two-line, large, uppercase. Line 1 dark ink, line 2 coral. Example: "HEWAN YANG / SEDANG MENUNGGU". Right-aligned "Lihat semua →" link at the same level as the headline. Reference: PUPJOY "MEET YOUR NEXT COMPANION" section header layout.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Which animals to show</span>
+          <span class="val">Hardcode 3 animals with the best photos. Priority: animals with "MENDESAK" badge, diverse species (at least 1 dog, 1 cat). Real names, real photos.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Section heading</span>
+          <span class="val"><strong>"Hewan yang sedang menunggu"</strong> — not "Temukan hewan peliharaan" or anything generic.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">CTA below cards</span>
+          <span class="val">Text link: "Lihat semua 120+ hewan →" → <code>/jelajahi</code></span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Interaction</span>
+          <span class="val">Cards are clickable (same behavior as catalog). Hovering should show the same hover state. No special landing-page-only behavior.</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Section 05: Shelter trust -->
+    <div class="spec-block">
+      <div class="spec-block-header">
+        <span class="name">05 — Shelter Trust</span>
+        <span class="tag">Credibility for search visitors</span>
+      </div>
+      <div class="spec-block-body">
+        <div class="spec-row">
+          <span class="key">Purpose</span>
+          <span class="val">Answer "are these real shelters?" for the Google search visitor who is still evaluating. The social visitor gets emotional value from the animal name tags (knowing a real shelter is behind it).</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Layout</span>
+          <span class="val"><strong>Two-column: photo mosaic left, headline + stats right.</strong> Left: one tall photo (portrait, rounded corners) with two smaller square photos side by side below it — total 3 photos in an asymmetric stacked grid. Right: small label + large two-line uppercase headline + one sentence of supporting copy + a row of 3 inline stats (120+ hewan · 15 shelter · 80+ adopsi berhasil). Reference: PUPJOY "Our promise / A HAPPIER WAY" section. On mobile: photos stack above text.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Section label</span>
+          <span class="val">Small coral dot (•) + small-caps label "Janji kami" above the headline.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Section headline</span>
+          <span class="val">Large, bold, uppercase two-line. Example: "DIADOPSI DARI / SHELTER TERPERCAYA" — line 1 ink, line 2 coral.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Photo selection</span>
+          <span class="val">3 photos: a shelter interior or volunteer with animal (tall portrait), two animals in shelter context (square pair). Warm, real, not stock. Shows the shelter side of the equation without text-heavy explanation.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Content</span>
+          <span class="val">Section label: <strong>"Dari shelter terverifikasi"</strong>. Show shelter names as pill badges (with a checkmark icon). 6–8 shelter names max. No logos needed (most shelters are small, may not have a polished logo).</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Supporting copy</span>
+          <span class="val">One short line: "Setiap hewan yang terdaftar berasal dari shelter atau penitip yang sudah kami verifikasi langsung."</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Note</span>
+          <span class="val">Keep this section visually quiet. It's a supporting beat, not a headline. Don't let it compete with the animal cards above.</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Section 06: Final CTA -->
+    <div class="spec-block">
+      <div class="spec-block-header">
+        <span class="name">06 — Final CTA</span>
+        <span class="tag">Page close</span>
+      </div>
+      <div class="spec-block-body">
+        <div class="spec-row">
+          <span class="key">Purpose</span>
+          <span class="val">Catch visitors who scrolled through without clicking anything. Warm close, one button, no email gate, no friction.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Layout</span>
+          <span class="val"><strong>Full-width banner with coral background and animal photo cutout.</strong> Left 60%: large two-line uppercase headline + one sentence of sub-copy + coral-inverted (white/dark) CTA button. Right 40%: animal photo positioned as a cutout (object-fit cover, no frame), slightly oversized so it bleeds to the top edge. The photo is decorative atmosphere, not a captioned feature. Reference: PUPJOY "SUBSCRIBE FOR TAIL WAGGING UPDATES" banner, adapted without the email input — just the headline + CTA + photo composition.</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">Background</span>
+          <span class="val">Solid <code>--primary</code> coral. White text for headline and sub-copy. CTA button: white bg, coral text (inverted from the rest of the page's coral-filled style).</span>
+        </div>
+        <div class="spec-row">
+          <span class="key">CTA button</span>
+          <span class="val">Coral filled. Label: <strong>"Mulai jelajahi"</strong> → <code>/jelajahi</code></span>
+        </div>
+
+        <div class="copy-example">
+          <small>Heading</small>
+          Siapa tahu, hewanmu sudah menunggu di sana.
+        </div>
+        <div class="copy-example">
+          <small>Sub-copy</small>
+          Tidak perlu daftar untuk mulai melihat. Jelajahi langsung, gratis.
+        </div>
+
+        <div class="callout coral">
+          <p><strong>No email capture here.</strong> The CTA should be "go browse" — not "sign up for updates." An email form adds friction at the exact moment when momentum is highest. Capture comes naturally when they apply for an animal.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 6. Design language -->
+  <div class="section">
+    <div class="section-title">06 — Design Language</div>
+    <h2>Visual system derived from references</h2>
+    <p>These rules apply to every surface of the landing page. They are extracted from the design references provided (PUPJOY and Vetic) and adapted to PawPath's existing color tokens and font stack. They do not override the global design system — they extend it for the landing page context.</p>
+
+    <h3 style="margin-top:28px; margin-bottom:12px;">Typography</h3>
+    <table>
+      <thead><tr><th>Element</th><th>Spec</th><th>Reference</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Section headings</strong></td>
+          <td>Large, bold, uppercase. Fraunces Variable (<code>font-display</code>). Two-line two-tone: line 1 in <code>--ink</code>, line 2 in <code>--primary</code> coral. Treat the color break as a design choice, not an afterthought — the coral line should always be the emotionally loaded line.</td>
+          <td>PUPJOY: "BRING HOME YOUR / PERFECT COMPANION"</td>
+        </tr>
+        <tr>
+          <td><strong>Section labels</strong></td>
+          <td>Above every section heading: a small coral dot (•) followed by small-caps uppercase label text in <code>--muted-foreground</code>. Example: <code>• Cara kerjanya</code>. Font size ~11px, letter-spacing generous. This is a consistent system across all sections — never omit it.</td>
+          <td>Vetic: "• Prevention", "• Testimonials", "• Contact"</td>
+        </tr>
+        <tr>
+          <td><strong>Body copy</strong></td>
+          <td>Geist Variable, regular weight, ~15–16px, line-height ~1.65. Never uppercase. Max width ~520px to prevent runaway line lengths in centered layouts.</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>CTA buttons</strong></td>
+          <td>Pill-shaped (border-radius: 999px), not rectangular. Filled coral on light sections, filled white on the coral banner. Pair with a ghost/text secondary action when needed. Reference: Vetic's pill CTA with icon.</td>
+          <td>Vetic hero CTA, PUPJOY buttons</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:28px; margin-bottom:12px;">Color application</h3>
+    <table>
+      <thead><tr><th>Surface</th><th>Treatment</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Page background</strong></td><td>Warm off-white (<code>--background</code>). Sections alternate between this and pure white to create visual rhythm without heavy borders.</td></tr>
+        <tr><td><strong>Hero panels</strong></td><td>Each panel gets a distinct solid fill: coral (<code>--primary</code>), near-black (<code>--ink</code>), honey (<code>--accent</code>), warm off-white. No gradient, no image overlays — solid color only so the animal photo reads cleanly.</td></tr>
+        <tr><td><strong>Step cards</strong></td><td>Pastel variants of the brand palette: light salmon (coral at 15% opacity), light mint (a complementary green), light honey (accent at 20% opacity). Never the full saturated color.</td></tr>
+        <tr><td><strong>Final CTA banner</strong></td><td>Full <code>--primary</code> coral. Only section on the page with this treatment. Makes it visually distinct and terminates the scroll with energy.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:28px; margin-bottom:12px;">Photo treatment</h3>
+    <table>
+      <thead><tr><th>Rule</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Studio-style backgrounds</strong></td><td>Hero panel photos and featured animal cards use animals photographed against solid-color or clean neutral backdrops — not lifestyle/environment photos. The colored panel or card background IS the environment. Lifestyle photos (animals in homes, parks) are reserved for the shelter promise section mosaic only.</td></tr>
+        <tr><td><strong>Rounded corners</strong></td><td>All photo elements use rounded corners. Hero panels: 0 (they bleed edge-to-edge). Feature cards: ~12px. Promise mosaic photos: ~16px. Never hard-cornered rectangles on standalone photos.</td></tr>
+        <tr><td><strong>Face-forward cropping</strong></td><td>For hero panels and featured cards, crop to show the animal's face and chest only. The animal should appear to be looking at or near the camera. Reference: every pet photo in PUPJOY's hero and breed grid.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:28px; margin-bottom:12px;">White card containers (Vetic pattern)</h3>
+    <p>The problem/solution step cards and any floating UI elements (social proof badge, stat callouts) sit inside white rounded-corner containers on the off-white page background. Border-radius ~20px, subtle box-shadow (<code>0 2px 16px rgba(0,0,0,0.06)</code>). This lifts content off the page without using heavy borders.</p>
+
+    <div class="callout coral">
+      <p><strong>What to avoid:</strong> Do not let the landing page look like the catalog page with extra sections. The catalog is functional UI. The landing page is editorial. Bigger type, more whitespace, bolder color use, fewer data points per block.</p>
+    </div>
+  </div>
+
+
+  <!-- 7. Copy principles -->
+  <div class="section">
+    <div class="section-title">07 — Copy Principles</div>
+    <h2>Voice rules for this page</h2>
+    <p>These apply to every line of copy on the landing page, on top of the global brand voice in CLAUDE.md.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Rule</th>
+          <th>Why</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Use specific animals, not abstract concepts</strong></td>
+          <td>Warm & story-driven tone. "Miko sedang menunggu" lands harder than "Temukan hewan peliharaan."</td>
+          <td>Bad: "Ribuan hewan membutuhkan rumah." Good: "Miko sudah 3 bulan di shelter Jakarta Selatan."</td>
+        </tr>
+        <tr>
+          <td><strong>Never use "peliharaan" in hero copy</strong></td>
+          <td>The word frames the animal as a possession, not a companion. It cheapens the emotional register.</td>
+          <td>Bad: "Temukan peliharaan idealmu." Good: "Temukan hewanmu."</td>
+        </tr>
+        <tr>
+          <td><strong>Lead with the visitor, not the platform</strong></td>
+          <td>Copy that starts with "PawPath adalah..." puts the brand first. Visitors don't care yet. Start with their reality.</td>
+          <td>Bad: "PawPath menghubungkan kamu dengan..." Good: "Sedang mencari hewan yang cocok untuk apartemen kamu?"</td>
+        </tr>
+        <tr>
+          <td><strong>No em dash ( — ) or bullet lists in body copy</strong></td>
+          <td>Per global brand voice rules — both are AI writing tells and break conversational flow.</td>
+          <td>Rewrite as real sentences instead.</td>
+        </tr>
+        <tr>
+          <td><strong>CTA labels are actions, not commands</strong></td>
+          <td>"Temukan hewanmu" feels like an invitation. "Cari Sekarang" feels like an instruction.</td>
+          <td>Use: Temukan hewanmu, Mulai jelajahi, Isi profil kecocokan. Avoid: Cari Sekarang, Klik Di Sini, Daftar.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- 7. Nav -->
+  <div class="section">
+    <div class="section-title">08 — Navigation</div>
+    <h2>Landing page nav vs app nav</h2>
+    <p>The landing page uses the same global nav component. No special landing-page-only nav. The existing nav already has "Jelajahi" and "Lamaranku" — both are correct for this page.</p>
+
+    <div class="callout honey">
+      <p><strong>One consideration:</strong> The current nav has no marketing-level anchor links (e.g. scroll to "how it works"). Since we're not building a long marketing page with anchors, this is fine. If the page grows sections like "for shelters" later, revisit.</p>
+    </div>
+  </div>
+
+
+  <!-- 8. Out of scope -->
+  <div class="section">
+    <div class="section-title">09 — Out of Scope (v1)</div>
+    <h2>What this page deliberately does not include</h2>
+
+    <ul class="clean">
+      <li>Email capture / newsletter signup — adds friction with no clear conversion path yet</li>
+      <li>Step-by-step adoption process explainer — process varies by shelter; landing page should not over-promise a specific flow</li>
+      <li>Shelter onboarding CTA ("Daftarkan sheltermu") — shelters get their own page later</li>
+      <li>Testimonial carousel — real testimonials don't exist yet; placeholder copy creates false trust</li>
+      <li>Video hero — production cost vs. gain not justified for v1; revisit after traffic data exists</li>
+      <li>Blog / article section — SEO content strategy is a separate initiative</li>
+      <li>FAQ section — no evidence visitors have specific questions before browsing; add only if bounce rate data shows it's needed</li>
+    </ul>
+  </div>
+
+
+  <!-- 9. Implementation notes -->
+  <div class="section">
+    <div class="section-title">10 — Implementation Notes</div>
+    <h2>For the person building this</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Route migration</strong></td>
+          <td>
+            <strong>Step 1:</strong> Rename <code>src/routes/index.tsx</code> → <code>src/routes/jelajahi/index.tsx</code>. This moves the existing browse catalog to <code>/jelajahi</code> with zero logic changes.<br><br>
+            <strong>Step 2:</strong> Create a new <code>src/routes/index.tsx</code> for the landing page.<br><br>
+            <strong>Step 3:</strong> Update two hardcoded <code>to="/"</code> references that point to the old catalog:<br>
+            &nbsp;• <code>src/components/layout/mobile-nav.tsx:17</code> — change <code>to: "/"</code> to <code>to: "/jelajahi"</code><br>
+            &nbsp;• <code>src/components/layout/site-footer.tsx:5</code> — change <code>to: "/"</code> to <code>to: "/jelajahi"</code><br><br>
+            No other files need updating. All other nav links already use the translation key which resolves to the correct label; only the <code>to</code> target changes.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Featured animals</strong></td>
+          <td>Hardcode 3 animal IDs in the landing page component. Pull their data via <code>useCatalog().getProduct(id)</code>. Reuse the existing PetCard component — do not build a separate landing card.</td>
+        </tr>
+        <tr>
+          <td><strong>Hydration</strong></td>
+          <td>The featured animals section reads from the static <code>src/data/</code> array, not localStorage, so no hydration guard needed there. Any personalization (e.g. "based on your profile") is out of scope for v1.</td>
+        </tr>
+        <tr>
+          <td><strong>Analytics</strong></td>
+          <td>Call <code>track('landing_cta_click', { cta: 'hero' | 'featured' | 'final' })</code> on each CTA click so we can see which section drives the most conversions.</td>
+        </tr>
+        <tr>
+          <td><strong>Mobile</strong></td>
+          <td>Hero becomes stacked (photo top, text bottom). Trust bar becomes 1-column. Featured animals become a horizontal scroll (snap) not a 3-col grid. Final CTA button is full-width.</td>
+        </tr>
+        <tr>
+          <td><strong>Fonts</strong></td>
+          <td>Hero headline uses <code>font-display</code> (Fraunces Variable). All body copy uses default Geist Variable. No new font imports needed.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- 10. Open questions -->
+  <div class="section">
+    <div class="section-title">11 — Open Questions</div>
+    <h2>Needs a decision before build starts</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Question</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>Which headline wins?</strong> Option A (product-forward) or Option B (story-forward)?</td>
+          <td>Pick one before writing any other copy — the headline sets the register for the whole page.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>Which 3 animals are featured?</strong> The animals with the best photos? The most urgent cases? A mix?</td>
+          <td>Suggest: Miko (dog, MENDESAK), Oranye (cat, MENDESAK), Cleo (dog, diverse breed) — based on what's visible in the current catalog screenshot.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>Stat numbers in the trust bar</strong> — use placeholder numbers or leave the bar out of v1?</td>
+          <td>If the mock data is clean enough to derive real-ish numbers, include them. If they'll look obviously fake, drop the trust bar from v1.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>Does "/" need SEO meta?</strong> Title tag, og:image, description for Google results?</td>
+          <td>Yes for a real product. For mock/demo, lower priority — but the root route's head should have at minimum a title and description.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <hr />
+
+  <p style="font-family: monospace; font-size: 12px; color: #999; text-align: center;">
+    PawPath Landing Page PRD — Draft v2 — May 2026<br>
+    Review this doc, answer the open questions in §10, then build starts.
+  </p>
+
+</div>
+</body>
+</html>
