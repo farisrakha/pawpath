@@ -11,15 +11,6 @@ export const Route = createFileRoute("/")({ component: LandingPage });
 
 // ── Shared primitives ─────────────────────────────────────────────────────────
 
-function SectionLabel({ text }: { text: string }) {
-	return (
-		<div className="mb-3 flex items-center gap-2">
-			<div className="h-2 w-2 rounded-full bg-primary" />
-			<span className="label-eyebrow text-muted-foreground">{text}</span>
-		</div>
-	);
-}
-
 function TwoToneHeading({
 	line1,
 	line2,
@@ -34,7 +25,7 @@ function TwoToneHeading({
 	return (
 		<Tag
 			className={cn(
-				"font-display text-3xl font-bold uppercase leading-[1.05] tracking-tight sm:text-4xl lg:text-5xl",
+				"font-jakarta text-3xl font-bold uppercase leading-[1.05] tracking-tight sm:text-4xl lg:text-5xl",
 				className,
 			)}
 		>
@@ -70,16 +61,8 @@ function HeroSection() {
 				<div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
 					{/* Left */}
 					<div className="flex flex-col gap-6">
-						{/* Eyebrow */}
-						<div className="flex items-center gap-2">
-							<div className="h-2 w-2 rounded-full bg-primary" />
-							<span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-								{t("landing.hero.eyebrow")}
-							</span>
-						</div>
-
 						{/* Headline */}
-						<h1 className="font-display text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl">
+						<h1 className="font-jakarta text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl">
 							{t("landing.hero.line1")}
 							<br />
 							<em className="italic text-primary">{t("landing.hero.line2")}</em>
@@ -255,7 +238,6 @@ function HowItWorksSection() {
 			<div className="mx-auto max-w-6xl px-6">
 				<div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
 					<div>
-						<SectionLabel text={t("landing.steps.label")} />
 						<TwoToneHeading
 							line1={t("landing.steps.headline1")}
 							line2={t("landing.steps.headline2")}
@@ -394,7 +376,6 @@ function FeaturedSection() {
 			<div className="mx-auto max-w-6xl px-6">
 				<div className="mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
 					<div>
-						<SectionLabel text={t("landing.featured.label")} />
 						<TwoToneHeading
 							line1={t("landing.featured.headline1")}
 							line2={t("landing.featured.headline2")}
@@ -489,7 +470,6 @@ function ShelterPromiseSection() {
 
 					{/* Text */}
 					<div>
-						<SectionLabel text={t("landing.shelter.label")} />
 						<TwoToneHeading
 							line1={t("landing.shelter.headline1")}
 							line2={t("landing.shelter.headline2")}
@@ -549,7 +529,7 @@ function FinalCTASection() {
 						paddingLeft: "max(1.5rem, calc((100vw - 72rem) / 2 + 1.5rem))",
 					}}
 				>
-					<h2 className="font-display text-3xl font-bold uppercase leading-tight text-white md:text-4xl lg:text-5xl">
+					<h2 className="font-jakarta text-3xl font-bold uppercase leading-tight text-white md:text-4xl lg:text-5xl">
 						{t("landing.cta.headline1")}
 						<br />
 						{t("landing.cta.headline2")}
