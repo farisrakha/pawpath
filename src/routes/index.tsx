@@ -348,13 +348,6 @@ function FeaturedCard({
 						</span>
 					</div>
 				)}
-				<div className="absolute bottom-3 left-3">
-					<span className="rounded-full bg-black/35 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm">
-						{pet.species === "cat"
-							? t("browse.species.catCard")
-							: t("browse.species.dogCard")}
-					</span>
-				</div>
 			</div>
 			<div className="mt-3 px-0.5">
 				<p className="truncate font-semibold leading-tight text-foreground">

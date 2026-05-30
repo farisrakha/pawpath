@@ -43,6 +43,7 @@ export type PetListing = {
 	status: PetStatus;
 	story: string;
 	knownRequirements?: string;
+	createdAt?: string;
 };
 
 export const pets: PetListing[] = [
@@ -80,6 +81,7 @@ export const pets: PetListing[] = [
 			"Miko adalah Golden Retriever jantan berusia tiga tahun yang tumbuh besar di rumah keluarga dengan halaman luas. Ia penuh semangat di luar ruangan tapi bisa sangat lembut dan tenang di dalam rumah. Miko sudah terlatih duduk, berbaring, dan datang saat dipanggil. Ia sangat menyukai anak-anak dan tidak pernah menunjukkan agresi terhadap anjing lain yang pernah ia temui.",
 		knownRequirements:
 			"Membutuhkan rumah dengan halaman atau akses rutin ke area terbuka. Tidak cocok untuk apartemen.",
+		createdAt: "2026-03-18T08:00:00.000Z",
 	},
 	{
 		id: "pet-002",
@@ -112,6 +114,7 @@ export const pets: PetListing[] = [
 		status: "active",
 		story:
 			"Brownie ditemukan di pinggir jalan Depok dalam kondisi kurus dan ketakutan, tapi setelah beberapa minggu di shelter ia berubah menjadi anjing yang ceria dan penuh kasih sayang. Ia sangat senang bermain bola dan bisa betah di dalam rumah selama ada yang menemaninya. Brownie masih butuh kesabaran ekstra untuk belajar aturan rumah, tapi ia cepat belajar.",
+		createdAt: "2026-05-18T08:00:00.000Z",
 	},
 	{
 		id: "pet-003",
@@ -140,6 +143,7 @@ export const pets: PetListing[] = [
 		status: "active",
 		story:
 			"Cleo adalah anjing Shih Tzu campuran yang sangat bersih dan tertib. Ia sudah terbiasa hidup di apartemen dan tidak pernah menggonggong berlebihan. Cleo suka tidur di sofa dan sesekali bermain dengan mainan berbunyi. Ia cocok untuk pemilik yang sibuk karena tidak butuh aktivitas fisik yang intens, cukup dua kali jalan singkat per hari.",
+		createdAt: "2026-04-15T08:00:00.000Z",
 	},
 	{
 		id: "pet-004",
@@ -168,6 +172,7 @@ export const pets: PetListing[] = [
 		status: "active",
 		story:
 			"Kopi adalah kucing jantan berwarna cokelat gelap dengan mata kuning kehijauan yang hangat. Karakternya tenang dan tidak rewel. Ia senang berada di dekat manusia tapi tidak terlalu minta perhatian. Kopi sudah terbiasa hidup di dalam ruangan dan selalu menggunakan kotak pasirnya dengan konsisten. Ia cocok untuk penghuni apartemen maupun rumah.",
+		createdAt: "2026-05-22T08:00:00.000Z",
 	},
 	{
 		id: "pet-005",
@@ -200,6 +205,7 @@ export const pets: PetListing[] = [
 		status: "active",
 		story:
 			"Susu adalah kucing betina berbulu putih bersih dengan sedikit bercak oranye di telinga. Umurnya masih muda dan ia sangat suka bermain dengan bola benang atau mainan berbulu. Ia tidak penakut dan langsung mau didekati orang asing setelah beberapa menit. Susu sudah hidup berdampingan dengan kucing lain di shelter dan tidak pernah ada konflik.",
+		createdAt: "2026-04-29T08:00:00.000Z",
 	},
 	{
 		id: "pet-006",
@@ -235,6 +241,7 @@ export const pets: PetListing[] = [
 			"Oranye adalah anak kucing jantan berbulu jingga cerah yang ditemukan sendirian di depan minimarket. Usianya sekitar tujuh bulan dan ia masih dalam fase aktif bermain. Ia sangat antusias dan suka memanjat serta berlari-larian. Oranye sudah divaksinasi dasar dan sehat. Ia butuh rumah sebelum akhir bulan karena tempat sementara kami sudah penuh.",
 		knownRequirements:
 			"Diutamakan adopter yang sudah berpengalaman dengan anak kucing.",
+		createdAt: "2026-03-24T08:00:00.000Z",
 	},
 	{
 		id: "pet-007",
@@ -263,6 +270,7 @@ export const pets: PetListing[] = [
 		status: "adopted",
 		story:
 			"Biscuit adalah kucing betina dewasa berwarna krem dengan kepribadian yang tenang dan penuh percaya diri. Ia sudah terbiasa hidup sendiri dan tidak membutuhkan perhatian berlebihan. Biscuit sangat cocok untuk pemilik yang bekerja dari rumah atau yang menginginkan teman yang tidak rewel. Ia sudah diadopsi dan tinggal bahagia bersama keluarga barunya.",
+		createdAt: "2026-04-05T08:00:00.000Z",
 	},
 	{
 		id: "pet-008",
@@ -296,5 +304,6 @@ export const pets: PetListing[] = [
 		status: "active",
 		story:
 			"Manis adalah kucing betina berbulu panjang berwarna abu-abu belang dengan karakter yang sangat mudah bergaul. Ia tidak pernah menggaruk atau menggigit bahkan saat digendong oleh anak kecil. Manis sudah tinggal di shelter selama delapan bulan dan sudah siap untuk pindah ke rumah yang lebih permanen. Ia akan sangat bahagia di rumah yang hangat dengan manusia yang suka memeluk.",
+		createdAt: "2026-05-08T08:00:00.000Z",
 	},
 ];

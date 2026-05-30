@@ -7,6 +7,7 @@ import {
 import {
 	ArrowLeft,
 	CheckCircle2,
+	Clock,
 	Heart,
 	MapPin,
 	ShieldCheck,
@@ -27,6 +28,23 @@ export const Route = createFileRoute("/pets/$petId")({
 });
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
+
+function getShelterDuration(days: number): { text: string; className: string } {
+	if (days < 30)
+		return {
+			text: `Sudah ${days} hari mencari rumah`,
+			className: "text-muted-foreground",
+		};
+	if (days < 60)
+		return {
+			text: `Sudah ${days} hari mencari rumah`,
+			className: "text-status-warning-fg",
+		};
+	return {
+		text: `Sudah ${days} hari mencari rumah`,
+		className: "text-primary",
+	};
+}
 
 function ageLabel(pet: PetListing, t: (key: string) => string): string {
 	const { years, months } = pet.age;
@@ -71,6 +89,13 @@ function PetDetailPage() {
 
 	const isUnavailable = pet.status !== "active";
 
+	const now = Date.now();
+	const fallbackCreatedAt = new Date(now - 45 * 86400000).toISOString();
+	const daysInShelter = Math.floor(
+		(now - new Date(pet.createdAt ?? fallbackCreatedAt).getTime()) / 86400000,
+	);
+	const shelterDuration = getShelterDuration(daysInShelter);
+
 	const handleApply = () => {
 		if (!isAuthenticated) {
 			navigate({ to: "/login" });
@@ -87,7 +112,7 @@ function PetDetailPage() {
 			{/* Back link */}
 			<Link
 				to="/jelajahi"
-				className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+				className="mb-8 inline-flex min-h-11 items-center gap-1.5 rounded px-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
 			>
 				<ArrowLeft className="size-4" />
 				{t("pet.backToList")}
@@ -118,7 +143,7 @@ function PetDetailPage() {
 									type="button"
 									onClick={() => setPhotoIdx(idx)}
 									className={cn(
-										"shrink-0 overflow-hidden rounded-xl border-2 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+										"shrink-0 overflow-hidden rounded-xl border-2 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 										photoIdx === idx
 											? "border-primary shadow-sm"
 											: "border-transparent opacity-70 hover:border-border hover:opacity-100",
@@ -201,7 +226,7 @@ function PetDetailPage() {
 						{/* Status badges */}
 						<div className="mb-3 flex flex-wrap items-center gap-2">
 							{pet.urgency === "urgent" ? (
-								<span className="rounded-full bg-destructive px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-primary-foreground">
+								<span className="rounded-full bg-destructive px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-white">
 									{t("browse.urgentBadge")}
 								</span>
 							) : null}
@@ -260,6 +285,17 @@ function PetDetailPage() {
 								</dd>
 							</div>
 						</dl>
+
+						{!isUnavailable && (
+							<div className="mt-3 flex items-center gap-1.5">
+								<Clock
+									className={cn("h-3.5 w-3.5", shelterDuration.className)}
+								/>
+								<span className={cn("text-sm", shelterDuration.className)}>
+									{shelterDuration.text}
+								</span>
+							</div>
+						)}
 
 						{/* Temperament tags */}
 						{pet.temperamentTags.length > 0 ? (
