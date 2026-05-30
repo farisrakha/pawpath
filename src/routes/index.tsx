@@ -138,7 +138,7 @@ function HeroSection() {
 						{/* Floating cat photo — top-right corner */}
 						<div className="absolute -right-5 -top-5 h-44 w-44 overflow-hidden rounded-2xl border-4 border-white shadow-xl">
 							<img
-								src="/images/pets/oranye-1.webp"
+								src="/images/pets/miko-2.webp"
 								alt="Kucing tersedia untuk adopsi"
 								className="h-full w-full object-cover object-top"
 								loading="eager"
