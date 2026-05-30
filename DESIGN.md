@@ -24,6 +24,7 @@ typography:
   display:
     fontFamily: "Fraunces Variable, Georgia, serif"
     fontWeight: 700
+    fontSize: "clamp(1.875rem, 3.5vw, 3rem)"
     lineHeight: 1.1
     letterSpacing: "-0.025em"
   headline:
@@ -142,7 +143,7 @@ A two-accent palette with a clear emotional hierarchy: Terracotta Warmth leads, 
 **Character:** Fraunces brings ink-weight and optical expressiveness to page titles — it is the voice of the announcement, not the conversation. Geist is the conversation: technical precision made warm through its variable optical sizing and generous x-height. Together they read as a knowledgeable local guide who also happens to know how to design.
 
 ### Hierarchy
-- **Display** (Fraunces, 700 weight, fluid ~2.2–2.8rem, -0.025em tracking, 1.1 line height): Page titles only. Browse page hero, individual pet name on detail view. One per viewport. `font-display` class.
+- **Display** (Fraunces, 700 weight, responsive 1.875rem → 3rem, -0.025em tracking, 1.1 line height): Page-level section headings and hero titles. Uses a three-step responsive staircase: `text-3xl` (1.875rem) on mobile, `text-4xl` (2.25rem) at sm (640px+), `text-5xl` (3rem) at lg (1024px+). Never use a flat large size — a fixed `text-5xl` overflows 375px viewports with Indonesian copy. One or two per viewport. `font-display` class.
 - **Headline** (Fraunces, 700 weight, ~1.5rem, 1.25 line height): Section titles inside cards ("Tentang [Name]", "Status kesehatan"). May appear several times per screen.
 - **Title** (Geist, 600 weight, ~1.125rem, 1.35 line height): Card-level headings, dialog titles, form section labels. The mid-tier separator.
 - **Body** (Geist, 400 weight, 0.875–1rem, 1.6 line height): Story text, descriptions, form labels, all UI copy. Line length capped at 65ch on prose content. The default voice.
@@ -150,6 +151,10 @@ A two-accent palette with a clear emotional hierarchy: Terracotta Warmth leads, 
 
 ### Named Rules
 **The Fraunces Ceiling Rule.** Fraunces is used only for h1 and h2 page/section headings. Never in buttons, navigation, labels, body copy, or any UI text below title level. Its character depends entirely on its rarity — the more it appears, the less it means.
+
+**The Floor Rule.** No text renders below `0.68rem` (10.9px). This is the absolute floor for badges, tags, and step labels.
+
+**The Responsive Staircase Rule.** Every heading that uses a size in the 2–3rem range must have a three-step mobile-first staircase: `text-3xl sm:text-4xl lg:text-5xl`. A heading at a fixed large size breaks Indonesian copy on 375px viewports where character counts run long.
 
 ## 4. Elevation
 
@@ -190,6 +195,7 @@ PawPath uses flat-by-default surfaces. There are no ambient shadows at resting s
 - **Header:** Sticky, `h-16`, `bg-background/95 backdrop-blur`. Single blurred-glass surface that floats above content on scroll.
 - **Desktop links:** text-sm, Faded Slate at rest, `hover:bg-muted hover:text-foreground`, `text-primary` for active route via TanStack Router's `[&.active]` targeting.
 - **Mobile:** Left-side Sheet at `w-72`. Same link styles at text-base. Closed on navigation via `SheetClose` wrapping each link.
+- **Mobile bottom nav:** Fixed bottom bar (`fixed inset-x-0 bottom-0`, `md:hidden`). Three tabs: Jelajahi, Lamaranku, Akun. Each tab `min-h-14` (56px). AppShell adds `pb-20` on mobile and uses `min-h-[100dvh]` (not `min-h-screen`) to survive iOS Safari URL bar resize.
 - **Wordmark:** `<PawPrint>` icon (size-6, text-primary) + "PawPath" in Fraunces, 1.25rem, font-bold, text-primary. The only place in the UI where the Fraunces display font appears at small size.
 
 ### WhatsApp CTA (Signature Component)
@@ -217,6 +223,9 @@ Rounded-full pills, `px-2.5 py-0.5 text-[0.68rem] font-semibold`. Colors from th
 - **Do** use `aria-pressed` on toggle-style selection buttons (gallery thumbnails, filter pills) and `aria-current="step"` on wizard step indicators.
 - **Do** add `prefers-reduced-motion` consideration for any new animation. The global media query in `styles.css` handles the built-in keyframes; custom animations must also respect it.
 - **Do** use Fraunces (`font-display`) for h1 and h2 headings only. All UI copy — buttons, labels, nav, form text, metadata — uses Geist.
+- **Do** add `onError` fallback handlers to every `<img>` tag, resolving to `/images/placeholder.svg`. No external fallback URLs.
+- **Do** use `min-h-[100dvh]` for the app shell, not `min-h-screen`, to prevent the iOS Safari URL bar from causing layout jumps.
+- **Do** step display type down for mobile: `text-3xl sm:text-4xl lg:text-5xl` is the standard staircase.
 
 ### Don't:
 - **Don't** use `border-left` or `border-right` greater than 1px as a colored accent stripe on cards, callouts, or list items. Use full borders, background tints, or leading icons instead. Side-stripe borders are prohibited.
@@ -226,6 +235,8 @@ Rounded-full pills, `px-2.5 py-0.5 text-[0.68rem] font-semibold`. Colors from th
 - **Don't** render text below `text-[0.68rem]` (10.9px). This is the floor for badges, tags, and step labels.
 - **Don't** use `--wa-green` or `bg-wa-green` for anything other than a WhatsApp CTA element. It is a brand-locked color.
 - **Don't** add `box-shadow` to resting cards. Shadow is an interaction response only.
-- **Don't** place external URLs (`place.dog`, `cataas.com`) in `onError` image handlers. All fallbacks must resolve to `/images/placeholder.svg`.
-- **Don't** rely on color alone to communicate state. Status pills combine color, text label, and (where applicable) icon. Vaccination status uses both a ShieldCheck icon and an `aria-label`.
+- **Don't** place external URLs in `onError` image handlers. All fallbacks must resolve to `/images/placeholder.svg`.
+- **Don't** rely on color alone to communicate state. Status pills combine color, text label, and (where applicable) icon.
 - **Don't** use the hero-metric template (large number, supporting stats, gradient accent). The dashboard uses data; it does not perform it.
+- **Don't** set a flat large heading size and assume it fits. Indonesian strings are often longer than English equivalents — a fixed `text-5xl` on a 375px viewport overflows. Always use the responsive staircase.
+- **Don't** use `calc(100vh)` in sticky/fixed layouts. Use `calc(100dvh)` so the iOS Safari URL bar doesn't push content off-screen.
