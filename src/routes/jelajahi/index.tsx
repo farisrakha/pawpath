@@ -467,7 +467,7 @@ function BrowsePage() {
 		<div className="mx-auto max-w-7xl px-4 py-8 md:py-12">
 			{/* Page header */}
 			<header className="mb-10">
-				<h1 className="font-display text-4xl font-bold leading-tight tracking-tight text-foreground md:text-[2.8rem]">
+				<h1 className="font-display text-3xl font-bold leading-tight tracking-tight text-foreground md:text-4xl lg:text-[2.8rem]">
 					{(() => {
 						const accent = t("browse.header.accentPhrase");
 						const [before, after = ""] = t("browse.header.title").split(accent);

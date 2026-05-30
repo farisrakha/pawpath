@@ -34,7 +34,7 @@ function TwoToneHeading({
 	return (
 		<Tag
 			className={cn(
-				"font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight lg:text-5xl",
+				"font-display text-3xl font-bold uppercase leading-[1.05] tracking-tight sm:text-4xl lg:text-5xl",
 				className,
 			)}
 		>
@@ -79,7 +79,7 @@ function HeroSection() {
 						</div>
 
 						{/* Headline */}
-						<h1 className="font-display text-5xl font-bold leading-tight tracking-tight text-foreground">
+						<h1 className="font-display text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl">
 							{t("landing.hero.line1")}
 							<br />
 							<em className="italic text-primary">{t("landing.hero.line2")}</em>
@@ -198,7 +198,7 @@ function TrustBar() {
 	return (
 		<section className="relative z-10 -mt-8">
 			<div className="mx-auto max-w-6xl px-6">
-				<div className="rounded-2xl border border-border/40 bg-card px-10 py-8">
+				<div className="rounded-2xl border border-border/40 bg-card px-4 py-5 sm:px-6 sm:py-8 md:px-10">
 					<div className="flex divide-x divide-border/40">
 						{stats.map(({ icon: Icon, value, label }) => (
 							<div
@@ -206,7 +206,7 @@ function TrustBar() {
 								className="flex flex-1 flex-col items-center gap-1 px-4 md:px-8"
 							>
 								<Icon className="h-5 w-5 text-primary/60" />
-								<p className="font-display text-3xl font-bold text-primary">
+								<p className="font-display text-xl font-bold text-primary sm:text-3xl">
 									{value}
 								</p>
 								<p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
@@ -392,7 +392,7 @@ function FeaturedSection() {
 	return (
 		<section className="w-full py-20">
 			<div className="mx-auto max-w-6xl px-6">
-				<div className="mb-10 flex items-end justify-between gap-4">
+				<div className="mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
 					<div>
 						<SectionLabel text={t("landing.featured.label")} />
 						<TwoToneHeading
@@ -446,7 +446,7 @@ function ShelterPromiseSection() {
 	return (
 		<section className="w-full bg-white py-20">
 			<div className="mx-auto max-w-6xl px-6">
-				<div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+				<div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16">
 					{/* Photo mosaic: tall portrait left + two squares right */}
 					<div className="grid h-[360px] grid-cols-2 gap-3 lg:h-[460px]">
 						<div className="relative row-span-2 overflow-hidden rounded-2xl">
@@ -544,12 +544,12 @@ function FinalCTASection() {
 			<div className="grid grid-cols-1 lg:grid-cols-[1fr_420px]">
 				{/* Left: text — padding aligns with max-w-6xl mx-auto px-6 */}
 				<div
-					className="flex flex-col justify-center gap-4 py-16 pr-12"
+					className="flex flex-col justify-center gap-4 py-10 pr-6 lg:py-16 lg:pr-12"
 					style={{
 						paddingLeft: "max(1.5rem, calc((100vw - 72rem) / 2 + 1.5rem))",
 					}}
 				>
-					<h2 className="font-display text-4xl font-bold uppercase leading-tight text-white lg:text-5xl">
+					<h2 className="font-display text-3xl font-bold uppercase leading-tight text-white md:text-4xl lg:text-5xl">
 						{t("landing.cta.headline1")}
 						<br />
 						{t("landing.cta.headline2")}
