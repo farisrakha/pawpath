@@ -488,7 +488,7 @@ function BrowsePage() {
 			<div className="lg:grid lg:grid-cols-[268px_1fr] lg:gap-10">
 				{/* Sidebar — desktop */}
 				<aside className="hidden lg:block">
-					<div className="sticky top-[80px] max-h-[calc(100vh-96px)] overflow-y-auto rounded-2xl border border-border bg-card p-5 [scrollbar-width:thin]">
+					<div className="sticky top-[80px] max-h-[calc(100dvh-96px)] overflow-y-auto rounded-2xl border border-border bg-card p-5 [scrollbar-width:thin]">
 						<FilterPanel />
 					</div>
 				</aside>

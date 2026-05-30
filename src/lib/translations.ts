@@ -4,6 +4,7 @@ export const translations: Record<string, Record<Lang, string>> = {
 	// ── nav ────────────────────────────────────────────────────────────────────
 	"nav.browse": { id: "Jelajahi", en: "Browse" },
 	"nav.myApplications": { id: "Lamaranku", en: "My Applications" },
+	"nav.account": { id: "Akun", en: "Account" },
 	"nav.dashboard": { id: "Dasbor", en: "Dashboard" },
 	"nav.login": { id: "Masuk", en: "Login" },
 	"nav.register": { id: "Daftar", en: "Register" },
@@ -473,6 +474,11 @@ export const translations: Record<string, Record<Lang, string>> = {
 	"myapp.statusHistory": { id: "Riwayat status", en: "Status history" },
 	"myapp.history": { id: "Riwayat", en: "History" },
 	"myapp.withdrawBtn": { id: "Cabut lamaran", en: "Withdraw" },
+	"myapp.withdrawConfirm": {
+		id: "Yakin cabut?",
+		en: "Sure you want to withdraw?",
+	},
+	"myapp.withdrawYes": { id: "Ya, cabut", en: "Yes, withdraw" },
 	"myapp.authTitle": {
 		id: "Masuk untuk melihat lamaranmu",
 		en: "Sign in to see your applications",

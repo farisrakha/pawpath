@@ -18,6 +18,7 @@ import { WhatsAppCta } from "@/components/common/whatsapp-cta";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useApplications, useAuth } from "@/context";
+import { useLanguage } from "@/context/LanguageContext";
 import { listers, type PetListing, pets } from "@/data";
 import { cn } from "@/lib/utils";
 
@@ -27,22 +28,12 @@ export const Route = createFileRoute("/pets/$petId")({
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
-function ageLabel(pet: PetListing): string {
+function ageLabel(pet: PetListing, t: (key: string) => string): string {
 	const { years, months } = pet.age;
-	if (years === 0) return `${months} bulan`;
-	if (months === 0) return `${years} tahun`;
-	return `${years} tahun ${months} bulan`;
+	if (years === 0) return `${months} ${t("pet.age.months")}`;
+	if (months === 0) return `${years} ${t("pet.age.years")}`;
+	return `${years} ${t("pet.age.years")} ${months} ${t("pet.age.months")}`;
 }
-
-const STATUS_LABEL: Record<string, string> = {
-	submitted: "Terkirim",
-	under_review: "Sedang ditinjau",
-	meet_greet: "Meet & Greet",
-	approved: "Disetujui",
-	adopted: "Diadopsi",
-	rejected: "Ditolak",
-	withdrawn: "Dicabut",
-};
 
 const STATUS_COLOR: Record<string, string> = {
 	submitted: "bg-muted text-muted-foreground",
@@ -54,21 +45,12 @@ const STATUS_COLOR: Record<string, string> = {
 	withdrawn: "bg-muted text-muted-foreground",
 };
 
-const SIZE_LABEL: Record<string, string> = {
-	small: "Kecil (<10 kg)",
-	medium: "Sedang (10–25 kg)",
-	large: "Besar (>25 kg)",
-};
-
-const MEDICAL_ITEMS: {
-	key: keyof PetListing["medicalStatus"];
-	label: string;
-}[] = [
-	{ key: "vaksinasi", label: "Vaksinasi lengkap" },
-	{ key: "sterilisasi", label: "Sterilisasi" },
-	{ key: "microchip", label: "Microchip" },
-	{ key: "obatCacing", label: "Obat cacing" },
-	{ key: "suratKesehatan", label: "Surat kesehatan" },
+const MEDICAL_KEYS: (keyof PetListing["medicalStatus"])[] = [
+	"vaksinasi",
+	"sterilisasi",
+	"microchip",
+	"obatCacing",
+	"suratKesehatan",
 ];
 
 // ── Page ──────────────────────────────────────────────────────────────────────
@@ -78,6 +60,7 @@ function PetDetailPage() {
 	const navigate = useNavigate();
 	const { isAuthenticated } = useAuth();
 	const { getApplicationByPet } = useApplications();
+	const { t } = useLanguage();
 
 	const pet = pets.find((p) => p.id === petId);
 	if (!pet) throw notFound();
@@ -107,14 +90,14 @@ function PetDetailPage() {
 				className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
 			>
 				<ArrowLeft className="size-4" />
-				Kembali ke daftar
+				{t("pet.backToList")}
 			</Link>
 
 			<div className="grid gap-10 lg:grid-cols-[56fr_44fr]">
 				{/* ── Left: photos + story ── */}
 				<div className="flex flex-col gap-7">
 					{/* Main photo */}
-					<div className="overflow-hidden rounded-2xl bg-muted aspect-[4/3] ring-1 ring-border">
+					<div className="aspect-[4/3] overflow-hidden rounded-2xl bg-muted ring-1 ring-border">
 						<img
 							src={pet.photos[photoIdx]}
 							alt={`${pet.name} foto ${photoIdx + 1}`}
@@ -138,7 +121,7 @@ function PetDetailPage() {
 										"shrink-0 overflow-hidden rounded-xl border-2 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
 										photoIdx === idx
 											? "border-primary shadow-sm"
-											: "border-transparent opacity-70 hover:opacity-100 hover:border-border",
+											: "border-transparent opacity-70 hover:border-border hover:opacity-100",
 									)}
 									aria-label={`Foto ${idx + 1}`}
 									aria-pressed={photoIdx === idx}
@@ -161,7 +144,7 @@ function PetDetailPage() {
 					{/* Story */}
 					<section>
 						<h2 className="font-display mb-3 text-xl font-bold text-foreground">
-							Tentang {pet.name}
+							{t("pet.story")} {pet.name}
 						</h2>
 						<p className="text-[0.92rem] leading-relaxed text-muted-foreground">
 							{pet.story}
@@ -172,7 +155,7 @@ function PetDetailPage() {
 					{pet.knownRequirements ? (
 						<div className="rounded-xl border border-status-warning-border bg-status-warning-bg/60 p-4">
 							<p className="text-sm font-semibold text-status-warning-fg">
-								Persyaratan khusus
+								{t("pet.requirements.label")}
 							</p>
 							<p className="mt-1 text-sm leading-relaxed text-status-warning-fg">
 								{pet.knownRequirements}
@@ -183,10 +166,10 @@ function PetDetailPage() {
 					{/* Medical status */}
 					<section>
 						<h2 className="font-display mb-4 text-xl font-bold text-foreground">
-							Status kesehatan
+							{t("pet.medicalStatus")}
 						</h2>
 						<div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-							{MEDICAL_ITEMS.map(({ key, label }) => {
+							{MEDICAL_KEYS.map((key) => {
 								const ok = pet.medicalStatus[key];
 								return (
 									<div
@@ -203,7 +186,7 @@ function PetDetailPage() {
 										) : (
 											<XCircle className="size-4 shrink-0 text-muted-foreground/50" />
 										)}
-										{label}
+										{t(`pet.medical.${key}`)}
 									</div>
 								);
 							})}
@@ -219,12 +202,12 @@ function PetDetailPage() {
 						<div className="mb-3 flex flex-wrap items-center gap-2">
 							{pet.urgency === "urgent" ? (
 								<span className="rounded-full bg-destructive px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-primary-foreground">
-									Mendesak
+									{t("browse.urgentBadge")}
 								</span>
 							) : null}
 							{isUnavailable ? (
 								<span className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-semibold text-muted-foreground">
-									Sudah diadopsi
+									{t("pet.adopted")}
 								</span>
 							) : null}
 						</div>
@@ -233,7 +216,10 @@ function PetDetailPage() {
 							{pet.name}
 						</h1>
 						<p className="mt-1 text-muted-foreground">
-							{pet.breed} · {pet.species === "cat" ? "Kucing" : "Anjing"}
+							{pet.breed} &middot;{" "}
+							{pet.species === "cat"
+								? t("pet.species.cat")
+								: t("pet.species.dog")}
 						</p>
 
 						<Separator className="my-4" />
@@ -241,27 +227,33 @@ function PetDetailPage() {
 						{/* Vitals grid */}
 						<dl className="grid grid-cols-2 gap-x-4 gap-y-4 text-sm">
 							<div>
-								<dt className="label-eyebrow text-muted-foreground">Umur</dt>
+								<dt className="label-eyebrow text-muted-foreground">
+									{t("pet.vitals.age")}
+								</dt>
 								<dd className="mt-1 font-medium text-foreground">
-									{ageLabel(pet)}
+									{ageLabel(pet, t)}
 								</dd>
 							</div>
 							<div>
 								<dt className="label-eyebrow text-muted-foreground">
-									Jenis kelamin
+									{t("pet.vitals.sex")}
 								</dt>
 								<dd className="mt-1 font-medium text-foreground">
-									{pet.sex === "male" ? "Jantan" : "Betina"}
+									{pet.sex === "male" ? t("pet.sex.male") : t("pet.sex.female")}
 								</dd>
 							</div>
 							<div>
-								<dt className="label-eyebrow text-muted-foreground">Ukuran</dt>
+								<dt className="label-eyebrow text-muted-foreground">
+									{t("pet.vitals.size")}
+								</dt>
 								<dd className="mt-1 font-medium text-foreground">
-									{SIZE_LABEL[pet.size]}
+									{t(`pet.size.${pet.size}`)}
 								</dd>
 							</div>
 							<div>
-								<dt className="label-eyebrow text-muted-foreground">Lokasi</dt>
+								<dt className="label-eyebrow text-muted-foreground">
+									{t("pet.vitals.location")}
+								</dt>
 								<dd className="mt-1 flex items-center gap-1 font-medium text-foreground">
 									<MapPin className="size-3.5 text-muted-foreground" />
 									{pet.locationDistrict}
@@ -274,8 +266,8 @@ function PetDetailPage() {
 							<>
 								<Separator className="my-4" />
 								<div>
-									<p className="mb-2.5 label-eyebrow text-muted-foreground">
-										Karakter
+									<p className="label-eyebrow mb-2.5 text-muted-foreground">
+										{t("pet.temperament")}
 									</p>
 									<div className="flex flex-wrap gap-1.5">
 										{pet.temperamentTags.map((tag) => (
@@ -297,7 +289,7 @@ function PetDetailPage() {
 						{existingApp ? (
 							<div className="rounded-xl bg-muted/60 p-4">
 								<p className="text-sm font-semibold text-foreground">
-									Status lamaranmu
+									{t("pet.existingApp")}
 								</p>
 								<span
 									className={cn(
@@ -306,7 +298,7 @@ function PetDetailPage() {
 											"bg-muted text-muted-foreground",
 									)}
 								>
-									{STATUS_LABEL[existingApp.status] ?? existingApp.status}
+									{t(`status.${existingApp.status}`)}
 								</span>
 								<Button
 									variant="outline"
@@ -314,22 +306,22 @@ function PetDetailPage() {
 									className="mt-3 w-full"
 									render={<Link to="/my-applications" />}
 								>
-									Lihat lamaran
+									{t("pet.viewApp")}
 								</Button>
 							</div>
 						) : isUnavailable ? (
 							<p className="text-center text-sm text-muted-foreground">
-								Hewan ini sudah tidak tersedia untuk adopsi.
+								{t("pet.unavailable")}
 							</p>
 						) : (
 							<div className="flex flex-col gap-2">
 								<Button size="lg" className="w-full" onClick={handleApply}>
 									<Heart className="size-4" />
-									Ajukan lamaran adopsi
+									{t("pet.applyButton")}
 								</Button>
 								{!isAuthenticated ? (
 									<p className="text-center text-xs text-muted-foreground">
-										Kamu perlu masuk terlebih dahulu.
+										{t("pet.loginHint")}
 									</p>
 								) : null}
 							</div>
@@ -351,23 +343,25 @@ function PetDetailPage() {
 								>
 									<ShieldCheck className="size-4" />
 									{lister.type === "shelter"
-										? "Organisasi Terverifikasi"
-										: "Individu Terverifikasi"}
+										? t("pet.listerCard.shelter")
+										: t("pet.listerCard.private")}
 								</div>
 							) : null}
 
 							<div className="p-5">
-								<p className="mb-3 label-eyebrow text-muted-foreground">
-									Dititipkan oleh
+								<p className="label-eyebrow mb-3 text-muted-foreground">
+									{t("pet.listerCard.by")}
 								</p>
 
 								<p className="font-semibold text-foreground">
 									{lister.displayName}
 								</p>
 								<p className="mt-0.5 text-xs text-muted-foreground">
-									{lister.type === "shelter" ? "Shelter" : "Penitip mandiri"}
+									{lister.type === "shelter"
+										? t("pet.listerCard.shelterLabel")
+										: t("pet.listerCard.privateLabel")}
 									{lister.type === "shelter" && lister.adoptionCount > 0
-										? ` · ${lister.adoptionCount} adopsi berhasil`
+										? ` · ${lister.adoptionCount} ${t("pet.listerCard.adoptions")}`
 										: null}
 								</p>
 
@@ -380,7 +374,7 @@ function PetDetailPage() {
 								{lister.type === "shelter" ? (
 									<WhatsAppCta
 										phone={lister.waNumber}
-										label="Hubungi shelter via WhatsApp"
+										label={t("pet.listerCard.contactShelter")}
 										className="mt-4"
 									/>
 								) : null}
@@ -388,8 +382,7 @@ function PetDetailPage() {
 								{/* Private: WA hidden message */}
 								{lister.type === "private" && !existingApp ? (
 									<p className="mt-4 rounded-lg bg-muted/60 px-3 py-2.5 text-xs text-muted-foreground">
-										Kontak penitip akan diberikan setelah lamaran mencapai tahap
-										Meet &amp; Greet.
+										{t("pet.listerCard.privateHint")}
 									</p>
 								) : null}
 
@@ -398,7 +391,7 @@ function PetDetailPage() {
 								existingApp?.status === "meet_greet" ? (
 									<WhatsAppCta
 										phone={lister.waNumber}
-										label="Hubungi penitip via WhatsApp"
+										label={t("pet.listerCard.contactPrivate")}
 										className="mt-4"
 									/>
 								) : null}

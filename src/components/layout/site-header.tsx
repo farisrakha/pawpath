@@ -70,6 +70,7 @@ function AccountAffordance() {
 
 	const initials = user.displayName
 		.split(" ")
+		.filter((p) => p.length > 0)
 		.map((p) => p[0])
 		.slice(0, 2)
 		.join("")

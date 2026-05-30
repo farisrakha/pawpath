@@ -1,19 +1,23 @@
 import { Link } from "@tanstack/react-router";
 import { PawPrint } from "lucide-react";
 
-const ADOPT_LINKS = [
-	{ to: "/jelajahi", label: "Jelajahi hewan" },
-	{ to: "/my-applications", label: "Lamaranku" },
-	{ to: "/dashboard", label: "Dashboard shelter" },
+import { useLanguage } from "@/context/LanguageContext";
+
+const ADOPT_LINK_DEFS = [
+	{ to: "/jelajahi", tKey: "footer.browse" },
+	{ to: "/my-applications", tKey: "footer.myApps" },
+	{ to: "/dashboard", tKey: "footer.shelterDash" },
 ] as const;
 
-const ACCOUNT_LINKS = [
-	{ to: "/account", label: "Akun saya" },
-	{ to: "/login", label: "Masuk" },
-	{ to: "/register", label: "Daftar" },
+const ACCOUNT_LINK_DEFS = [
+	{ to: "/account", tKey: "footer.myAccount" },
+	{ to: "/login", tKey: "footer.login" },
+	{ to: "/register", tKey: "footer.register" },
 ] as const;
 
 export function SiteFooter() {
+	const { t } = useLanguage();
+
 	return (
 		<footer className="border-t border-border bg-muted/40">
 			<div className="mx-auto max-w-7xl px-4 py-12">
@@ -26,21 +30,22 @@ export function SiteFooter() {
 							</span>
 						</div>
 						<p className="mt-3 max-w-sm text-sm text-muted-foreground">
-							Marketplace adopsi anjing dan kucing di Jabodetabek. Temukan hewan
-							yang membutuhkan rumah baru dan ajukan lamaran dengan mudah.
+							{t("footer.tagline")}
 						</p>
 					</div>
 
 					<div>
-						<h3 className="text-sm font-semibold text-foreground">Adopsi</h3>
+						<h3 className="text-sm font-semibold text-foreground">
+							{t("footer.adopt")}
+						</h3>
 						<ul className="mt-3 space-y-2">
-							{ADOPT_LINKS.map((link) => (
-								<li key={link.label}>
+							{ADOPT_LINK_DEFS.map((link) => (
+								<li key={link.to}>
 									<Link
 										to={link.to}
 										className="text-sm text-muted-foreground transition-colors hover:text-foreground"
 									>
-										{link.label}
+										{t(link.tKey)}
 									</Link>
 								</li>
 							))}
@@ -48,15 +53,17 @@ export function SiteFooter() {
 					</div>
 
 					<div>
-						<h3 className="text-sm font-semibold text-foreground">Akun</h3>
+						<h3 className="text-sm font-semibold text-foreground">
+							{t("footer.account")}
+						</h3>
 						<ul className="mt-3 space-y-2">
-							{ACCOUNT_LINKS.map((link) => (
-								<li key={link.label}>
+							{ACCOUNT_LINK_DEFS.map((link) => (
+								<li key={link.to}>
 									<Link
 										to={link.to}
 										className="text-sm text-muted-foreground transition-colors hover:text-foreground"
 									>
-										{link.label}
+										{t(link.tKey)}
 									</Link>
 								</li>
 							))}
@@ -66,8 +73,7 @@ export function SiteFooter() {
 
 				<div className="mt-10 border-t border-border pt-6">
 					<p className="text-xs text-muted-foreground">
-						&copy; {new Date().getFullYear()} PawPath. Prototipe untuk tujuan
-						peragaan. Layanan mencakup Jabodetabek.
+						&copy; {new Date().getFullYear()} PawPath. {t("footer.copyright")}
 					</p>
 				</div>
 			</div>

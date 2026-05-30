@@ -16,6 +16,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { useApplications } from "@/context";
+import { useLanguage } from "@/context/LanguageContext";
 import {
 	type ActivityLevel,
 	type HomeType,
@@ -87,13 +88,21 @@ const DONATION_AMOUNTS = [0, 50000, 100000, 200000];
 
 // ── Step indicator ────────────────────────────────────────────────────────────
 
-const STEP_LABELS = ["Hunian", "Gaya hidup", "Pernyataan", "Konfirmasi"];
+const STEP_T_KEYS = [
+	"apply.stepLabel.housing",
+	"apply.stepLabel.lifestyle",
+	"apply.stepLabel.statement",
+	"apply.stepLabel.confirm",
+] as const;
 
 function StepIndicator({ current }: { current: number }) {
+	const { t } = useLanguage();
+	const stepLabels = STEP_T_KEYS.map((k) => t(k));
+
 	return (
 		<nav aria-label="Langkah formulir">
 			<ol className="mb-10 flex items-center">
-				{STEP_LABELS.map((label, idx) => {
+				{stepLabels.map((label, idx) => {
 					const step = idx + 1;
 					const done = step < current;
 					const active = step === current;
@@ -129,7 +138,7 @@ function StepIndicator({ current }: { current: number }) {
 									{label}
 								</span>
 							</div>
-							{idx < STEP_LABELS.length - 1 ? (
+							{idx < STEP_T_KEYS.length - 1 ? (
 								<div
 									className={cn(
 										"mx-2 mb-5 h-px flex-1 transition-colors duration-300",
@@ -618,6 +627,7 @@ function Step4Form({
 function ApplyForm({ petId }: { petId: string }) {
 	const navigate = useNavigate();
 	const { submitApplication, getApplicationByPet } = useApplications();
+	const { t } = useLanguage();
 
 	const [step, setStep] = useState(1);
 	const [s1, setS1] = useState<Step1>({ homeType: "", household: "" });
@@ -647,13 +657,13 @@ function ApplyForm({ petId }: { petId: string }) {
 		return (
 			<div className="py-12 text-center">
 				<p className="font-display text-xl font-semibold text-foreground">
-					Hewan ini sudah tidak tersedia
+					{t("apply.unavailable")}
 				</p>
 				<p className="mt-2 text-sm text-muted-foreground">
-					Cari hewan lain yang membutuhkan rumah baru.
+					{t("apply.unavailableHint")}
 				</p>
-				<Button className="mt-5" render={<Link to="/" />}>
-					Kembali ke daftar
+				<Button className="mt-5" render={<Link to="/jelajahi" />}>
+					{t("apply.backToList")}
 				</Button>
 			</div>
 		);
@@ -679,10 +689,10 @@ function ApplyForm({ petId }: { petId: string }) {
 				},
 				donationAmount,
 			);
-			toast.success(`Lamaran untuk ${pet.name} berhasil dikirim!`);
+			toast.success(t("apply.toast.success").replace("{name}", pet.name));
 			navigate({ to: "/my-applications" });
 		} catch {
-			toast.error("Gagal mengirim lamaran. Coba lagi.");
+			toast.error(t("apply.toast.error"));
 			setSubmitting(false);
 		}
 	};
@@ -698,7 +708,7 @@ function ApplyForm({ petId }: { petId: string }) {
 				className="mb-6 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
 			>
 				<ArrowLeft className="size-4" />
-				Kembali ke profil {pet.name}
+				{t("apply.backToPet")} {pet.name}
 			</Link>
 
 			<div className="mx-auto max-w-xl">
@@ -717,12 +727,12 @@ function ApplyForm({ petId }: { petId: string }) {
 					</div>
 					<div>
 						<h1 className="font-display text-2xl font-bold text-foreground md:text-3xl">
-							Lamaran adopsi
+							{t("apply.applicationFor")}
 						</h1>
 						<p className="mt-0.5 text-muted-foreground">
-							Untuk{" "}
+							{t("apply.forPet")}{" "}
 							<span className="font-semibold text-foreground">{pet.name}</span>{" "}
-							di {pet.locationDistrict}
+							{t("apply.at")} {pet.locationDistrict}
 						</p>
 					</div>
 				</div>
@@ -761,12 +771,10 @@ function ApplyForm({ petId }: { petId: string }) {
 
 function ApplyPageWrapper() {
 	const { petId } = Route.useParams();
+	const { t } = useLanguage();
 	return (
 		<div className="mx-auto max-w-2xl px-4">
-			<AuthGate
-				title="Masuk untuk mengajukan lamaran"
-				description="Kamu perlu masuk terlebih dahulu sebelum mengajukan lamaran adopsi."
-			>
+			<AuthGate title={t("apply.authTitle")} description={t("apply.authDesc")}>
 				<ApplyForm petId={petId} />
 			</AuthGate>
 		</div>
