@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
+	DropdownMenuGroup,
 	DropdownMenuItem,
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
@@ -98,9 +99,11 @@ function AccountAffordance() {
 				}
 			/>
 			<DropdownMenuContent align="end" className="w-52">
-				<DropdownMenuLabel className="truncate">
-					{user.displayName}
-				</DropdownMenuLabel>
+				<DropdownMenuGroup>
+					<DropdownMenuLabel className="truncate">
+						{user.displayName}
+					</DropdownMenuLabel>
+				</DropdownMenuGroup>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem render={<Link to="/account" />}>
 					Akun saya
