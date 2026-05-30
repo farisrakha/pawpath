@@ -257,9 +257,9 @@ function HowItWorksSection() {
 								step.bg,
 							)}
 						>
-							<span className="text-sm font-medium text-muted-foreground">
+							<div className="w-9 h-9 rounded-full bg-white flex items-center justify-center text-sm font-semibold text-foreground shadow-sm border border-border/30 mb-4">
 								{step.num}
-							</span>
+							</div>
 							<h3 className="mb-2 mt-3 text-lg font-bold text-foreground">
 								{t(step.titleKey)}
 							</h3>
