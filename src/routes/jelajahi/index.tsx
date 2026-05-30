@@ -367,20 +367,13 @@ function PetCard({
 						e.currentTarget.src = "/images/placeholder.svg";
 					}}
 				/>
-				<div className="absolute inset-x-0 top-0 flex items-start justify-between p-3">
-					{pet.urgency === "urgent" ? (
-						<span className="rounded-full bg-destructive px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-primary-foreground shadow-sm">
+				{pet.urgency === "urgent" ? (
+					<div className="absolute left-3 top-3">
+						<span className="rounded-full bg-primary px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-sm">
 							{t("browse.urgentBadge")}
 						</span>
-					) : (
-						<span />
-					)}
-					<span className="rounded-full bg-background/85 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-sm">
-						{pet.species === "cat"
-							? t("browse.species.catCard")
-							: t("browse.species.dogCard")}
-					</span>
-				</div>
+					</div>
+				) : null}
 			</div>
 
 			{/* Content */}

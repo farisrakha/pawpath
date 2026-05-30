@@ -343,7 +343,7 @@ function FeaturedCard({
 				/>
 				{pet.urgency === "urgent" && (
 					<div className="absolute right-3 top-3">
-						<span className="rounded-full bg-destructive px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-sm">
+						<span className="rounded-full bg-primary px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-sm">
 							{t("browse.urgentBadge")}
 						</span>
 					</div>
