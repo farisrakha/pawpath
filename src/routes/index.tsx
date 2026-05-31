@@ -312,7 +312,6 @@ function FeaturedCard({
 	petId: string;
 	panelColor: string;
 }) {
-	const { t } = useLanguage();
 	const pet = pets.find((p) => p.id === petId);
 	if (!pet) return null;
 
@@ -341,13 +340,6 @@ function FeaturedCard({
 						e.currentTarget.src = "/images/placeholder.svg";
 					}}
 				/>
-				{pet.urgency === "urgent" && (
-					<div className="absolute right-3 top-3">
-						<span className="rounded-full bg-primary px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-sm">
-							{t("browse.urgentBadge")}
-						</span>
-					</div>
-				)}
 			</div>
 			<div className="mt-3 px-0.5">
 				<p className="truncate font-semibold leading-tight text-foreground">

@@ -125,7 +125,7 @@ function FilterPanel({ onClose }: { onClose?: () => void }) {
 					<button
 						type="button"
 						onClick={resetFilters}
-						className="flex w-fit min-h-11 items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
+						className="flex w-fit items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors duration-150 hover:border-primary hover:text-primary"
 					>
 						<RotateCcw className="size-3" />
 						{t("browse.filterReset")}
